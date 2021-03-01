@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "359511315871",
+    "project_id": "quasar-flutter",
+    "storage_bucket": "quasar-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359511315871:android:58e9abce0da77b19d419aa",
+        "android_client_info": {
+          "package_name": "com.quasar.flutter_quasar_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359511315871-m85arnph5iorvs240sm62riget489245.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN5KrBCkKaJK4efqM-e9uACMNBKxkVIqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359511315871-m85arnph5iorvs240sm62riget489245.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

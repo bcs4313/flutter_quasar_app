@@ -1,0 +1,75 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
+import 'package:flutter_quasar_app/windows/account_firewall/forgot_password/view_forgot_password.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/home_page/view_homepage.dart';
+
+import 'model_login.dart';
+
+/// The model is responsible for all actions called by our view.
+///
+/// Notes about the methods in each model:
+/// Transfer methods simply take us from one view to the next
+/// All other methods are documented to show their intention.
+/// @author Cody Smith at RIT
+///
+class ControllerLogin
+{
+  // sets
+  void setEmail(String email) { ModelLogin.email = email; }
+  void setPassword(String password) { ModelLogin.password = password; }
+
+  // gets
+  String getEmail(){ return ModelLogin.email; }
+  String getPassword(){ return ModelLogin.password; }
+
+  /// Log into the Firebase network using the info received by our view and put into our model.
+  /// @param S_KEY simple application key to use Snackbars with
+  Future<void> login(BuildContext context, GlobalKey<ScaffoldState> S_KEY)
+  async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    print("LOGIN-CALL");
+
+    try {
+      await auth.signInWithEmailAndPassword(
+          email: getEmail(), password: getPassword());
+      print("LOGIN-SUCCESS");
+      transferHomePage(context);
+    }
+    catch(e)
+    {
+      print("LOGIN-FAILURE");
+      switch(e.message)
+      {
+        case "The email address is badly formatted":
+          S_KEY.currentState.showSnackBar(SnackBar(
+            content: Text('The email seems to be formatted incorrectly. See if you can fix it before trying again.'),
+            duration: Duration(seconds: 6),
+          ));
+          return;
+        default:
+          S_KEY.currentState.showSnackBar(SnackBar(
+            content: Text("Login Denied."),
+            duration: Duration(seconds: 2),
+          ));
+          return;
+      }
+    }
+  }
+
+  void transferHomePage(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewHomepage()));
+  }
+
+  void transferCreateAccount(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewCreateAccount()));
+  }
+
+  void transferForgotPassword(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewForgotPassword()));
+  }
+}
