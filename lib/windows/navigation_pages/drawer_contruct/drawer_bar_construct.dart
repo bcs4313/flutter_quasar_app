@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
-class DrawerBarConstruct extends StatelessWidget implements PreferredSizeWidget{
+class DrawerBarConstruct extends StatelessWidget implements PreferredSizeWidget {
+
+  String text;
+
+  DrawerBarConstruct(String text)
+  {
+    this.text = text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text("Homepage"),
+      title: Text(text),
       flexibleSpace: Container(
         decoration: new BoxDecoration(
         gradient: new LinearGradient(

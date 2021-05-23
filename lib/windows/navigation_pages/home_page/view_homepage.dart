@@ -32,7 +32,7 @@ class ViewHomepage extends StatelessWidget
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-        appBar: DrawerBarConstruct(),
+        appBar: DrawerBarConstruct("Homepage"),
       drawer: DrawerConstruct(),
 
       body: Center(

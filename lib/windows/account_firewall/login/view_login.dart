@@ -7,8 +7,7 @@ import 'model_login.dart';
 
 /// Login Screen UI
 ///
-/// This both serves as the controller and view for our window.
-/// The model is separate from this file.
+///
 class ViewLogin extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)
@@ -42,16 +41,17 @@ class ViewLogin extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 23 * SizeConfig.scaleVertical),
+              padding: EdgeInsets.only(top: 20 * SizeConfig.scaleVertical),
               child: Text(
                   'Account Login',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 10, fontFamily: 'Roboto', color: Col.pink)
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 70 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
+              padding: EdgeInsets.only(right: 77 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
               child: Text(
                   'Email',
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
               ),
             ),
@@ -59,7 +59,7 @@ class ViewLogin extends StatelessWidget
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
               child: TextField(
                 obscureText: false,
-                style: TextStyle(color: Col.pink),
+                style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.purple, width: 1.0),
@@ -78,6 +78,7 @@ class ViewLogin extends StatelessWidget
             Padding(
               padding: EdgeInsets.only(right: 70 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
               child: Text('Password',
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
               ),
             ),
@@ -85,7 +86,7 @@ class ViewLogin extends StatelessWidget
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
               child: TextField(
                 obscureText: true,
-                style: TextStyle(color: Col.pink),
+                style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.purple, width: 1.0),
@@ -142,7 +143,7 @@ class ViewLogin extends StatelessWidget
                 Padding(
                   padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 4 * SizeConfig.scaleHorizontal),
                   child: SizedBox(
-                    width: 46 * SizeConfig.scaleHorizontal,
+                    width: 50 * SizeConfig.scaleHorizontal,
                     height: 10 * SizeConfig.scaleVertical,
                     child: FlatButton( // flat buttons have no bevels to make them look like buttons
                         splashColor: Col.pink,
