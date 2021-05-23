@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/home_page/view_homepage.dart';
 
 class ControllerDrawer {
@@ -18,7 +18,7 @@ class ControllerDrawer {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ViewHomepage()));
         break;
       case("ViewEventEditorMainPage"):
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ViewEventEditorMainPage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CounterPageStateful()));
         break;
     }
   }

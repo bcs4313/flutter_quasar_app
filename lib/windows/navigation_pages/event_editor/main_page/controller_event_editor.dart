@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_creator/initializer_view_event_creator.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
 
 /// @author Cody Smith at RIT
@@ -13,10 +14,12 @@ class ControllerEventEditor
   /// -- These methods do things that are specific to this app window
 
   var widgetList = <Widget>[];
+  ViewEventEditorMainPage parent; // stateful widget to update after various changes to this controller
 
-
-  ///
-
+  /// construct an array of widgets with each row dedicated to a
+  /// singular event in the Firebase database for this user.
+  /// Allows the editing and deletion of individual events,
+  /// along with the addition of users.
   ListView constructWidgets()
   {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -38,22 +41,30 @@ class ControllerEventEditor
                String title = env_data["title"];
                String event_num = env_data["event_num"];
                Widget widget = new WidgetMainPageEvent(title, event_num);
-               print("widget returned: " + widget.toString());
                widgetList.add(widget);
-               print("added");
-               print("widget just added: " + widgetList[0].toString());
             }
-          print("widget just added: " + widgetList[0].toString());
           ListView view = ListView(
             children: widgetList,
           );
+
+          // update the stateful widget of the mainpage, populating it
+          // with event buttons
+          parent.updateConstruct(view);
+
           return view;
     });
   }
 
-  /// Direct user to window telling them to verify their email.
+  // add parent to the following widget
+  void addParent(ViewEventEditorMainPage parent)
+  {
+    this.parent = parent;
+  }
+
+  /// Direct user to event creation window
   void transferCreateEvent(BuildContext context)
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => InitializerEventCreator()));
   }
+
 }

@@ -7,6 +7,7 @@ import '../../../../size_config.dart';
 import 'controller_event_editor.dart';
 
 /// class for building an event editor UI widget for a single event
+/// in the mainpage (edit event properties, add user, delete user).
 class WidgetMainPageEvent extends StatelessWidget {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
