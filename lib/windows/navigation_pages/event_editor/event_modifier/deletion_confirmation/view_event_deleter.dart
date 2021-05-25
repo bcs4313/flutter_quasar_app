@@ -3,9 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 
-import '../../../../col.dart';
-import '../../../../size_config.dart';
+import '../../../../../col.dart';
+import '../../../../../size_config.dart';
 import 'controller_event_deleter.dart';
+
 
 /// Event Modifier UI
 ///

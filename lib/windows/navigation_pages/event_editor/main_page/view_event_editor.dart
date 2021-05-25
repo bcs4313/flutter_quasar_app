@@ -99,7 +99,7 @@ class ViewEventEditorMainPage extends State<CounterPageStateful>
             Padding(
               padding: EdgeInsets.only(top: 3 * SizeConfig.scaleHorizontal),
               child: Container(
-                height: 30 * SizeConfig.scaleVertical,
+                height: 52 * SizeConfig.scaleVertical,
                 width: 900 * SizeConfig.scaleHorizontal,
                 child: eventConstruct,
               ),

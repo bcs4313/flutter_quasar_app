@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_modifier/view_event_modifier.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_modifier/view_event_modifier.dart';
 
 import 'controller_event_modifier.dart';
 

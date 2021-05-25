@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_modifier/deletion_confirmation/view_event_deleter.dart';
+import 'deletion_confirmation/view_event_deleter.dart';
 
 import 'model_event_modifier.dart';
 

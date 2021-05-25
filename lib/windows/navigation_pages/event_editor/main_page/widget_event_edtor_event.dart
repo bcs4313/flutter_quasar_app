@@ -1,10 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_modifier/initializer_view_event_modifier.dart';
+import 'controller_event_editor.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
-import 'controller_event_editor.dart';
 
 /// class for building an event editor UI widget for a single event
 /// in the mainpage (edit event properties, add user, delete user).
@@ -42,7 +43,7 @@ class WidgetMainPageEvent extends StatelessWidget {
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),
                     onPressed:() => {
-                      //controller.createEvent(context, S_KEY),
+                      transferModifyEvent(context, id),
                     }
                 ),
               ),
@@ -82,5 +83,10 @@ class WidgetMainPageEvent extends StatelessWidget {
               ),
             ]),
     );
+  }
+  /// Direct user to event modification window
+  void transferModifyEvent(BuildContext context, String eventNum)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new InitializerEventModifier(eventNum)));
   }
 }
