@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
+import 'controller_tree_builder.dart';
+import 'extension_tree_builder.dart';
 
 /// Login Screen UI
 ///
 /// This both serves as the model and view for our window.
 /// The controller is separate from this file.
-class ViewTreeBuilder extends StatelessWidget
+class ViewTreeBuilder extends State<TreeBuilderStateful>
 {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
+
+  // controller for this view
+  ControllerTreeBuilder controller;
+
+  ViewTreeBuilder(ControllerTreeBuilder controller)
+  {
+    this.controller = controller;
+    controller.addParent(this);
+  }
 
   // portrait/landscape build separation
   @override
@@ -48,34 +58,25 @@ class ViewTreeBuilder extends StatelessWidget
                 textAlign: TextAlign.center,
               ),
             ),
-            Container(
-              width: 95 * SizeConfig.scaleHorizontal,
-              height: 80 * SizeConfig.scaleVertical,
-              color: Col.purple_1,
-
-              // This container has a complex staggered grid view to model a sophisticated scheduler system.
-              // @param staggeredtiles property lists each individual tile's spacing (respective)
-              // @param children property lists each item that will be placed in each staggeredtile (respective)
-              // @param crossAxisCount number of columns defined
-              // @param crossaxisspacing number of pixels between each tile produced (column split)
-              // @param mainaxisspacing number of pixels between each tile produced (row split)
-              child: StaggeredGridView.count(
-                padding: const EdgeInsets.all(12.0),
-                crossAxisCount: 4,
-                mainAxisSpacing: 24,
-                crossAxisSpacing: 12,
-                staggeredTiles: [
-                  StaggeredTile.count(1, 2),
-                  StaggeredTile.count(1, 2),
-                  StaggeredTile.count(2, 2),
-                  StaggeredTile.count(2, 2),
-                  StaggeredTile.count(2, 2),
-                  StaggeredTile.count(2, 2),
-                  StaggeredTile.count(2, 2),
-                  StaggeredTile.count(2, 2),
-                ],
-                children:
-                  [
+            InteractiveViewer(
+              child: GestureDetector(
+                // Here we define some gestures to track the actions of the user
+                // These gestures funnel method calls into the controller
+                // to be handled
+                onTapUp: (TapUpDetails details) => controller.onTapUp(details),
+                onTapDown: (TapDownDetails details) => controller.onTapDown(details),
+              child: Container(
+                width: 95 * SizeConfig.scaleHorizontal,
+                height: 80 * SizeConfig.scaleVertical,
+                color: Col.purple_1,
+                child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                    Positioned(
+                      bottom: 100,
+                      right: 300,
+                      child: Icon(Icons.home, color: Colors.red),
+                    ),
                     Icon(Icons.home, color: Colors.white),
                     Icon(Icons.home, color: Colors.white),
                     Icon(Icons.home, color: Colors.white),
@@ -83,8 +84,9 @@ class ViewTreeBuilder extends StatelessWidget
                     Icon(Icons.home, color: Colors.white),
                     Icon(Icons.home, color: Colors.white),
                     Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                  ]
+                    ],
+                  ),
+                ),
               ),
             ),
           ])

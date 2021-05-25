@@ -9,6 +9,9 @@ import '../../../../col.dart';
 import '../../../../size_config.dart';
 import 'controller_event_editor.dart';
 
+/// Serves as the extension of a stateful widget
+/// All variables that cannot be reinitialized must be placed within
+/// this class
 class CounterPageStateful extends StatefulWidget {
 @override
 State<StatefulWidget> createState() {
