@@ -1,7 +1,11 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
 import '../../../../size_config.dart';
@@ -18,12 +22,18 @@ class ControllerTreeBuilder
   int TDN_x; // tap down x coord
   int TDN_y; // tap down y coord
 
-  bool move_lock; // if the user is currently holding onto a node in "move" mode.
+  ViewTreeNode move_lock; // includes a node if we have selected a node to move
 
   // add parent to the following widget
   void addParent(ViewTreeBuilder parent)
   {
     this.parent = parent;
+  }
+
+  /// Retrieve editing mode
+  String getMode()
+  {
+    return parent.editState;
   }
 
   /// OPERATIONS
@@ -39,6 +49,12 @@ class ControllerTreeBuilder
     // or user the local position method to get the offset
     //print(details.localPosition);
     print("tap down " + l_x.toString() + ", " + l_y.toString());
+
+    print("Mode == " + func);
+    if(link == "  Move" && link is ViewTreeNode)
+      {
+        print("Moving Node...");
+      }
   }
 
   /// Call for down tapping on the tree background.
@@ -58,10 +74,10 @@ class ControllerTreeBuilder
     if(func == "  Add") {
       parent.setState(() {
         parent.children.add(
-            new ViewTreeNode((ViewTreeBuilder.containerHeight *
+            new TreeNodeStateful((ViewTreeBuilder.containerHeight *
                 SizeConfig.scaleVertical) - l_y,
                 (ViewTreeBuilder.containerWidth * SizeConfig.scaleHorizontal) -
-                    l_x)
+                    l_x, this)
         );
       }
       );
