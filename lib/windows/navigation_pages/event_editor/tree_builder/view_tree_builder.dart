@@ -75,6 +75,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                     '  None',
                     '  Add',
                     '  Edit',
+                    '  Move',
                     '  Connect',
                     '  Delete',
                   ].map<DropdownMenuItem<String>>((String value) {
@@ -104,8 +105,8 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                 // Here we define some gestures to track the actions of the user
                 // These gestures funnel method calls into the controller
                 // to be handled
-                onTapUp: (TapUpDetails details) => controller.onTapUp(details),
-                onTapDown: (TapDownDetails details) => controller.onTapDown(details),
+                onTapUp: (TapUpDetails details) => controller.onTapUp(details, editState, null),
+                onTapDown: (TapDownDetails details) => controller.onTapDown(details, editState, null),
               child: Container(
                 width: containerWidth * SizeConfig.scaleHorizontal,
                 height: containerHeight * SizeConfig.scaleVertical,

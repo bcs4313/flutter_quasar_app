@@ -18,6 +18,8 @@ class ControllerTreeBuilder
   int TDN_x; // tap down x coord
   int TDN_y; // tap down y coord
 
+  bool move_lock; // if the user is currently holding onto a node in "move" mode.
+
   // add parent to the following widget
   void addParent(ViewTreeBuilder parent)
   {
@@ -26,7 +28,12 @@ class ControllerTreeBuilder
 
   /// OPERATIONS
   /// -- These methods do things that are specific to this app window
-  onTapDown(TapDownDetails details) {
+  ///
+  /// Call for down tapping on the tree background.
+  /// @param details contains variables relative to the tap action
+  /// @param func describes which action is currently desired by the user via dropdown
+  /// @param link widget (most likely a node) that may or may not have been called.
+  onTapDown(TapDownDetails details, String func, Widget link) {
     double l_x = details.localPosition.dx; // acquiring local position x
     double l_y = details.localPosition.dy; // acquiring local position y
     // or user the local position method to get the offset
@@ -34,7 +41,11 @@ class ControllerTreeBuilder
     print("tap down " + l_x.toString() + ", " + l_y.toString());
   }
 
-  onTapUp(TapUpDetails details) {
+  /// Call for down tapping on the tree background.
+  /// @param details contains variables relative to the tap action
+  /// @param func describes which action is currently desired by the user via dropdown
+  /// @param link widget (most likely a node) that may or may not have been called.
+  onTapUp(TapUpDetails details, String func, Widget link) {
     double l_x = details.localPosition.dx; // acquiring local position x
     double l_y = details.localPosition.dy; // acquiring local position y
     // or user the local position method to get the offset
@@ -42,15 +53,18 @@ class ControllerTreeBuilder
     print("tap up " + l_x.toString() + ", " + l_y.toString());
     print("updating parent: ");
 
-    // by default a tap_up will simply add a node at the cursor location
-    parent.setState(()
-        {
-          parent.children.add(
-              new ViewTreeNode((ViewTreeBuilder.containerHeight *
-                  SizeConfig.scaleVertical) - l_y,
-                  (ViewTreeBuilder.containerWidth * SizeConfig.scaleHorizontal) - l_x)
-          );
-        }
-    );
+    // Add a node if in "add" mode
+    print("Mode == " + func);
+    if(func == "  Add") {
+      parent.setState(() {
+        parent.children.add(
+            new ViewTreeNode((ViewTreeBuilder.containerHeight *
+                SizeConfig.scaleVertical) - l_y,
+                (ViewTreeBuilder.containerWidth * SizeConfig.scaleHorizontal) -
+                    l_x)
+        );
+      }
+      );
+    }
   }
 }
