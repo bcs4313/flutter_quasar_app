@@ -16,8 +16,17 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
+
+
   // controller for this view
   ControllerTreeBuilder controller;
+  List<Widget> children = []; // children nodes in tree
+
+  // define container width and height here (shared across all elements)
+  static double containerWidth = 95;
+  static double containerHeight = 80;
+
+  String editState; // current editing state we are in from dropdown menu
 
   ViewTreeBuilder(ControllerTreeBuilder controller)
   {
@@ -50,14 +59,46 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
-                  'Event Schedule',
-                  style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
-                textAlign: TextAlign.center,
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.only(right: 2.7 * SizeConfig.scaleHorizontal),
+                child: Container(
+                color: Col.white,
+                child: DropdownButton<String>(
+                  focusColor:Colors.white,
+                  value: editState,
+                  //elevation: 5,
+                  style: TextStyle(color: Colors.white),
+                  iconEnabledColor:Colors.black,
+                  items: <String>[
+                    '  None',
+                    '  Add',
+                    '  Edit',
+                    '  Connect',
+                    '  Delete',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value,style:TextStyle(color:Colors.black),),
+                    );
+                  }).toList(),
+                  hint:Text(
+                    "  Edit Mode",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onChanged: (String value) {
+                    setState(() {
+                      editState = value;
+                    });
+                  },
+                ),
               ),
             ),
+        ),
             InteractiveViewer(
               child: GestureDetector(
                 // Here we define some gestures to track the actions of the user
@@ -66,29 +107,16 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                 onTapUp: (TapUpDetails details) => controller.onTapUp(details),
                 onTapDown: (TapDownDetails details) => controller.onTapDown(details),
               child: Container(
-                width: 95 * SizeConfig.scaleHorizontal,
-                height: 80 * SizeConfig.scaleVertical,
+                width: containerWidth * SizeConfig.scaleHorizontal,
+                height: containerHeight * SizeConfig.scaleVertical,
                 color: Col.purple_1,
                 child: Stack(
                     fit: StackFit.expand,
-                    children: [
-                    Positioned(
-                      bottom: 100,
-                      right: 300,
-                      child: Icon(Icons.home, color: Colors.red),
-                    ),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    Icon(Icons.home, color: Colors.white),
-                    ],
+                    children: children,
                   ),
                 ),
               ),
-            ),
+              ),
           ])
         ),
       );
