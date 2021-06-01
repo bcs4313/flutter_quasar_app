@@ -15,7 +15,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   double x; // x location in tree
   double y; // y location in tree
   double width = 100; // width of node
-  double height = 100; // height of node
+  double height = 60; // height of node
   ControllerTreeBuilder controller;
 
   ViewTreeNodeDraggable(double y, double x, ControllerTreeBuilder controller)
@@ -77,8 +77,8 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
     print("x = " + x.toString());
     print("y = " + y.toString());
     return Positioned(
-      top: y,
-      left: x,
+      top: y - height / 2,
+      left: x - width / 2,
       child: AbsorbPointer(
         // true absorbing state disables the draggable, allowing other controls to exist
         absorbing: false,
@@ -103,8 +103,8 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
                 offset = renderBox.globalToLocal(offset);
                 print("new x = " + offset.dx.toString());
                 print("new y = " + offset.dy.toString());
-                y = offset.dy;
-                x = offset.dx;
+                y = offset.dy + height / 2;
+                x = offset.dx + width / 2;
               });
             });
           },

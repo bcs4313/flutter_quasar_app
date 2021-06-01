@@ -35,8 +35,8 @@ class NodePainter extends CustomPainter {
         ViewTreeNodeDraggable front = np.front;
         ViewTreeNodeDraggable back = np.back;
 
-        Offset front_vector = new Offset(front.x + front.width / 2, front.y + front.height);
-        Offset back_vector = new Offset(back.x + back.width / 2, back.y);
+        Offset front_vector = new Offset(front.x, front.y + front.height / 2);
+        Offset back_vector = new Offset(back.x, back.y - front.height / 2);
         canvas.drawLine(front_vector, back_vector, p);
       }
 
