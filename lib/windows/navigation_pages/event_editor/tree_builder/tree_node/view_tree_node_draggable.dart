@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_stateless.dart';
 import '../view_tree_builder.dart';
 import 'extension_tree_node.dart';
-import 'view_tree_node.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -10,34 +8,99 @@ import '../controller_tree_builder.dart';
 
 /// Tree Node
 /// A basic node that is part of the tree in a schedule builder
-class ViewTreeNodeDraggable extends ViewTreeNode
+class ViewTreeNodeDraggable extends State<TreeNodeStateful>
 {
-  ViewTreeNodeDraggable(double x, double y, ControllerTreeBuilder controller) : super(x, y, controller);
+  // dimensional variables
+  double x; // x location in tree
+  double y; // y location in tree
+  double width; // width of node
+  double height; // height of node
+  ControllerTreeBuilder controller;
 
+  ViewTreeNodeDraggable(double y, double x, ControllerTreeBuilder controller)
+  {
+    this.x = x;
+    this.y = y;
+    this.controller = controller;
+    print("node constructor initialized");
+  }
+
+
+  var current_col = Col.purple_2;
   // portrait/landscape build separation
   @override
   Widget build(BuildContext context) {
     print("node built");
-    ViewTreeNodeStateless node = new ViewTreeNodeStateless(x, y, controller);
+    Widget node = AnimatedContainer(
+      color: current_col,
+      duration: Duration(milliseconds: 420),
+      child: TextButton.icon(
+          label: Text('Title',
+              style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, height: 1.3, fontFamily: 'Roboto', color: Col.white)),
+          icon: Icon(
+            Icons.account_circle,
+            color: Col.white,
+          ),
+          onPressed: () {
+            print("detected press on node");
+            // check to see if the user is trying to connect nodes together
+            ViewTreeBuilder parent = controller.parent;
+            if(parent.editState == "Connect")
+            {
+              // if there is currently no nodes selected for connection
+              if(controller.connect_1 == null)
+              {
+                controller.connect_1 = this;
+                // change the color of the node to indicate a connection
+                setState(() {
+                  current_col = Col.blue;
+                });
+              }
+              else
+              {
+                controller.connect_2 = this;
+              }
+            }
+          }
+      ),
+    );
+
+    print("x = " + x.toString());
+    print("y = " + y.toString());
     return Positioned(
-      bottom: y,
-      right: x,
-      child: Draggable(
-        child: node,
-        feedback: node,
-        onDraggableCanceled: (Velocity velocity, Offset offset) {
-          controller.parent.setState(() {
-            setState(() {
-              print(offset.toString());
-              // not 100% sure why this works. Flutter is strange sometimes
-              y = (SizeConfig.screenHeight - ViewTreeBuilder.containerHeight) - offset.dy - 13;
-              x = (SizeConfig.screenWidth - ViewTreeBuilder.containerWidth) - offset.dx + 5;
-              print("new x = " + x.toString());
-              print("new y = " + y.toString());
+      top: y,
+      left: x,
+      child: AbsorbPointer(
+        // true absorbing state disables the draggable, allowing other controls to exist
+        absorbing: false,
+        child: Draggable(
+          child: node,
+          feedback: node,
+          onDraggableCanceled: (Velocity velocity, Offset offset) {
+            controller.parent.setState(() {
+              setState(() {
+                print(offset.toString());
+                // not 100% sure why this works. Flutter is strange sometimes
+
+                RenderBox renderBox1 = controller.parent.context.findRenderObject();
+                final size1 = renderBox1.size;
+                print("SIZE of parent: $size1");
+
+                RenderBox renderBox = controller.parent.builder_key.currentContext.findRenderObject();
+                final size = renderBox.size;
+                print("SIZE of box: $size");
+                print("old x = " + offset.dx.toString());
+                print("old y = " + offset.dy.toString());
+                offset = renderBox.globalToLocal(offset);
+                print("new x = " + offset.dx.toString());
+                print("new y = " + offset.dy.toString());
+                y = offset.dy;
+                x = offset.dx;
+              });
             });
-          });
-        },
-        childWhenDragging: Container(),
+          },
+          childWhenDragging: Container(),
+        ),
       ),
     );
   }

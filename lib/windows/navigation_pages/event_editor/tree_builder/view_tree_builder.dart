@@ -16,7 +16,8 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-
+  // key to access the context of the schedule builder container
+  GlobalKey builder_key = GlobalKey();
 
   // controller for this view
   ControllerTreeBuilder controller;
@@ -72,12 +73,12 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                   style: TextStyle(color: Colors.white),
                   iconEnabledColor:Colors.black,
                   items: <String>[
-                    '  None',
-                    '  Add',
-                    '  Edit',
-                    '  Move',
-                    '  Connect',
-                    '  Delete',
+                    'None',
+                    'Add',
+                    'Edit',
+                    'Move',
+                    'Connect',
+                    'Delete',
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -100,11 +101,13 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
               ),
             ),
         ),
+
             InteractiveViewer(
               child: GestureDetector(
                 // Here we define some gestures to track the actions of the user
                 // These gestures funnel method calls into the controller
                 // to be handled
+                key: builder_key, // key is used to access the context and therefore this container's renderbox
                 onTapUp: (TapUpDetails details) => controller.onTapUp(details, editState, null),
                 onTapDown: (TapDownDetails details) => controller.onTapDown(details, editState, null),
               child: Container(

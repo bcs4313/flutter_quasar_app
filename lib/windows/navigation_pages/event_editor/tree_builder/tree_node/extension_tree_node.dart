@@ -11,7 +11,7 @@ class TreeNodeStateful extends StatefulWidget {
   // dimensional variables
   double x; // x location in tree
   double y; // y location in tree
-  double width; // width of node
+  double width; // width of node`
   double height; // height of node
   ControllerTreeBuilder controller;
 

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
@@ -17,12 +16,10 @@ class ControllerTreeBuilder
   ViewTreeBuilder parent; // stateful widget to update after various changes to this controller
 
   // stored variables relative to the controller
-  int TUP_x; // tap down x coord
-  int TUP_y; // tap down y coord
-  int TDN_x; // tap down x coord
-  int TDN_y; // tap down y coord
-
-  ViewTreeNode move_lock; // includes a node if we have selected a node to move
+  //
+  // 2 nodes to connect to each other in connect mode
+  ViewTreeNodeDraggable connect_1;
+  ViewTreeNodeDraggable connect_2;
 
   // add parent to the following widget
   void addParent(ViewTreeBuilder parent)
@@ -40,6 +37,7 @@ class ControllerTreeBuilder
   /// -- These methods do things that are specific to this app window
   ///
   /// Call for down tapping on the tree background.
+  /// @param context build context to work with the coordinate plane of the view
   /// @param details contains variables relative to the tap action
   /// @param func describes which action is currently desired by the user via dropdown
   /// @param link widget (most likely a node) that may or may not have been called.
@@ -51,13 +49,10 @@ class ControllerTreeBuilder
     print("tap down " + l_x.toString() + ", " + l_y.toString());
 
     print("Mode == " + func);
-    if(link == "  Move" && link is ViewTreeNode)
-      {
-        print("Moving Node...");
-      }
   }
 
   /// Call for down tapping on the tree background.
+  /// @param context build context to work with the coordinate plane of the view
   /// @param details contains variables relative to the tap action
   /// @param func describes which action is currently desired by the user via dropdown
   /// @param link widget (most likely a node) that may or may not have been called.
@@ -71,13 +66,10 @@ class ControllerTreeBuilder
 
     // Add a node if in "add" mode
     print("Mode == " + func);
-    if(func == "  Add") {
+    if(func == "Add") {
       parent.setState(() {
         parent.children.add(
-            new TreeNodeStateful((ViewTreeBuilder.containerHeight *
-                SizeConfig.scaleVertical) - l_y,
-                (ViewTreeBuilder.containerWidth * SizeConfig.scaleHorizontal) -
-                    l_x, this)
+            new TreeNodeStateful(l_y, l_x, this)
         );
       }
       );
