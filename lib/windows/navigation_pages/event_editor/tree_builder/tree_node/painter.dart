@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
+
+import '../../../../../col.dart';
+import '../controller_tree_builder.dart';
+import 'node_pair.dart';
+
+/// Paints connections between nodes in the schedule builder tree
+class NodePainter extends CustomPainter {
+
+  ControllerTreeBuilder controller;
+
+  NodePainter(ControllerTreeBuilder controller)
+  {
+    this.controller = controller;
+  }
+
+  /// Drawing method for our schedule builder overlay
+  ///@param canvas canvas to draw on
+  ///@param size data related to the container of the canvas
+  @override
+  void paint(Canvas canvas, Size size)
+  {
+    Paint p = new Paint();
+    p.color = Col.white;
+    p.strokeWidth = 3.0;
+
+    // In this loop we will go through each connection found in our model,
+    // drawing connections to each pair through a branch-like structure
+    List<NodePair> pairs = controller.model.pairs;
+    for(int i = 0; i < pairs.length; i++)
+      {
+        NodePair np = pairs[i];
+        ViewTreeNodeDraggable front = np.front;
+        ViewTreeNodeDraggable back = np.back;
+
+        Offset front_vector = new Offset(front.x + front.width / 2, front.y + front.height);
+        Offset back_vector = new Offset(back.x + back.width / 2, back.y);
+        canvas.drawLine(front_vector, back_vector, p);
+      }
+
+  }
+
+  ///@return true if the painter should redraw the canvas
+  @override
+  bool shouldRepaint(CustomPainter old)
+  {
+     return true;
+  }
+}
