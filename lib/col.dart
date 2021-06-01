@@ -15,4 +15,5 @@ class Col
   static Color black = Color.fromRGBO(0, 0, 0, 100);
   static Color black_1 = Color.fromRGBO(0, 0, 12, 100);
   static Color gray = Color.fromRGBO(70, 70, 70, 100);
+  static Color blue = Color.fromRGBO(0, 0, 255, 100);
 }

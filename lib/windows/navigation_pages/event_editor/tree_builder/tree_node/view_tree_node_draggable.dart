@@ -5,6 +5,7 @@ import 'extension_tree_node.dart';
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
 import '../controller_tree_builder.dart';
+import 'node_pair.dart';
 
 /// Tree Node
 /// A basic node that is part of the tree in a schedule builder
@@ -13,8 +14,8 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   // dimensional variables
   double x; // x location in tree
   double y; // y location in tree
-  double width; // width of node
-  double height; // height of node
+  double width = 100; // width of node
+  double height = 100; // height of node
   ControllerTreeBuilder controller;
 
   ViewTreeNodeDraggable(double y, double x, ControllerTreeBuilder controller)
@@ -30,39 +31,47 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   // portrait/landscape build separation
   @override
   Widget build(BuildContext context) {
-    print("node built");
+    // Arrow element stores data to targets it must point to
     Widget node = AnimatedContainer(
-      color: current_col,
-      duration: Duration(milliseconds: 420),
-      child: TextButton.icon(
-          label: Text('Title',
-              style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, height: 1.3, fontFamily: 'Roboto', color: Col.white)),
-          icon: Icon(
-            Icons.account_circle,
-            color: Col.white,
-          ),
-          onPressed: () {
-            print("detected press on node");
-            // check to see if the user is trying to connect nodes together
-            ViewTreeBuilder parent = controller.parent;
-            if(parent.editState == "Connect")
-            {
-              // if there is currently no nodes selected for connection
-              if(controller.connect_1 == null)
+        color: current_col,
+        width: width,
+        height: height,
+        duration: Duration(milliseconds: 420),
+        child: TextButton.icon(
+            label: Text('Title',
+                style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, height: 1.3, fontFamily: 'Roboto', color: Col.white)),
+            icon: Icon(
+              Icons.account_circle,
+              color: Col.white,
+            ),
+            onPressed: () {
+              print("detected press on node");
+              // check to see if the user is trying to connect nodes together
+              ViewTreeBuilder parent = controller.parent;
+              if(parent.editState == "Connect")
               {
-                controller.connect_1 = this;
-                // change the color of the node to indicate a connection
-                setState(() {
-                  current_col = Col.blue;
-                });
-              }
-              else
-              {
-                controller.connect_2 = this;
+                // if there is currently no nodes selected for connection
+                if(controller.connect_1 == null)
+                {
+                  controller.connect_1 = this;
+                  // change the color of the node to indicate a connection
+                  setState(() {
+                    current_col = Col.white;
+                  });
+                }
+                else
+                { // create a node connection for the model
+                  controller.connect_2 = this;
+                  NodePair np = new NodePair(controller.connect_1, controller.connect_2);
+                  controller.model.pairs.add(np); // add pair to model
+                  controller.connect_1.setState(() {
+                    controller.connect_1.current_col = Col.purple_2;
+                  });
+                  controller.connect_1 = null;
+                }
               }
             }
-          }
-      ),
+        ),
     );
 
     print("x = " + x.toString());

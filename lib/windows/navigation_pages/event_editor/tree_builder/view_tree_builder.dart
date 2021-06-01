@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/painter.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -103,6 +104,8 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
         ),
 
             InteractiveViewer(
+                child: CustomPaint(
+                  painter: new NodePainter(controller),
               child: GestureDetector(
                 // Here we define some gestures to track the actions of the user
                 // These gestures funnel method calls into the controller
@@ -110,7 +113,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                 key: builder_key, // key is used to access the context and therefore this container's renderbox
                 onTapUp: (TapUpDetails details) => controller.onTapUp(details, editState, null),
                 onTapDown: (TapDownDetails details) => controller.onTapDown(details, editState, null),
-              child: Container(
+                child: Container(
                 width: containerWidth * SizeConfig.scaleHorizontal,
                 height: containerHeight * SizeConfig.scaleVertical,
                 color: Col.purple_1,
@@ -119,6 +122,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                     children: children,
                   ),
                 ),
+              ),
               ),
               ),
           ])

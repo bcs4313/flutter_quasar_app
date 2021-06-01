@@ -8,12 +8,14 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_bu
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
 import '../../../../size_config.dart';
+import 'model_tree_builder.dart';
 
 /// @author Cody Smith at RIT
 ///
 class ControllerTreeBuilder
 {
   ViewTreeBuilder parent; // stateful widget to update after various changes to this controller
+  ModelTreeBuilder model; // data model for UI
 
   // stored variables relative to the controller
   //
@@ -25,6 +27,7 @@ class ControllerTreeBuilder
   void addParent(ViewTreeBuilder parent)
   {
     this.parent = parent;
+    model = new ModelTreeBuilder();
   }
 
   /// Retrieve editing mode
