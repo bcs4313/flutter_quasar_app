@@ -48,27 +48,53 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
               print("detected press on node");
               // check to see if the user is trying to connect nodes together
               ViewTreeBuilder parent = controller.parent;
-              if(parent.editState == "Connect")
-              {
+              if(parent.editState == "Connect") {
                 // if there is currently no nodes selected for connection
-                if(controller.connect_1 == null)
-                {
+                if (controller.connect_1 == null) {
                   controller.connect_1 = this;
                   // change the color of the node to indicate a connection
                   setState(() {
                     current_col = Col.white;
                   });
                 }
-                else
+                else if(!identical(controller.connect_1, this))
                 { // create a node connection for the model
                   controller.connect_2 = this;
-                  NodePair np = new NodePair(controller.connect_1, controller.connect_2);
+                  NodePair np = new NodePair(
+                      controller.connect_1, controller.connect_2);
                   controller.model.pairs.add(np); // add pair to model
                   controller.connect_1.setState(() {
                     controller.connect_1.current_col = Col.purple_2;
                   });
                   controller.connect_1 = null;
                 }
+                else
+                  {
+                    controller.connect_1.setState(() {
+                      controller.connect_1.current_col = Col.purple_2;
+                    });
+                    controller.connect_1 = null;
+                  }
+              }
+              if(parent.editState == "Disconnect")
+              {
+                if(controller.disconnect_1 == null)
+                  {
+                    controller.disconnect_1 = this;
+                    // change the color of the node to indicate a disconnection
+                    setState(() {
+                      current_col = Col.red_1;
+                    });
+                  }
+                else
+                  {
+                    controller.disconnect_2 = this;
+                    controller.model.removePair(controller.disconnect_1, controller.disconnect_2);
+                    controller.disconnect_1.setState(() {
+                      controller.disconnect_1.current_col = Col.purple_2;
+                    });
+                    controller.disconnect_1 = null;
+                  }
               }
             }
         ),

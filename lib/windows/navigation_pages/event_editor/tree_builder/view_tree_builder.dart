@@ -79,6 +79,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                     'Edit',
                     'Move',
                     'Connect',
+                    'Disconnect',
                     'Delete',
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(

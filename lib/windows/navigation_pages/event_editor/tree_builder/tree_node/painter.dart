@@ -25,6 +25,7 @@ class NodePainter extends CustomPainter {
     Paint p = new Paint();
     p.color = Col.white;
     p.strokeWidth = 3.0;
+    p.blendMode = BlendMode.srcOver;
 
     // In this loop we will go through each connection found in our model,
     // drawing connections to each pair through a branch-like structure

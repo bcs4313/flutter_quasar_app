@@ -23,6 +23,10 @@ class ControllerTreeBuilder
   ViewTreeNodeDraggable connect_1;
   ViewTreeNodeDraggable connect_2;
 
+  // 2 nodes to disconnect to each other in disconnect mode
+  ViewTreeNodeDraggable disconnect_1;
+  ViewTreeNodeDraggable disconnect_2;
+
   // add parent to the following widget
   void addParent(ViewTreeBuilder parent)
   {
