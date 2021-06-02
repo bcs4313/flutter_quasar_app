@@ -29,10 +29,6 @@ class ControllerDrawer {
       case("ViewTreeBuilder"):
         Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => TreeBuilderStateful()));
         break;
-      case("SchedulerStateful"):
-        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => SchedulerStateful()));
-        break;
-
     }
   }
 }
