@@ -1,13 +1,10 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/node_pair.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
-import '../../../../size_config.dart';
 import 'model_tree_builder.dart';
 
 /// @author Cody Smith at RIT
@@ -74,12 +71,60 @@ class ControllerTreeBuilder
     // Add a node if in "add" mode
     print("Mode == " + func);
     if(func == "Add") {
-      parent.setState(() {
-        parent.children.add(
-            new TreeNodeStateful(l_y, l_x, this)
-        );
-      }
-      );
+        parent.setState(() {
+          parent.children.add(new TreeNodeStateful(l_y, l_x, this));
+        });
     }
+  }
+
+  // remove a node pair if their nodes match with the requested arguments
+  //@param node1 node head in pair to remove
+  //@param node2 node end in pair to remove
+  void removePair(ViewTreeNodeDraggable n1, ViewTreeNodeDraggable n2)
+  {
+    print("removing pair...");
+    List<NodePair> pairs = model.pairs;
+    for(int i = 0; i < pairs.length; i++)
+    {
+      NodePair p = pairs[i];
+      ViewTreeNodeDraggable o1 = p.front;
+      ViewTreeNodeDraggable o2 = p.back;
+
+      if(identical(n1, o1) && identical(n2, o2))
+      {
+        pairs.removeAt(i);
+        print("removed");
+      }
+      if(identical(n2, o1) && identical(n1, o2))
+      {
+        pairs.removeAt(i);
+        print("removed");
+      }
+    }
+  }
+
+  /// remove a node object from the tree
+  ///@param node the node to remove
+  void removeNode(ViewTreeNodeDraggable node)
+  {
+    print("Removing Node...");
+    // remove all connections
+    List<NodePair> pairs = model.pairs;
+    for(int i = 0; i < pairs.length; i++)
+      {
+        NodePair p = pairs[i];
+        ViewTreeNodeDraggable n1 = p.front;
+        ViewTreeNodeDraggable n2 = p.back;
+        if(n1.id == node.id || n2.id == node.id)
+          {
+            removePair(n1, n2);
+            i --;
+          }
+      }
+    // (remove child from parent)
+    // we are simply disabling it to reduce code complexity
+    node.setState(() {
+      node.disabled = true;
+    });
   }
 }

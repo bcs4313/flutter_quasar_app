@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
 import '../../../../../col.dart';
 import '../controller_tree_builder.dart';
@@ -36,9 +35,17 @@ class NodePainter extends CustomPainter {
         ViewTreeNodeDraggable front = np.front;
         ViewTreeNodeDraggable back = np.back;
 
-        Offset front_vector = new Offset(front.x, front.y + front.height / 2);
-        Offset back_vector = new Offset(back.x, back.y - front.height / 2);
-        canvas.drawLine(front_vector, back_vector, p);
+        if(front.y < back.y) {
+          Offset front_vector = new Offset(front.x, front.y + front.height / 2);
+          Offset back_vector = new Offset(back.x, back.y - front.height / 2);
+          canvas.drawLine(front_vector, back_vector, p);
+        }
+        else {
+          print("d");
+          Offset front_vector = new Offset(front.x, front.y - front.height / 2);
+          Offset back_vector = new Offset(back.x, back.y + front.height / 2);
+          canvas.drawLine(front_vector, back_vector, p);
+        }
       }
 
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/painter.dart';
 
 import '../../../../col.dart';
@@ -22,7 +23,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
 
   // controller for this view
   ControllerTreeBuilder controller;
-  List<Widget> children = []; // children nodes in tree
+  List<TreeNodeStateful> children = []; // children nodes in tree
 
   // define container width and height here (shared across all elements)
   static double containerWidth = 95;
@@ -119,7 +120,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                 height: containerHeight * SizeConfig.scaleVertical,
                 color: Col.purple_1,
                 child: Stack(
-                    fit: StackFit.expand,
+                      fit: StackFit.expand,
                     children: children,
                   ),
                 ),
