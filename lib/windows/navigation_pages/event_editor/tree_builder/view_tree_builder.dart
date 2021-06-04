@@ -75,10 +75,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                   style: TextStyle(color: Colors.white),
                   iconEnabledColor:Colors.black,
                   items: <String>[
-                    'None',
-                    'Add',
                     'Edit',
-                    'Move',
                     'Connect',
                     'Disconnect',
                     'Delete',

@@ -70,11 +70,9 @@ class ControllerTreeBuilder
 
     // Add a node if in "add" mode
     print("Mode == " + func);
-    if(func == "Add") {
-        parent.setState(() {
-          parent.children.add(new TreeNodeStateful(l_y, l_x, this));
-        });
-    }
+    parent.setState(() {
+      parent.children.add(new TreeNodeStateful(l_y, l_x, this));
+    });
   }
 
   // remove a node pair if their nodes match with the requested arguments
