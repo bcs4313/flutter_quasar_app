@@ -6,8 +6,6 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
 
-import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
-
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
 import 'controller_node_editor.dart';

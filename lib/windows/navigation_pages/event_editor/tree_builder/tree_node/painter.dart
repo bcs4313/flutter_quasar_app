@@ -35,6 +35,8 @@ class NodePainter extends CustomPainter {
         ViewTreeNodeDraggable front = np.front;
         ViewTreeNodeDraggable back = np.back;
 
+        // If statements check whether we should draw a connection
+        // on top or bottom of a node depending on their location
         if(front.y < back.y) {
           Offset front_vector = new Offset(front.x, front.y + front.height / 2);
           Offset back_vector = new Offset(back.x, back.y - front.height / 2);

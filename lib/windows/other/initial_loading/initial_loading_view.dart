@@ -25,6 +25,18 @@ class InitialLoadingView
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 14, fontFamily: 'Roboto', color: Col.pink)
               ),
             ),
+          Padding(
+            padding: EdgeInsets.only(top: 10 * SizeConfig.scaleVertical),
+            child: SizedBox(
+              width: 30 * SizeConfig.scaleHorizontal,
+              height: 30 * SizeConfig.scaleHorizontal,
+              child: CircularProgressIndicator(
+                value: null,
+                strokeWidth: 0.5 * SizeConfig.scaleVertical,
+                color: Col.pink,
+              ),
+            ),
+          ),
           ],
         ),
       ),

@@ -30,6 +30,24 @@ class ViewEventEditorMainPage extends State<CounterPageStateful>
     this.controller = controller;
     controller.addParent(this); // add parent so controller can manage its own state
     controller.constructWidgets();
+
+    // This will remain the event construct until the controller replaces it
+    eventConstruct = new ListView(
+      children:[
+      Padding(
+        padding: EdgeInsets.only(top: 6 * SizeConfig.scaleVertical, left: 14 * SizeConfig.scaleHorizontal, right: 14 * SizeConfig.scaleHorizontal),
+        child: SizedBox(
+          width: 80 * SizeConfig.scaleHorizontal,
+          height: 70 * SizeConfig.scaleHorizontal,
+          child: CircularProgressIndicator(
+            value: null,
+            strokeWidth: 0.5 * SizeConfig.scaleVertical,
+            color: Col.pink,
+          ),
+        ),
+      ),
+    ],
+    );
   }
 
   @override
