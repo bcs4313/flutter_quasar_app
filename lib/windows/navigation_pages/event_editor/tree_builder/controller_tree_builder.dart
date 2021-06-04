@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/node_editor/extension_node_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/node_pair.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
@@ -51,8 +52,6 @@ class ControllerTreeBuilder
     // or user the local position method to get the offset
     //print(details.localPosition);
     print("tap down " + l_x.toString() + ", " + l_y.toString());
-
-    print("Mode == " + func);
   }
 
   /// Call for down tapping on the tree background.
@@ -69,7 +68,6 @@ class ControllerTreeBuilder
     print("updating parent: ");
 
     // Add a node if in "add" mode
-    print("Mode == " + func);
     parent.setState(() {
       parent.children.add(new TreeNodeStateful(l_y, l_x, this));
     });
@@ -124,5 +122,10 @@ class ControllerTreeBuilder
     node.setState(() {
       node.disabled = true;
     });
+  }
+  /// Direct user to node editing window
+  void transferNodeEditor(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => NodeEditorStateful()));
   }
 }
