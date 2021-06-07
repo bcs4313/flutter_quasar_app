@@ -26,11 +26,17 @@ class ControllerTreeBuilder
   ViewTreeNodeDraggable disconnect_2;
 
   /// add parent to the following widget
-  ///@param initializer potentially initialized node data from a constructor (from view)
-  void addParent(ViewTreeBuilder parent, List<NodePair> initializer)
+  ///@param initializer potentially initialized model if loaded from firebase
+  void addParent(ViewTreeBuilder parent, ModelTreeBuilder initializer)
   {
     this.parent = parent;
-    model = new ModelTreeBuilder(null);
+    if(initializer == null) {
+      model = new ModelTreeBuilder();
+    }
+    else
+      {
+        model = initializer;
+      }
   }
 
   /// Retrieve editing mode

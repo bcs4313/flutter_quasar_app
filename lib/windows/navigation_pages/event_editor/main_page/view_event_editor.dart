@@ -81,6 +81,7 @@ class ViewEventEditorMainPage extends State<CounterPageStateful>
                     disabledColor: Col.purple_3,
                     splashColor: Col.pink,
                     child: Text('Create A New Event',
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6, color: Col.pink),
                     ),
                     onPressed:() => {
@@ -96,18 +97,21 @@ class ViewEventEditorMainPage extends State<CounterPageStateful>
                   Padding(
                     padding: EdgeInsets.only(left: 4 * SizeConfig.scaleHorizontal),
                     child: Text('Edit Event Properties',
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10 * SizeConfig.scaleHorizontal),
-                    child: Text('Add Users',
+                    padding: EdgeInsets.only(left: 8 * SizeConfig.scaleHorizontal),
+                    child: Text('Manage Users',
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3, color: Col.pink),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10 * SizeConfig.scaleHorizontal),
-                    child: Text('Remove Users',
+                    padding: EdgeInsets.only(left: 6 * SizeConfig.scaleHorizontal),
+                    child: Text('Build Schedule',
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3, color: Col.pink),
                     ),
                   ),

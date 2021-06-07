@@ -35,12 +35,13 @@ class WidgetMainPageEvent extends StatelessWidget {
               Container(
                 width: 47 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.purple_3,
-                    disabledColor: Col.purple_3,
-                    splashColor: Col.pink,
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Col.purple_3),
+                    ),
                     child: Text(title,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
+                      textAlign: TextAlign.center,
                     ),
                     onPressed:() => {
                       transferModifyEvent(context, id),
@@ -50,12 +51,12 @@ class WidgetMainPageEvent extends StatelessWidget {
               Container(
                 width: 25 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.green,
-                    disabledColor: Col.green,
-                    splashColor: Col.green,
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Col.purple_2),
+                    ),
                     child: Icon(
-                      Icons.add_circle,
+                      Icons.account_circle,
                       size: 7 * SizeConfig.scaleVertical,
                       color: Col.black_1,
                     ),
@@ -67,12 +68,12 @@ class WidgetMainPageEvent extends StatelessWidget {
               Container(
                 width: 28 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.red,
-                    disabledColor: Col.red,
-                    splashColor: Col.red,
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Col.green),
+                    ),
                     child: Icon(
-                      Icons.remove_circle,
+                      Icons.account_tree,
                       size: 7 * SizeConfig.scaleVertical,
                       color: Col.black_1,
                     ),
