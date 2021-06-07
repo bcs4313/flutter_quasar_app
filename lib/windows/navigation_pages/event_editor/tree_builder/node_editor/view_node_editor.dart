@@ -64,6 +64,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                 width: 80 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
                 child: TextFormField(
+                  maxLength: 45,
                 obscureText: false,
                     initialValue: node.title,
                 style: TextStyle(color: Col.pink),
@@ -100,6 +101,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                 height: 20 * SizeConfig.scaleVertical,
                 child: TextFormField(
                     initialValue: node.description,
+                    maxLength: 250,
                     maxLines: 100, // max lines controls the container height along with text style
                     obscureText: false,
                     style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
@@ -294,13 +296,6 @@ class ViewNodeEditor extends State<NodeEditorStateful>
         ),
       ),
     );
-  }
-
-  void updateConstruct(ListView newconstruct)
-  {
-    setState(() {
-      //eventConstruct = newconstruct;
-    });
   }
 
 }

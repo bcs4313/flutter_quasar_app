@@ -9,7 +9,7 @@ class InitialLoadingView
   {
     return Scaffold(
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
-      backgroundColor: Col.purple_0,
+      //backgroundColor: Col.purple_0,
       //appBar: AppBar(
       //  title: Text(widget.title),
       //),

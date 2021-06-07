@@ -6,6 +6,7 @@ import 'controller_tree_builder.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+
 class TreeBuilderStateful extends StatefulWidget {
 
   String eventID; // id of event we are modifying

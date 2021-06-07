@@ -27,6 +27,7 @@ class TreeNodeStateful extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return ViewTreeNodeDraggable(x, y, controller, this);
+    this.draggable = ViewTreeNodeDraggable(x, y, controller, this);
+    return draggable;
   }
 }

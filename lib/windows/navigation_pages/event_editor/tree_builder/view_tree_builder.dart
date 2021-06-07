@@ -143,7 +143,10 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                     icon: Icon(
                       Icons.save,
                       color: Col.white,
-                    ), onPressed: () {  },
+                    ), onPressed: () {
+                      String serializedSchedule = controller.model.serializeModel();
+                      print("Serialized Schedule Tree:::\n" + controller.model.serializeModel());
+                  },
                   ),
                 ),
               Container(
