@@ -113,7 +113,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
             else if (parent.editState == "Delete") {
               controller.removeNode(this);
             }
-            else if (parent.editState == "Edit")
+            else if (parent.editState == "Edit" || parent.editState == null)
               {
                 controller.transferNodeEditor(context, this);
               }

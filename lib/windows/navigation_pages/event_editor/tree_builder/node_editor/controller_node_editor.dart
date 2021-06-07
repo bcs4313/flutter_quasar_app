@@ -41,6 +41,10 @@ class ControllerNodeEditor
   String DateToStrT(DateTime dat)
   {
     String minute = dat.minute.toString();
+    if(dat.minute < 10)
+      {
+        minute = "0" + minute;
+      }
 
     if(dat.hour >= 12)
       {
@@ -54,13 +58,13 @@ class ControllerNodeEditor
           }
       }
     else {
-      if(dat.hour != 24) {
+      if(dat.hour != 0) {
         String hour = dat.hour.toString();
         return hour + ":" + minute + " AM";
       }
       else
         {
-          return "12:" + minute + " PM";
+          return "12:" + minute + " AM";
       }
     }
   }

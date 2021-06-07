@@ -172,8 +172,9 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                             onPressed: () {
                               DatePicker.showDatePicker(context,
                                   showTitleActions: true,
-                                  minTime: DateTime(2018, 3, 5),
-                                  maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+                                  minTime: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
+                                  maxTime: DateTime(DateTime.now().year+4, 12, 31),
+                                  onChanged: (date) {
                                     print('change $date');
                                   }, onConfirm: (date) {
                                     print('confirm $date');
@@ -242,8 +243,9 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                 onPressed: () {
                                   DatePicker.showDatePicker(context,
                                       showTitleActions: true,
-                                      minTime: DateTime(2018, 3, 5),
-                                      maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+                                      minTime: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
+                                      maxTime: DateTime(DateTime.now().year+4, 12, 31),
+                                      onChanged: (date) {
                                         print('change $date');
                                       }, onConfirm: (date) {
                                         print('confirm $date');
