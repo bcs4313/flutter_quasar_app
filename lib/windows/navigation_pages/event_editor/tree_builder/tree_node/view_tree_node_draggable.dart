@@ -5,7 +5,6 @@ import 'extension_tree_node.dart';
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
 import '../controller_tree_builder.dart';
-import 'node_pair.dart';
 
 /// Tree Node
 /// A basic node that is part of the tree in a schedule builder
@@ -20,13 +19,24 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   TreeNodeStateful stateful;
   bool disabled = false; // deleted nodes are "disabled"
 
+  // identification variables
   static int identifier = 0;
   int id;
+
+  // Strings that are stored in this node
+  String title = ""; // title of node
+  String description = ""; // desc of node
+  // Time Range Variables
+  String startDate = "choose date";
+  String startTime = "choose time";
+  String endDate = "choose date";
+  String endTime = "choose time";
 
   ViewTreeNodeDraggable(double y, double x, ControllerTreeBuilder controller, TreeNodeStateful stateful)
   {
     this.x = x;
     this.y = y;
+    this.title = "title";
     this.controller = controller;
     this.stateful = stateful;
     this.id = identifier;
@@ -42,11 +52,9 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
     // Arrow element stores data to targets it must point to
     Widget node = AnimatedContainer(
       color: current_col,
-      width: width,
-      height: height,
       duration: Duration(milliseconds: 420),
       child: TextButton.icon(
-          label: Text('Title',
+          label: Text(title,
               style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                   height: 1.3,
                   fontFamily: 'Roboto',
@@ -71,9 +79,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
               else if (!identical(controller.connect_1,
                   this)) { // create a node connection for the model
                 controller.connect_2 = this;
-                NodePair np = new NodePair(
-                    controller.connect_1, controller.connect_2);
-                controller.model.pairs.add(np); // add pair to model
+                controller.addNodePair();
                 controller.connect_1.setState(() {
                   controller.connect_1.current_col = Col.purple_2;
                 });
@@ -109,7 +115,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
             }
             else if (parent.editState == "Edit")
               {
-                controller.transferNodeEditor(context);
+                controller.transferNodeEditor(context, this);
               }
           }
       ),

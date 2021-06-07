@@ -34,7 +34,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   ViewTreeBuilder(ControllerTreeBuilder controller)
   {
     this.controller = controller;
-    controller.addParent(this);
+    controller.addParent(this, null);
   }
 
   // portrait/landscape build separation
@@ -50,6 +50,8 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   /// generate a portrait projection of the window view
   Scaffold generatePortraitView(BuildContext context)
   {
+    print("building...");
+
     //final ControllerForgotPassword controller = new ControllerForgotPassword();
     return Scaffold(
       key: S_KEY,

@@ -25,11 +25,12 @@ class ControllerTreeBuilder
   ViewTreeNodeDraggable disconnect_1;
   ViewTreeNodeDraggable disconnect_2;
 
-  // add parent to the following widget
-  void addParent(ViewTreeBuilder parent)
+  /// add parent to the following widget
+  ///@param initializer potentially initialized node data from a constructor (from view)
+  void addParent(ViewTreeBuilder parent, List<NodePair> initializer)
   {
     this.parent = parent;
-    model = new ModelTreeBuilder();
+    model = new ModelTreeBuilder(null);
   }
 
   /// Retrieve editing mode
@@ -68,14 +69,31 @@ class ControllerTreeBuilder
     print("updating parent: ");
 
     // Add a node if in "add" mode
+    TreeNodeStateful n = new TreeNodeStateful(l_y, l_x, this);
     parent.setState(() {
-      parent.children.add(new TreeNodeStateful(l_y, l_x, this));
+      parent.children.add(n);
     });
+    addNode(n);
   }
 
-  // remove a node pair if their nodes match with the requested arguments
-  //@param node1 node head in pair to remove
-  //@param node2 node end in pair to remove
+  /// Add a node to the data model
+  ///@param n the node to be added
+  void addNode(TreeNodeStateful n)
+  {
+    this.model.nodes.add(n);
+  }
+
+  /// Add a node pair to the data model that contains the nodes
+  /// currently stored in the controller (connect_1/connect_2)
+  void addNodePair()
+  {
+    NodePair np = new NodePair(connect_1, connect_2);
+    this.model.pairs.add(np); // add pair to model
+  }
+
+  /// remove a node pair if their nodes match with the requested arguments
+  ///@param node1 node head in pair to remove
+  ///@param node2 node end in pair to remove
   void removePair(ViewTreeNodeDraggable n1, ViewTreeNodeDraggable n2)
   {
     print("removing pair...");
@@ -124,8 +142,9 @@ class ControllerTreeBuilder
     });
   }
   /// Direct user to node editing window
-  void transferNodeEditor(BuildContext context)
+  ///@param node the node we are editing in the node editor window
+  void transferNodeEditor(BuildContext context, ViewTreeNodeDraggable node)
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => NodeEditorStateful()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => NodeEditorStateful(node)));
   }
 }

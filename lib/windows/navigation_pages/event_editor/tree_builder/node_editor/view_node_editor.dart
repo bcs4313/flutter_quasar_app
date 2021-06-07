@@ -5,6 +5,7 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -23,21 +24,17 @@ class ViewNodeEditor extends State<NodeEditorStateful>
   // controller for this view
   ControllerNodeEditor controller;
 
-  // Strings that are stored in this node
-  String title = ""; // title of node
-  String description = ""; // desc of node
-  // Time Range Variables
-  String startDate = "choose date";
-  String startTime = "choose time";
-  String endDate = "choose date";
-  String endTime = "choose time";
+  // node we are editing the data from
+  ViewTreeNodeDraggable node;
 
   /// initialize stateful widget with a controller
   ///@param controller the controller to link to that modifies the state of this widget
-  ViewNodeEditor(ControllerNodeEditor controller)
+  ViewNodeEditor(ControllerNodeEditor controller, ViewTreeNodeDraggable node)
   {
     this.controller = controller;
     controller.addParent(this); // add parent so controller can manage its own state
+    this.node = node;
+    print("currently editing the node: " + node.toString());
   }
 
   @override
@@ -66,8 +63,9 @@ class ViewNodeEditor extends State<NodeEditorStateful>
               child: SizedBox(
                 width: 80 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: TextField(
+                child: TextFormField(
                 obscureText: false,
+                    initialValue: node.title,
                 style: TextStyle(color: Col.pink),
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -77,6 +75,13 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                     borderSide: const BorderSide(color: Colors.purple, width: 1.0),
                   ),
                 ),
+                    // Textfield Change Recording
+                    onChanged: (value)
+                    {
+                      node.setState(() {
+                        node.title = value;
+                      });
+                    }
               ),
               ),
             ),
@@ -94,7 +99,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                 width: 90 * SizeConfig.scaleHorizontal,
                 height: 20 * SizeConfig.scaleVertical,
                 child: TextFormField(
-                    initialValue: "",
+                    initialValue: node.description,
                     maxLines: 100, // max lines controls the container height along with text style
                     obscureText: false,
                     style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
@@ -109,7 +114,10 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                     // Textfield Change Recording
                     onChanged: (value)
                     {
-                      //controller.setDescription(value);
+                      node.setState(() {
+                        node.description = value;
+                        print(node.description);
+                      });
                     }
                 ),
               ),
@@ -170,12 +178,12 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                   }, onConfirm: (date) {
                                     print('confirm $date');
                                     setState(() {
-                                      startDate = controller.DateToStrD(date);
+                                      node.startDate = controller.DateToStrD(date);
                                     });
                                   }, currentTime: DateTime.now(), locale: LocaleType.en);
                             },
                             child: Text(
-                              startDate,
+                              node.startDate,
                               style: TextStyle(color: Colors.blue),
                             )),
                           ),
@@ -194,12 +202,12 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                   }, onConfirm: (time) {
                                       print('confirm $time');
                                       setState(() {
-                                        startTime = controller.DateToStrT(time);
+                                        node.startTime = controller.DateToStrT(time);
                                       });
                                   }, currentTime: DateTime.now());
                                 },
                                 child: Text(
-                                  startTime,
+                                  node.startTime,
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ),
@@ -240,12 +248,12 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                       }, onConfirm: (date) {
                                         print('confirm $date');
                                         setState(() {
-                                          endDate = controller.DateToStrD(date);
+                                          node.endDate = controller.DateToStrD(date);
                                         });
                                       }, currentTime: DateTime.now(), locale: LocaleType.en);
                                 },
                                 child: Text(
-                                  endDate,
+                                  node.endDate,
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ),
@@ -264,12 +272,12 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                         }, onConfirm: (time) {
                                           print('confirm $time');
                                           setState(() {
-                                            endTime = controller.DateToStrT(time);
+                                            node.endTime = controller.DateToStrT(time);
                                           });
                                         }, currentTime: DateTime.now());
                                   },
                                   child: Text(
-                                    endTime,
+                                    node.endTime,
                                     style: TextStyle(color: Colors.blue),
                                   )),
                             ),
