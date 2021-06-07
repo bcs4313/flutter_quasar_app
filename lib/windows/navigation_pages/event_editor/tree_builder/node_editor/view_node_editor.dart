@@ -20,7 +20,17 @@ class ViewNodeEditor extends State<NodeEditorStateful>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
+  // controller for this view
   ControllerNodeEditor controller;
+
+  // Strings that are stored in this node
+  String title = ""; // title of node
+  String description = ""; // desc of node
+  // Time Range Variables
+  String startDate = "choose date";
+  String startTime = "choose time";
+  String endDate = "choose date";
+  String endTime = "choose time";
 
   /// initialize stateful widget with a controller
   ///@param controller the controller to link to that modifies the state of this widget
@@ -159,10 +169,13 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                     print('change $date');
                                   }, onConfirm: (date) {
                                     print('confirm $date');
+                                    setState(() {
+                                      startDate = controller.DateToStrD(date);
+                                    });
                                   }, currentTime: DateTime.now(), locale: LocaleType.en);
                             },
                             child: Text(
-                              'choose date',
+                              startDate,
                               style: TextStyle(color: Colors.blue),
                             )),
                           ),
@@ -175,15 +188,18 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                             child: TextButton(
                                 onPressed: () {
                                   DatePicker.showTime12hPicker(context, showTitleActions: true,
-                                  onChanged: (date) {
-                                    print('change $date in time zone ' +
-                                    date.timeZoneOffset.inHours.toString());
-                                  }, onConfirm: (date) {
-                                      print('confirm $date');
+                                  onChanged: (time) {
+                                    print('change $time in time zone ' +
+                                    time.timeZoneOffset.inHours.toString());
+                                  }, onConfirm: (time) {
+                                      print('confirm $time');
+                                      setState(() {
+                                        startTime = controller.DateToStrT(time);
+                                      });
                                   }, currentTime: DateTime.now());
                                 },
                                 child: Text(
-                                  'choose time',
+                                  startTime,
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ),
@@ -223,10 +239,13 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                         print('change $date');
                                       }, onConfirm: (date) {
                                         print('confirm $date');
+                                        setState(() {
+                                          endDate = controller.DateToStrD(date);
+                                        });
                                       }, currentTime: DateTime.now(), locale: LocaleType.en);
                                 },
                                 child: Text(
-                                  'choose date',
+                                  endDate,
                                   style: TextStyle(color: Colors.blue),
                                 )),
                           ),
@@ -239,15 +258,18 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                               child: TextButton(
                                   onPressed: () {
                                     DatePicker.showTime12hPicker(context, showTitleActions: true,
-                                        onChanged: (date) {
-                                          print('change $date in time zone ' +
-                                              date.timeZoneOffset.inHours.toString());
-                                        }, onConfirm: (date) {
-                                          print('confirm $date');
+                                        onChanged: (time) {
+                                          print('change $time in time zone ' +
+                                              time.timeZoneOffset.inHours.toString());
+                                        }, onConfirm: (time) {
+                                          print('confirm $time');
+                                          setState(() {
+                                            endTime = controller.DateToStrT(time);
+                                          });
                                         }, currentTime: DateTime.now());
                                   },
                                   child: Text(
-                                    'choose time',
+                                    endTime,
                                     style: TextStyle(color: Colors.blue),
                                   )),
                             ),
