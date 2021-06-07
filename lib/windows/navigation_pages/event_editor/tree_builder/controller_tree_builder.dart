@@ -6,6 +6,7 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_bu
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
+import 'deletion_confirmation/view_tree_destroyer.dart';
 import 'model_tree_builder.dart';
 
 /// @author Cody Smith at RIT
@@ -147,10 +148,17 @@ class ControllerTreeBuilder
       node.disabled = true;
     });
   }
+
   /// Direct user to node editing window
   ///@param node the node we are editing in the node editor window
   void transferNodeEditor(BuildContext context, ViewTreeNodeDraggable node)
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => NodeEditorStateful(node)));
+  }
+
+  /// Direct user to tree deletion window
+  void transferTreeDestroyer(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewTreeDestroyer(model, parent)));
   }
 }

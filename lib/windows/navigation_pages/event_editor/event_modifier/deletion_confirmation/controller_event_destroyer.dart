@@ -6,10 +6,9 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_pa
 
 /// @author Cody Smith at RIT
 ///
-class ControllerEventDeleter
+class ControllerEventDestroyer
 {
-
-  String eventNum;
+  String eventNum; // event string id we are targeting for destruction
 
   /// OPERATIONS
   /// -- These methods do things that are specific to this app window

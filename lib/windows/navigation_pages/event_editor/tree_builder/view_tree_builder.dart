@@ -159,7 +159,9 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                   icon: Icon(
                     Icons.delete_forever_sharp,
                     color: Col.white,
-                  ), onPressed: () {  },
+                  ), onPressed: () {
+                      controller.transferTreeDestroyer(context);
+                },
                 ),
               ),
               ],

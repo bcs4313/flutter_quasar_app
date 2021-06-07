@@ -13,6 +13,7 @@ class TreeNodeStateful extends StatefulWidget {
   double width; // width of node`
   double height; // height of node
   ControllerTreeBuilder controller;
+  ViewTreeNodeDraggable draggable;
   int id;
 
   TreeNodeStateful(double x, double y, ControllerTreeBuilder controller)

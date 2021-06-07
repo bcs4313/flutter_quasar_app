@@ -5,22 +5,24 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
-import 'controller_event_deleter.dart';
+import 'controller_event_destroyer.dart';
 
 
 /// Event Modifier UI
 ///
 ///
-class ViewEventDeleter extends StatelessWidget
+class ViewEventDestroyer extends StatelessWidget
 {
-  ControllerEventDeleter controller;
+  ControllerEventDestroyer controller;
 
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  ViewEventDeleter(String eventNum)
+  /// Constructor for this view
+  ///@param eventNum the event we are currently modifying
+  ViewEventDestroyer(String eventNum)
   {
-    this.controller = new ControllerEventDeleter();
+    this.controller = new ControllerEventDestroyer();
     controller.assignEventData(eventNum);
   }
 
