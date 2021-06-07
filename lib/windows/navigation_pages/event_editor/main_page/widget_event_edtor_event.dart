@@ -78,7 +78,7 @@ class WidgetMainPageEvent extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      //controller.createEvent(context, S_KEY),
+                      controller.transferTreeBuilder(context, this.id)
                     }
                 ),
               ),

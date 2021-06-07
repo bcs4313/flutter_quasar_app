@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_creator/initializer_view_event_creator.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/view_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/extension_tree_builder.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -67,4 +68,10 @@ class ControllerEventEditor
     Navigator.push(context, MaterialPageRoute(builder: (context) => InitializerEventCreator()));
   }
 
+  /// Direct user to tree building window, passing the event to edit with it.
+  ///@param eventID the id of the event we are editing
+  void transferTreeBuilder(BuildContext context, String eventID)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => TreeBuilderStateful(eventID)));
+  }
 }

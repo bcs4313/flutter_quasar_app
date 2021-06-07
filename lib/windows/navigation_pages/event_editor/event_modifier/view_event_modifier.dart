@@ -83,6 +83,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                         child: TextFormField(
                           initialValue: controller.getTitle(),
                           obscureText: false,
+                          maxLength: 50,
                           style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -119,6 +120,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                         height: 30 * SizeConfig.scaleVertical,
                         child: TextFormField(
                             initialValue: controller.getDescription(),
+                            maxLength: 1200,
                             maxLines: 100, // max lines controls the container height along with text style
                             obscureText: false,
                             style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
@@ -142,7 +144,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
+                padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
                 child: Row(
                   children:[
                     Text(
@@ -218,7 +220,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                       constraints: BoxConstraints.tightFor(width: 47 * SizeConfig.scaleHorizontal, height: 10 * SizeConfig.scaleVertical),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red, // background
+                          primary: Col.red, // background
                           onPrimary: Colors.white, // foreground
                         ),
                         onPressed: ()

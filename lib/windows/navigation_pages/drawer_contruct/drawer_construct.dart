@@ -19,7 +19,7 @@ class DrawerConstruct extends StatelessWidget {
           Divider(),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.mode_edit, text: 'Event Editor', locale: "ViewEventEditorMainPage"),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.face, text: 'My Profile', locale: "ViewProfileHome"),
-          DrawerUtility.createDrawerItem(context: context, icon: Icons.settings, text: 'Options', locale: "SchedulerStateful"),
+          DrawerUtility.createDrawerItem(context: context, icon: Icons.settings, text: 'Options', locale: "ViewHomepage"),
           Divider(),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.account_box, text: 'Documentation', locale: "ViewHomepage"),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.bug_report, text: 'Report an issue', locale: "ViewHomepage"),

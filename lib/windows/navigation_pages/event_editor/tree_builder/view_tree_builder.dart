@@ -126,6 +126,45 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
               ),
               ),
               ),
+            Padding(
+              padding: EdgeInsets.only(left: 2.7 * SizeConfig.scaleHorizontal),
+            child: Row(
+              children: [
+                Container(
+                  width: (containerWidth * 0.5* SizeConfig.scaleHorizontal),
+                  height: 5.6 * SizeConfig.scaleVertical,
+                  color: Col.green,
+                  child: TextButton.icon(
+                    label: Text("Save Changes",
+                        style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                            height: 1.3,
+                            fontFamily: 'Roboto',
+                            color: Col.white)),
+                    icon: Icon(
+                      Icons.save,
+                      color: Col.white,
+                    ), onPressed: () {  },
+                  ),
+                ),
+              Container(
+                width: (containerWidth * 0.5) * SizeConfig.scaleHorizontal,
+                height: 5.6 * SizeConfig.scaleVertical,
+                color: Col.red,
+                child: TextButton.icon(
+                  label: Text("Clear Schedule",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.white)),
+                  icon: Icon(
+                    Icons.delete_forever_sharp,
+                    color: Col.white,
+                  ), onPressed: () {  },
+                ),
+              ),
+              ],
+            ),
+            ),
           ])
         ),
       );

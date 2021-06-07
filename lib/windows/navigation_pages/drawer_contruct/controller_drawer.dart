@@ -25,9 +25,6 @@ class ControllerDrawer {
       case("ViewProfileHome"):
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ViewProfileHome()));
         break;
-      case("ViewTreeBuilder"):
-        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => TreeBuilderStateful()));
-        break;
     }
   }
 }

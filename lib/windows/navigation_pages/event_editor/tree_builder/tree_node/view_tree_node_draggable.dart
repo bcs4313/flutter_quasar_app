@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../view_tree_builder.dart';
 import 'extension_tree_node.dart';
@@ -13,8 +15,8 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   // dimensional variables
   double x; // x location in tree
   double y; // y location in tree
-  double width = 100; // width of node
-  double height = 60; // height of node
+  double width; // width of node
+  double height = 7 * SizeConfig.scaleVertical; // height of node
   ControllerTreeBuilder controller;
   TreeNodeStateful stateful;
   bool disabled = false; // deleted nodes are "disabled"
@@ -49,14 +51,18 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   // portrait/landscape build separation
   @override
   Widget build(BuildContext context) {
+    this.width = 18 * SizeConfig.scaleHorizontal + (pow(title.length * SizeConfig.scaleHorizontal, 0.9));
     // Arrow element stores data to targets it must point to
     Widget node = AnimatedContainer(
+      height: height,
+      width: width,
       color: current_col,
       duration: Duration(milliseconds: 420),
+      child: FittedBox(
+        fit: BoxFit.contain,
       child: TextButton.icon(
           label: Text(title,
-              style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
-                  height: 1.3,
+              style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Col.white)),
           icon: Icon(
@@ -118,6 +124,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
                 controller.transferNodeEditor(context, this);
               }
           }
+      ),
       ),
     );
 
