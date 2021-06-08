@@ -53,7 +53,7 @@ class ControllerEventCreator
         print("event slot: " + event_slot.toString());
         // event max check
         if (event_slot == -1) {
-          S_KEY.currentState.showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
                 "Event creation failed. Maximum event count for basic users is 8."),
             duration: Duration(seconds: 5),

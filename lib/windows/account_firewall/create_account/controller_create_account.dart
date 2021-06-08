@@ -48,13 +48,13 @@ class ControllerCreateAccount
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        S_KEY.currentState.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('The password provided was too weak to use. Try making the password a bit longer.'),
               duration: Duration(seconds: 5),
             ));
       } else if (e.code == 'email-already-in-use') {
-        S_KEY.currentState.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('This email is already in use. To recover the account check the Forgot Password? section of the app'),
               duration: Duration(seconds: 8),

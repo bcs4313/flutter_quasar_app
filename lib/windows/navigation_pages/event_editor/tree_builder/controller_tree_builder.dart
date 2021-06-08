@@ -32,7 +32,7 @@ class ControllerTreeBuilder
   {
     this.parent = parent;
     if(initializer == null) {
-      model = new ModelTreeBuilder();
+      model = new ModelTreeBuilder(parent.eventID);
     }
     else
       {

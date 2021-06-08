@@ -21,6 +21,6 @@ class TreeBuilderStateful extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     ControllerTreeBuilder controller = new ControllerTreeBuilder();
-    return ViewTreeBuilder(controller);
+    return ViewTreeBuilder(controller, eventID);
 }
 }

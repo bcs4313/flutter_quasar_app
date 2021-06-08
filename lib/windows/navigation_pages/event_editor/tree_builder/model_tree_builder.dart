@@ -1,13 +1,13 @@
 import 'dart:collection';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/node_pair.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 import 'dart:convert';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_auth/firebase_auth.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -22,6 +22,13 @@ class ModelTreeBuilder
   // Stored Vars
   List<NodePair> pairs = []; // stores a list of node pairs that indicate that they are linked
   List<TreeNodeStateful> nodes = []; // list of individual node objects and their data
+  String eventID; // tells us what event this model points to
+
+  /// simple constructor to add an event ID to
+  ModelTreeBuilder(String eventID)
+  {
+    this.eventID = eventID;
+  }
 
   /// Convert a singular node into a hashMap
   ///@param node the node to convert
@@ -59,30 +66,31 @@ class ModelTreeBuilder
   }
 
   /// Serializer for this model in question. In other words, absolutely horrifying.
+  ///@param context context of app needed to print error codes from upload
   ///@return fully serialized version of this model
-  String serializeModel()
+  Future<void> serializeModel(BuildContext context) async
   {
-    // Create Hashmap Frame
-    HashMap<dynamic, dynamic> map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>(); // main map (string access)
-    HashMap<dynamic, dynamic> node_map_full = new HashMap<String, HashMap<String, String>>(); // map of each node (integer access)
-    HashMap<dynamic, dynamic> pair_map_full = new HashMap<String, HashMap<String, String>>(); // map of each pair (integer access)
+    // Create HashMap Frame
+    HashMap<dynamic, dynamic> map_full = new HashMap<String,
+        HashMap<String, HashMap<String, String>>>(); // main map (string access)
+    HashMap<dynamic, dynamic> node_map_full = new HashMap<String,
+        HashMap<String, String>>(); // map of each node (integer access)
+    HashMap<dynamic, dynamic> pair_map_full = new HashMap<String,
+        HashMap<String, String>>(); // map of each pair (integer access)
 
     // node serialization step
     int index = 0;
-    for(int i = 0; i < nodes.length; i++)
-      {
-        HashMap<String, String> node_map = processNode(nodes[i].draggable);
-        if(node_map != null)
-          {
-            node_map_full[index.toString()] = node_map;
-            index++;
-          }
+    for (int i = 0; i < nodes.length; i++) {
+      HashMap<String, String> node_map = processNode(nodes[i].draggable);
+      if (node_map != null) {
+        node_map_full[index.toString()] = node_map;
+        index++;
       }
+    }
 
     // pair serialization step
     index = 0;
-    for(int i = 0; i < pairs.length; i++)
-    {
+    for (int i = 0; i < pairs.length; i++) {
       HashMap<String, String> pair_map = processPair(pairs[i]);
       pair_map_full[index.toString()] = pair_map;
       index++;
@@ -92,7 +100,38 @@ class ModelTreeBuilder
     map_full["node_map_full"] = node_map_full;
     map_full["pair_map_full"] = pair_map_full;
 
-    return json.encode(map_full);
+    String jsonString = json.encode(map_full);
+    debugPrint("Serialized Schedule Tree:::\n" + jsonString, wrapWidth: 1000);
+    List<int> bytes = utf8.encode(jsonString);
+    var base64 = base64Encode(bytes);
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    var storage = firebase_storage.FirebaseStorage.instance;
+    var reference = storage.ref("event_trees/" +
+        auth.currentUser.uid.toString() + "/t_" +
+        eventID); // create a path to the storage base
+
+    // now we will upload the json file in base64 format
+    try {
+      await reference.putString(base64).whenComplete(() =>
+      {
+      ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+        'Schedule Successfully Uploaded'),
+        duration: Duration(seconds: 5),
+      ))
+
+      });
+    }
+    on firebase_storage.FirebaseException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+                'Error: Schedule upload failed. Error Code: ' + e.toString()),
+            duration: Duration(seconds: 5),
+          ));
+    }
   }
 
   // Take apart an input json and load it into this model and the view
@@ -102,3 +141,4 @@ class ModelTreeBuilder
 
   }
 }
+

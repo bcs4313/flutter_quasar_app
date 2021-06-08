@@ -30,10 +30,12 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   static double containerHeight = 80;
 
   String editState; // current editing state we are in from dropdown menu
+  String eventID; // tells us which event is currently being edited
 
-  ViewTreeBuilder(ControllerTreeBuilder controller)
+  ViewTreeBuilder(ControllerTreeBuilder controller, String eventID)
   {
     this.controller = controller;
+    this.eventID = eventID;
     controller.addParent(this, null);
   }
 
@@ -144,8 +146,8 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                       Icons.save,
                       color: Col.white,
                     ), onPressed: () {
-                      String serializedSchedule = controller.model.serializeModel();
-                      print("Serialized Schedule Tree:::\n" + controller.model.serializeModel());
+                      controller.model.serializeModel(context);
+                      //print("Serialization Size: " + serializedSchedule. + " bytes");
                   },
                   ),
                 ),

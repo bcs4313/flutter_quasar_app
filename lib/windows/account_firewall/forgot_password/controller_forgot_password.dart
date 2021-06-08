@@ -24,7 +24,7 @@ class ControllerForgotPassword
 
     auth.sendPasswordResetEmail(email: getEmail()).catchError((onError)
         {
-          S_KEY.currentState.showSnackBar(SnackBar(
+          ScaffoldMessenger.of(S_KEY.currentContext).showSnackBar(SnackBar(
             content: Text('Email formatting was invalid. Please try again.'),
             duration: Duration(seconds: 5),
           ));
