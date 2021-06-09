@@ -22,12 +22,12 @@ class TreeNodeStateful extends StatefulWidget {
     this.y = y;
     this.controller = controller;
     id = controller.parent.children.length;
+    this.draggable = ViewTreeNodeDraggable(x, y, controller, this);
     print("node constructor initialized");
   }
 
   @override
   State<StatefulWidget> createState() {
-    this.draggable = ViewTreeNodeDraggable(x, y, controller, this);
     return draggable;
   }
 }

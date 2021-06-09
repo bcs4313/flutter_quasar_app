@@ -34,6 +34,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
   String endDate = "choose date";
   String endTime = "choose time";
 
+  /// Constructor initialized by stateful itself
   ViewTreeNodeDraggable(double y, double x, ControllerTreeBuilder controller, TreeNodeStateful stateful)
   {
     this.x = x;
@@ -45,7 +46,6 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
     identifier++;
     print("node constructor initialized");
   }
-
 
   var current_col = Col.purple_2;
   // portrait/landscape build separation

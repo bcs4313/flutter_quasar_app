@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
@@ -7,7 +8,9 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_bu
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 import 'dart:convert';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -23,11 +26,14 @@ class ModelTreeBuilder
   List<NodePair> pairs = []; // stores a list of node pairs that indicate that they are linked
   List<TreeNodeStateful> nodes = []; // list of individual node objects and their data
   String eventID; // tells us what event this model points to
+  ViewTreeBuilder parent; // parent to update upon loading an existent tree
 
   /// simple constructor to add an event ID to
-  ModelTreeBuilder(String eventID)
+  ModelTreeBuilder(String eventID, ViewTreeBuilder parent)
   {
     this.eventID = eventID;
+    this.parent = parent;
+    this.deserializeModel(); // load content from firebase
   }
 
   /// Convert a singular node into a hashMap
@@ -66,12 +72,12 @@ class ModelTreeBuilder
   }
 
   /// Serializer for this model in question. In other words, absolutely horrifying.
+  /// Also uploads the serialized model to firebase
   ///@param context context of app needed to print error codes from upload
-  ///@return fully serialized version of this model
   Future<void> serializeModel(BuildContext context) async
   {
     // Create HashMap Frame
-    HashMap<dynamic, dynamic> map_full = new HashMap<String,
+    HashMap<String, dynamic> map_full = new HashMap<String,
         HashMap<String, HashMap<String, String>>>(); // main map (string access)
     HashMap<dynamic, dynamic> node_map_full = new HashMap<String,
         HashMap<String, String>>(); // map of each node (integer access)
@@ -100,20 +106,14 @@ class ModelTreeBuilder
     map_full["node_map_full"] = node_map_full;
     map_full["pair_map_full"] = pair_map_full;
 
-    String jsonString = json.encode(map_full);
-    debugPrint("Serialized Schedule Tree:::\n" + jsonString, wrapWidth: 1000);
-    List<int> bytes = utf8.encode(jsonString);
-    var base64 = base64Encode(bytes);
-
     FirebaseAuth auth = FirebaseAuth.instance;
-    var storage = firebase_storage.FirebaseStorage.instance;
-    var reference = storage.ref("event_trees/" +
-        auth.currentUser.uid.toString() + "/t_" +
-        eventID); // create a path to the storage base
+    var storage = FirebaseFirestore.instance;
+    var reference = storage.collection("event_trees").doc
+      (auth.currentUser.uid.toString()).collection("t_" + eventID).doc("build"); // create a path to the storage base
 
     // now we will upload the json file in base64 format
     try {
-      await reference.putString(base64).whenComplete(() =>
+      await reference.set(map_full).whenComplete(() =>
       {
       ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -124,7 +124,7 @@ class ModelTreeBuilder
 
       });
     }
-    on firebase_storage.FirebaseException catch (e) {
+    on FirebaseException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -134,11 +134,72 @@ class ModelTreeBuilder
     }
   }
 
-  // Take apart an input json and load it into this model and the view
-  //@return null if there is no model found, hashmap<String, String> if found
-  deserializeModel()
+  // Take apart an input base64 from firebase and load it into this model and the view.
+  //@param context used for error codes during the download process
+  Future<void> deserializeModel() async
   {
+    // clear any potential nodes out of this model and view
+    nodes = [];
+    pairs = [];
+    parent.children = [];
 
+    // retrieve the base64 file
+    FirebaseAuth auth = FirebaseAuth.instance;
+    var storage = FirebaseFirestore.instance;
+    var reference = storage.collection("event_trees").doc
+      (auth.currentUser.uid.toString()).collection("t_" + eventID).doc("build"); // create a path to the storage base
+    reference
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      Map env_map_full = documentSnapshot.data();
+      if(env_map_full != null)
+        {
+          //print("Map Retrieved::: " + env_map_full.toString() + "\n\n building...");
+          Map node_map_full = env_map_full["node_map_full"];
+
+          for(int i = 0; i < node_map_full.keys.length; i++)
+            {
+              // access node map at position i
+              Map node_map = node_map_full[node_map_full.keys.elementAt(i)];
+              print("current node: " + node_map.toString());
+
+              // create the node
+              TreeNodeStateful n = new TreeNodeStateful(double.parse(node_map["y"]), double.parse(node_map["x"]), parent.controller);
+              n.id = int.parse(node_map["id"]);
+              n.draggable.id = n.id;
+              
+              n.draggable.title = node_map["title"];
+              n.draggable.description = node_map["description"];
+              n.draggable.startDate = node_map["startDate"];
+              n.draggable.startTime = node_map["startTime"];
+              n.draggable.endDate = node_map["endDate"];
+              n.draggable.endTime = node_map["endTime"];
+
+              parent.setState(() {
+                parent.children.add(n); // add node to view
+                parent.controller.addNode(n); // add node to model
+
+              });
+              /*
+              n.title = node_map["title"];
+              n.description = node_map["description"];
+              n.startDate = node_map["startDate"];
+              n.startTime = node_map["startTime"];
+              n.endDate = node_map["endDate"];
+              n.endTime = node_map["endTime"];
+
+              // now we will update the node with the stored parameters
+              parent.setState(() {
+                parent.children.add(n.stateful); // add node to view
+                parent.controller.addNode(n.stateful); // add node to model
+
+              });
+
+               */
+            }
+        }
+    });
+    
   }
 }
 

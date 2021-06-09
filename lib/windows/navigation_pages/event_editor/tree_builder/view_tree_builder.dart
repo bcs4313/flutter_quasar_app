@@ -36,7 +36,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
   {
     this.controller = controller;
     this.eventID = eventID;
-    controller.addParent(this, null);
+    controller.addParent(this);
   }
 
   // portrait/landscape build separation
@@ -147,7 +147,6 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                       color: Col.white,
                     ), onPressed: () {
                       controller.model.serializeModel(context);
-                      //print("Serialization Size: " + serializedSchedule. + " bytes");
                   },
                   ),
                 ),

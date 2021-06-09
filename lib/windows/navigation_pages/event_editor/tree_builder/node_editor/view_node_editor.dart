@@ -172,6 +172,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                         color: Col.purple_1,
                         child: TextButton(
                             onPressed: () {
+                              FocusScope.of(context).unfocus(); // remove focus of keyboard
                               DatePicker.showDatePicker(context,
                                   showTitleActions: true,
                                   minTime: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
@@ -198,6 +199,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                             color: Col.purple_1,
                             child: TextButton(
                                 onPressed: () {
+                                  FocusScope.of(context).unfocus(); // remove focus of keyboard
                                   DatePicker.showTime12hPicker(context, showTitleActions: true,
                                   onChanged: (time) {
                                     print('change $time in time zone ' +
@@ -243,6 +245,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                             color: Col.purple_1,
                             child: TextButton(
                                 onPressed: () {
+                                  FocusScope.of(context).unfocus(); // remove focus of keyboard
                                   DatePicker.showDatePicker(context,
                                       showTitleActions: true,
                                       minTime: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
@@ -269,6 +272,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                               color: Col.purple_1,
                               child: TextButton(
                                   onPressed: () {
+                                    FocusScope.of(context).unfocus(); // remove focus of keyboard
                                     DatePicker.showTime12hPicker(context, showTitleActions: true,
                                         onChanged: (time) {
                                           print('change $time in time zone ' +
