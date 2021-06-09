@@ -36,6 +36,22 @@ class ModelTreeBuilder
     this.deserializeModel(); // load content from firebase
   }
 
+  /// find a node by its id number (for node connecting)
+  ///@param id identification number of the node to return
+  ///@return a node or null if not found
+  ViewTreeNodeDraggable findNode(int id)
+  {
+    for(int i = 0; i < parent.children.length; i++)
+    {
+      ViewTreeNodeDraggable drag = parent.children[i].draggable;
+      if(id == drag.id)
+      {
+        return drag;
+      }
+    }
+    return null;
+  }
+
   /// Convert a singular node into a hashMap
   ///@param node the node to convert
   ///@return null if invalid, a hashMap if valid
@@ -81,7 +97,7 @@ class ModelTreeBuilder
         HashMap<String, HashMap<String, String>>>(); // main map (string access)
     HashMap<dynamic, dynamic> node_map_full = new HashMap<String,
         HashMap<String, String>>(); // map of each node (integer access)
-    HashMap<dynamic, dynamic> pair_map_full = new HashMap<String,
+    HashMap<String, dynamic> pair_map_full = new HashMap<String,
         HashMap<String, String>>(); // map of each pair (integer access)
 
     // node serialization step
@@ -118,7 +134,7 @@ class ModelTreeBuilder
       ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-        'Schedule Successfully Uploaded'),
+        'Schedule Upload Complete'),
         duration: Duration(seconds: 5),
       ))
 
@@ -167,7 +183,7 @@ class ModelTreeBuilder
               TreeNodeStateful n = new TreeNodeStateful(double.parse(node_map["y"]), double.parse(node_map["x"]), parent.controller);
               n.id = int.parse(node_map["id"]);
               n.draggable.id = n.id;
-              
+
               n.draggable.title = node_map["title"];
               n.draggable.description = node_map["description"];
               n.draggable.startDate = node_map["startDate"];
@@ -180,22 +196,33 @@ class ModelTreeBuilder
                 parent.controller.addNode(n); // add node to model
 
               });
-              /*
-              n.title = node_map["title"];
-              n.description = node_map["description"];
-              n.startDate = node_map["startDate"];
-              n.startTime = node_map["startTime"];
-              n.endDate = node_map["endDate"];
-              n.endTime = node_map["endTime"];
+            }
 
-              // now we will update the node with the stored parameters
-              parent.setState(() {
-                parent.children.add(n.stateful); // add node to view
-                parent.controller.addNode(n.stateful); // add node to model
+          // now to go through each nodepair connection and add them to this model
+          Map pair_map_full = env_map_full["pair_map_full"];
+          print("PAIRMAP::: " + pair_map_full.toString());
+          for(int i = 0; i < pair_map_full.keys.length; i++)
+            {
+              Map pair_map = pair_map_full[pair_map_full.keys.elementAt(i)];
+              print("basic pair map:: " + pair_map.toString());
 
-              });
+              // get ids of pair nodes
+              int front_id = int.parse(pair_map["front"]);
+              int back_id = int.parse(pair_map["back"]);
 
-               */
+              // find nodes by id to create pair with
+              ViewTreeNodeDraggable front = findNode(front_id);
+              ViewTreeNodeDraggable back = findNode(back_id);
+
+              // create the pair and add it to the model to draw
+              if(front != null && back != null) {
+                NodePair pair = new NodePair(front, back);
+                pairs.add(pair);
+              }
+              else
+                {
+                  print("found null connection? issues? \n");
+                }
             }
         }
     });
