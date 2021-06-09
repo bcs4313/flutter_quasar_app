@@ -21,9 +21,12 @@ class ControllerEventDestroyer
   }
 
   /// Remove a specific event map in the firebase document for this user
+  /// Also deletes any potential schedule associated with it.
   /// @param context context used to redirect the user back to the event editor mainpage.
   void pushMapDeletion(BuildContext context)
   {
+
+
     // Initiate document from database to modify
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -35,8 +38,13 @@ class ControllerEventDestroyer
       // Remove dynamic map of this specific event from the document in firebase
       firestore.collection('event_groups')
           .doc(auth.currentUser.uid.toString()).update(
-          { eventNum: FieldValue.delete() }).then((value) => pushEditorMainPage(context));
+          { eventNum: FieldValue.delete() }).then((value) =>
+
+          // attempt to remove tree_builder tree and then push to the event mainpage, regardless of its result
+          firestore.collection("event_trees").doc(auth.currentUser.uid.toString()).
+          collection("t_" + eventNum).doc("build").delete().whenComplete(() => pushEditorMainPage(context)));
     });
+    print("event_trees/" + auth.currentUser.uid.toString() + "/t_" + eventNum + "/build");
   }
   ///
 

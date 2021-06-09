@@ -125,7 +125,7 @@ class ModelTreeBuilder
     FirebaseAuth auth = FirebaseAuth.instance;
     var storage = FirebaseFirestore.instance;
     var reference = storage.collection("event_trees").doc
-      (auth.currentUser.uid.toString()).collection("t_" + eventID).doc("build"); // create a path to the storage base
+      (auth.currentUser.uid.toString()).collection("t_event_" + eventID).doc("build"); // create a path to the storage base
 
     // now we will upload the json file in base64 format
     try {
@@ -163,7 +163,7 @@ class ModelTreeBuilder
     FirebaseAuth auth = FirebaseAuth.instance;
     var storage = FirebaseFirestore.instance;
     var reference = storage.collection("event_trees").doc
-      (auth.currentUser.uid.toString()).collection("t_" + eventID).doc("build"); // create a path to the storage base
+      (auth.currentUser.uid.toString()).collection("t_event_" + eventID).doc("build"); // create a path to the storage base
     reference
         .get()
         .then((DocumentSnapshot documentSnapshot) {
