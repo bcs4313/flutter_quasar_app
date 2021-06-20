@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
+import 'controller_profile_home.dart';
+import 'extension_profile_home.dart';
+import 'dart:io'; // input/output streams
 
-/// Login Screen UI
+/// Profile Editor UI
 ///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
-class ViewProfileHome extends StatelessWidget
+class ViewProfileHome extends State<ProfileHomeStateful>
 {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
+  Image pfp = Image(image: AssetImage('assets/images/pfp.png'));
+  ControllerProfileHome controller;
+
+  ViewProfileHome(ControllerProfileHome controller)
+  {
+    this.controller = controller;
+  }
 
   // portrait/landscape build separation
   @override
@@ -32,7 +41,7 @@ class ViewProfileHome extends StatelessWidget
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-        appBar: DrawerBarConstruct("Profile View/Updater"),
+        appBar: DrawerBarConstruct("Profile Viewer and Updater"),
       drawer: DrawerConstruct(),
 
       body: Center(
@@ -67,11 +76,65 @@ class ViewProfileHome extends StatelessWidget
                   ),
                   // Textfield Change Recording
               ),
-            Padding(
-              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(""),
-                radius: 20 * SizeConfig.scaleVertical,
+            GestureDetector(
+              onTap: ()
+                {
+                  controller.updateImage();
+                },
+              child: Padding(
+                padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical),
+                child: CircleAvatar(
+                  backgroundImage: pfp.image,
+                  radius: 15 * SizeConfig.scaleVertical,
+                ),
+              ),
+            ),
+            Container(
+              height: 6 * SizeConfig.scaleVertical,
+            ),
+            Container(
+              width: 90 * SizeConfig.scaleHorizontal,
+              height: 10 * SizeConfig.scaleVertical,
+              color: Col.purple_2,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: TextButton.icon(
+                  label: Text("Edit Private Info",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.white)),
+                  icon: Icon(
+                    Icons.edit_attributes,
+                    color: Col.white,
+                  ), onPressed: () {
+                  //controller.transferTreeDestroyer(context);
+                },
+                ),
+              ),
+            ),
+            Container(
+              height: 6 * SizeConfig.scaleVertical,
+            ),
+            Container(
+              width: 90 * SizeConfig.scaleHorizontal,
+              height: 10 * SizeConfig.scaleVertical,
+              color: Col.green,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: TextButton.icon(
+                  label: Text("Confirm Changes",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.white)),
+                  icon: Icon(
+                    Icons.edit_attributes,
+                    color: Col.white,
+                  ), onPressed: () {
+                  //controller.transferTreeDestroyer(context);
+                },
+                ),
               ),
             ),
           ],
