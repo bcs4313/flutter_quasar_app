@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +45,14 @@ class ControllerCreateAccount
         // send Email Verification
         user.sendEmailVerification();
 
+        Map<String, dynamic>  map_full = new HashMap();
+        map_full["owner_name"] = getDisplayName();
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        // generate basic hashmap to store events and user data
+        firestore.collection('event_groups')
+            .doc(auth.currentUser.uid.toString())
+            .set(map_full);
+
         // direct to email guide window
         pushEmailRedirect(context);
       }
@@ -61,7 +72,11 @@ class ControllerCreateAccount
             ));
       }
     } catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error Creating Account: ' + e.toString()),
+            duration: Duration(seconds: 8),
+          ));
     }
   }
 
