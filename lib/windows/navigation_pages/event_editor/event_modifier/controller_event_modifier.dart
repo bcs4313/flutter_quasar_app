@@ -43,7 +43,8 @@ class ControllerEventModifier
         .doc(auth.currentUser.uid.toString())
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      Map env_map_full = documentSnapshot.data();
+      Map map_full = documentSnapshot.data();
+      Map env_map_full = map_full["base"];
       print("MAP:" + env_map_full.toString());
       Map<dynamic, dynamic> env_cat_map = env_map_full[eventNum];
       print("MAP 2: " + env_cat_map.toString());
