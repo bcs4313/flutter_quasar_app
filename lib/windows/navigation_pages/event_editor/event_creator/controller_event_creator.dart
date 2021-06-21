@@ -83,6 +83,7 @@ class ControllerEventCreator
 
   Map generateMapUpdate(int pos)
   {
+    Map map_full = new HashMap<String, dynamic>();
     Map env_map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>();
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
     HashMap env_whitelist_map = new HashMap<String, String>();
@@ -108,7 +109,9 @@ class ControllerEventCreator
     // shove event in full map
     env_map_full["event_" + pos.toString()] = env_cat_map;
 
-    return env_map_full;
+    map_full["base"] = env_map_full;
+
+    return map_full;
   }
 
   Map generateBaseMap()
