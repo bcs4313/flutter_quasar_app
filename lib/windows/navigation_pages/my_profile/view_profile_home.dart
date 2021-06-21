@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
@@ -21,6 +22,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
   ViewProfileHome(ControllerProfileHome controller)
   {
     this.controller = controller;
+    controller.retrieveInfo(); // load the pfp image into this view if it exists (asynchronous)
   }
 
   // portrait/landscape build separation
@@ -60,6 +62,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: TextField(
                   obscureText: false,
+                  textAlign: TextAlign.center,
                   style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
@@ -132,7 +135,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
                     Icons.edit_attributes,
                     color: Col.white,
                   ), onPressed: () {
-                  //controller.transferTreeDestroyer(context);
+                    controller.uploadChanges();
                 },
                 ),
               ),
