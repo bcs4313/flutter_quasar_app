@@ -18,10 +18,13 @@ class ViewProfileHome extends State<ProfileHomeStateful>
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
   Image pfp = Image(image: AssetImage('assets/images/pfp.png'));
   ControllerProfileHome controller;
+  ProfileHomeStateful stateful;
+  var textController = new TextEditingController();
 
-  ViewProfileHome(ControllerProfileHome controller)
+  ViewProfileHome(ControllerProfileHome controller, ProfileHomeStateful stateful)
   {
     this.controller = controller;
+    this.stateful = stateful;
     controller.retrieveInfo(); // load the pfp image into this view if it exists (asynchronous)
   }
 
@@ -62,6 +65,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: TextField(
                   obscureText: false,
+                  controller: textController,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                   decoration: InputDecoration(
@@ -74,7 +78,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
                     ),
                     onChanged: (value)
                     {
-                      //controller.setEmail(value);
+                      stateful.username = value;
                     }
                   ),
                   // Textfield Change Recording
@@ -111,7 +115,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
                     Icons.edit_attributes,
                     color: Col.white,
                   ), onPressed: () {
-                  //controller.transferTreeDestroyer(context);
+                  controller.transferProfilePrivate(context);
                 },
                 ),
               ),

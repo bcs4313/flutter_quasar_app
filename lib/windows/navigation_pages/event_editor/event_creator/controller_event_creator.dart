@@ -60,24 +60,24 @@ class ControllerEventCreator
           ));
         }
         else
-          {
-            // update document with new generated event map
-            Map cat_map = generateMapUpdate(event_slot);
+        {
+          // update document with new generated event map
+          Map cat_map = generateMapUpdate(event_slot);
 
 
-            firestore.collection('event_groups')
-                .doc(auth.currentUser.uid.toString()).update(cat_map).then((void val) {
-              pushCreateEvent(context);
-            });
-          }
+          firestore.collection('event_groups')
+              .doc(auth.currentUser.uid.toString()).update(cat_map).then((void val) {
+            pushCreateEvent(context);
+          });
+        }
       }
       else
-          {
-            firestore.collection('event_groups').doc(auth.currentUser.uid.toString()).set(generateBaseMap()).then((void val){
-              pushCreateEvent(context);
-            });
-          }
+      {
+        firestore.collection('event_groups').doc(auth.currentUser.uid.toString()).set(generateBaseMap()).then((void val){
+          pushCreateEvent(context);
+        });
       }
+    }
     );
   }
 
@@ -113,6 +113,7 @@ class ControllerEventCreator
 
   Map generateBaseMap()
   {
+    Map map_full = new HashMap<String, HashMap<String, HashMap<String, HashMap<String, String>>>>();
     Map env_map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>();
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
     HashMap env_whitelist_map = new HashMap<String, String>();
@@ -136,12 +137,12 @@ class ControllerEventCreator
     env_cat_map["Whitelist"] = env_whitelist_map;
 
     env_map_full["event_" + "1"] = env_cat_map;
+    map_full["base"] = env_map_full;
 
-    return env_map_full;
+    return map_full;
   }
 
   ///
-
   /// Direct user to event creation window. Deletes window stack.
   void pushCreateEvent(BuildContext context)
   {

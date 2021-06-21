@@ -31,7 +31,8 @@ class ControllerEventEditor
         .doc(auth.currentUser.uid.toString())
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-          Map env_map_full = documentSnapshot.data();
+          Map map_full = documentSnapshot.data();
+          Map env_map_full = map_full["base"];
           print("MAP:" + env_map_full.toString());
           for(dynamic nav in env_map_full.keys)
             {

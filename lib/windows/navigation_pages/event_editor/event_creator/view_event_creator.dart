@@ -67,21 +67,21 @@ class ViewEventCreator extends State<InitializerEventCreator>
                       child: Container(
                         width: 70 * SizeConfig.scaleHorizontal,
                         child: TextField(
-                          obscureText: false,
-                          style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.purple, width: 1.0),
+                            obscureText: false,
+                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.purple, width: 1.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.purple, width: 1.0),
+                              ),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.purple, width: 1.0),
-                            ),
-                          ),
-                          // Textfield Change Recording
-                          onChanged: (value)
-                          {
-                            controller.setTitle(value);
-                          }
+                            // Textfield Change Recording
+                            onChanged: (value)
+                            {
+                              controller.setTitle(value);
+                            }
                         ),
                       ),
                     ),
@@ -137,15 +137,15 @@ class ViewEventCreator extends State<InitializerEventCreator>
                     Padding(
                       padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
                       child: SizedBox(
-                        child: Checkbox(
-                          value: switchFriendsOnly,
-                          onChanged: (bool value) {
-                            setState(() {
-                              controller.setFriendsOnly(value);
-                              switchFriendsOnly = value;
-                            });
-                          },
-                        )
+                          child: Checkbox(
+                            value: switchFriendsOnly,
+                            onChanged: (bool value) {
+                              setState(() {
+                                controller.setFriendsOnly(value);
+                                switchFriendsOnly = value;
+                              });
+                            },
+                          )
                       ),
                     ),
                   ],

@@ -9,10 +9,11 @@ import 'controller_profile_home.dart';
 /// this class
 
 class ProfileHomeStateful extends StatefulWidget {
+  String username = "";
   @override
   State<StatefulWidget> createState() {
     ControllerProfileHome controller = new ControllerProfileHome();
-    ViewProfileHome parent = new ViewProfileHome(controller);
+    ViewProfileHome parent = new ViewProfileHome(controller, this);
     controller.parent = parent;
     return parent;
 }
