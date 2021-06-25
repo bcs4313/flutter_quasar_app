@@ -44,7 +44,6 @@ class ViewNodeEditor extends State<NodeEditorStateful>
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       appBar: DrawerBarConstruct("Node Editor"),
-      drawer: DrawerConstruct(),
 
       body: Center(
         child: Column(

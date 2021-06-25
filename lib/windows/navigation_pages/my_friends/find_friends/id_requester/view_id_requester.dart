@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../../col.dart';
-import '../../../../size_config.dart';
-import 'controller_find_friends.dart';
+import '../../../../../col.dart';
+import '../../../../../size_config.dart';
+import 'controller_id_requester.dart';
+import 'extension_id_requester.dart';
 
 /// Login Screen UI
 ///
 /// This both serves as the model and view for our window.
 /// The controller is separate from this file.
-class ViewFindFriends extends StatelessWidget
+class ViewIDRequester extends State<IDRequesterStateful>
 {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
@@ -23,10 +24,22 @@ class ViewFindFriends extends StatelessWidget
     }
   }
 
+  ControllerIDRequester controller; // controller for this view
+  IDRequesterStateful stateful; // extension of this view's state
+
+  /// Constructor for this view
+  ///@param controller manages calls from this view
+  ///@param stateful extension of this view that prevents the reinstating of the original controller
+  ViewIDRequester(ControllerIDRequester controller, IDRequesterStateful stateful)
+  {
+    this.controller = controller;
+    this.stateful = stateful;
+  }
+
   /// generate a portrait projection of the window view
   Scaffold generatePortraitView(BuildContext context)
   {
-    final ControllerForgotPassword controller = new ControllerForgotPassword();
+    final ControllerIDRequester controller = new ControllerIDRequester();
     return Scaffold(
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
@@ -42,39 +55,35 @@ class ViewFindFriends extends StatelessWidget
             Padding(
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: Text(
-                  'To send a friend request to someone, choose one of the options below.',
-                  style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
+                'Please enter a valid ID to complete the request.',
+                style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
               ),
             ),
             Padding(
-              padding:EdgeInsets.only(top: 35 * SizeConfig.scaleVertical),
+              padding:EdgeInsets.only(top: 4 * SizeConfig.scaleVertical),
             ),
-            Container(
-              color: Col.green,
-              child: SizedBox(
-                width: 90 * SizeConfig.scaleHorizontal,
-                height: 10 * SizeConfig.scaleVertical,
-                child: FittedBox(
-                fit: BoxFit.contain,
-                child: TextButton.icon(
-                  label: Text("Request Via Email",
-                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
-                          height: 1.3,
-                          fontFamily: 'Roboto',
-                          color: Col.white)),
-                  icon: Icon(
-                    Icons.email,
-                    color: Col.white,
-                  ), onPressed: () {
-                    controller.transferEmailRequester(context);
-                },
+            TextField(
+                obscureText: false,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Col.pink),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.purple, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.purple, width: 1.0),
+                  ),
                 ),
-              ),
-              ),
+
+                // Textfield Change Recording
+                onChanged: (value)
+                {
+                  controller.setID(value);
+                }
             ),
             Padding(
-              padding:EdgeInsets.only(top: 4 * SizeConfig.scaleVertical),
+              padding:EdgeInsets.only(top: 43 * SizeConfig.scaleVertical),
             ),
             Container(
               color: Col.purple_1,
@@ -83,18 +92,15 @@ class ViewFindFriends extends StatelessWidget
                 height: 10 * SizeConfig.scaleVertical,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: TextButton.icon(
-                    label: Text("Request Via ID",
+                  child: TextButton(
+                    child: Text("Send",
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                             height: 1.3,
                             fontFamily: 'Roboto',
                             color: Col.white)),
-                    icon: Icon(
-                      Icons.perm_identity,
-                      color: Col.white,
-                    ), onPressed: () {
-                    controller.transferIDRequester(context);
-                  },
+                    onPressed: () {
+                      //controller.uploadChanges();
+                    },
                   ),
                 ),
               ),

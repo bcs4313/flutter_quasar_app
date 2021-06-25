@@ -60,7 +60,6 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
         appBar: DrawerBarConstruct("Schedule Builder"),
-      drawer: DrawerConstruct(),
 
       body: Center(
         child: Column(

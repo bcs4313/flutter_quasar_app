@@ -39,7 +39,6 @@ class ViewEventCreator extends State<InitializerEventCreator>
         resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
         backgroundColor: Col.purple_0,
         appBar: DrawerBarConstruct("Event Creator"),
-        drawer: DrawerConstruct(),
 
         body: Center(
           child: Column(

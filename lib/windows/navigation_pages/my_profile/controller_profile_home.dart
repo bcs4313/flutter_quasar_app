@@ -27,6 +27,7 @@ class ControllerProfileHome
 
   // private info storage
   String email = FirebaseAuth.instance.currentUser.email; // email to store in profile
+  String ID = FirebaseAuth.instance.currentUser.uid; // id to store in profile
   String password = "????????"; // password to store in profile
 
   bool adjustEmail = false; // confirm email to be adjusted

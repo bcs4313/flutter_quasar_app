@@ -44,7 +44,6 @@ class ViewEventDestroyer extends StatelessWidget
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       appBar: DrawerBarConstruct("Event Modifier"),
-      drawer: DrawerConstruct(),
 
       body: Center(
         child: Column(

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
-import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
-
-import 'model_forgot_password.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/id_requester/extension_id_requester.dart';
+import 'email_requester/extension_email_requester.dart';
+import 'model_find_friends.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -33,9 +32,15 @@ class ControllerForgotPassword
     return false;
   }
 
-  /// Push user to login window (restart window stack)
-  void pushLogin(BuildContext context)
+  /// transfer user to email request window
+  void transferEmailRequester(BuildContext context)
   {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ViewLogin()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => EmailRequesterStateful()));
+  }
+
+  /// transfer user to id request window
+  void transferIDRequester(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => IDRequesterStateful()));
   }
 }

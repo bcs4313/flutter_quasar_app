@@ -42,7 +42,6 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
         appBar: DrawerBarConstruct("Profile Viewer and Updater"),
-      drawer: DrawerConstruct(),
 
       body: Center(
         child: Column(
@@ -57,7 +56,15 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 77 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
+                padding: EdgeInsets.only(top: 8 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
+                child: Text(
+                    "ID: " + homecontroller.ID,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink)
+                )
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 77 * SizeConfig.scaleHorizontal, top: 4 * SizeConfig.scaleVertical),
               child: Text(
                   'Email',
                   textAlign: TextAlign.start,
