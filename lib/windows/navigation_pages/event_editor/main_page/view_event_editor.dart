@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -18,7 +17,7 @@ class ViewEventEditorMainPage extends State<CounterPageStateful>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  // Widget list to construct in this UI
+  // Widget list to fconstruct in this UI
   ListView eventConstruct;
 
   ControllerEventEditor controller;

@@ -14,7 +14,7 @@ class DrawerConstruct extends StatelessWidget {
         children: <Widget>[
           DrawerUtility.createHeader(),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.home, text: 'Home', locale: "ViewHomepage"),
-          DrawerUtility.createDrawerItem(context: context, icon: Icons.supervised_user_circle, text: 'My Friends', locale: "ViewHomepage"),
+          DrawerUtility.createDrawerItem(context: context, icon: Icons.supervised_user_circle, text: 'My Friends', locale: "ViewFriendsHome"),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.double_arrow_sharp, text: 'Join an Event', locale: "ViewTreeBuilder"),
           Divider(),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.mode_edit, text: 'Event Editor', locale: "ViewEventEditorMainPage"),
