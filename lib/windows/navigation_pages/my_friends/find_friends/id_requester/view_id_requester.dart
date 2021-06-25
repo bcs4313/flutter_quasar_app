@@ -39,7 +39,6 @@ class ViewIDRequester extends State<IDRequesterStateful>
   /// generate a portrait projection of the window view
   Scaffold generatePortraitView(BuildContext context)
   {
-    final ControllerIDRequester controller = new ControllerIDRequester();
     return Scaffold(
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
@@ -99,7 +98,7 @@ class ViewIDRequester extends State<IDRequesterStateful>
                             fontFamily: 'Roboto',
                             color: Col.white)),
                     onPressed: () {
-                      //controller.uploadChanges();
+                      controller.sendIDRequest(context);
                     },
                   ),
                 ),

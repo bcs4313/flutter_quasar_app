@@ -39,7 +39,6 @@ class ViewEmailRequester extends State<EmailRequesterStateful>
   /// generate a portrait projection of the window view
   Scaffold generatePortraitView(BuildContext context)
   {
-    final ControllerEmailRequester controller = new ControllerEmailRequester();
     return Scaffold(
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
@@ -99,7 +98,7 @@ class ViewEmailRequester extends State<EmailRequesterStateful>
                             fontFamily: 'Roboto',
                             color: Col.white)),
                     onPressed: () {
-                    //controller.uploadChanges();
+                    controller.sendEmailRequest(context);
                   },
                   ),
                 ),
