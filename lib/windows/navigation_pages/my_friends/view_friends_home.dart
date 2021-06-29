@@ -72,12 +72,34 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
                           fontFamily: 'Roboto',
                           color: Col.white)),
                   icon: Icon(
-                    Icons.edit_attributes,
+                    Icons.group_add,
                     color: Col.white,
                   ), onPressed: () {
-                    controller.transferProfilePrivate(context);
-                },
-                ),
+                    controller.transferFindFriends(context);
+                },),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical),
+            ),
+            Container(
+              width: 90 * SizeConfig.scaleHorizontal,
+              height: 10 * SizeConfig.scaleVertical,
+              color: Col.purple_2,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: TextButton.icon(
+                  label: Text("View Requests",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.white)),
+                  icon: Icon(
+                    Icons.account_circle_rounded,
+                    color: Col.white,
+                  ), onPressed: () {
+                  controller.transferFriendRequests(context);
+                },),
               ),
             ),
           ],

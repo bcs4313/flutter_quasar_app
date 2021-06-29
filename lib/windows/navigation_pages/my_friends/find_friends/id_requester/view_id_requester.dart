@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -43,9 +44,7 @@ class ViewIDRequester extends State<IDRequesterStateful>
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-      appBar: AppBar(
-        title: Text("Friend Finder"),
-      ),
+      appBar: DrawerBarConstruct("Friend Finder"),
 
       body: Center(
         child: Column(

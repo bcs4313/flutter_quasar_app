@@ -11,6 +11,7 @@ import '../../../size_config.dart';
 
 import 'package:image_picker/image_picker.dart';
 
+import 'find_friends/friend_requests/extension_friend_requests.dart';
 import 'find_friends/view_find_friends.dart';
 
 /// Profile Home Controller
@@ -22,8 +23,14 @@ class ControllerFriendsHome
   PickedFile file; // file stored in this controller to upload
 
   /// Direct user to friend adding window
-  void transferProfilePrivate(BuildContext context)
+  void transferFindFriends(BuildContext context)
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => new ViewFindFriends()));
+  }
+
+  /// Direct user to friend request window
+  void transferFriendRequests(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new FriendRequestsStateful()));
   }
 }
