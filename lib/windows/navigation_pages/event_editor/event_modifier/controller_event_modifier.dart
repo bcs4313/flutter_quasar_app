@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
 import 'deletion_confirmation/view_event_destroyer.dart';
 
 import 'model_event_modifier.dart';

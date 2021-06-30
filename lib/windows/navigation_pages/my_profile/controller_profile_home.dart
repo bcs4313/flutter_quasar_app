@@ -94,9 +94,9 @@ class ControllerProfileHome
       {
         FirebaseAuth auth = FirebaseAuth.instance;
         var firestore = FirebaseFirestore.instance;
-        var reference = firestore.collection('event_groups')
+        var reference = firestore.collection('friend_access_profiles')
             .doc(auth.currentUser.uid.toString());
-        await reference.update({'owner_name': parent.stateful.username});
+        await reference.set({'owner_username': parent.stateful.username});
         ScaffoldMessenger.of(parent.context).showSnackBar(
             SnackBar(
               content: Text('Profile Successfully Updated'),
@@ -148,13 +148,13 @@ class ControllerProfileHome
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
 
-    var collection = await firestore.collection('event_groups')
+    var collection = await firestore.collection('friend_access_profiles')
         .doc(auth.currentUser.uid.toString()).get();
     Map<String, dynamic> map = collection.data();
     parent.setState(() {
-      if(map.keys.contains("owner_name")) {
-        parent.stateful.username = map["owner_name"];
-        parent.textController.text = map["owner_name"];
+      if(map.keys.contains("owner_username")) {
+        parent.stateful.username = map["owner_username"];
+        parent.textController.text = map["owner_username"];
       }
     });
 

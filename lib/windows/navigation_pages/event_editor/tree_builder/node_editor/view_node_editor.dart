@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/extension_event_editor.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/main_page/widget_event_edtor_event.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 
 import '../../../../../col.dart';
