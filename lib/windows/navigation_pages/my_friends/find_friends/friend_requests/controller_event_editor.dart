@@ -7,6 +7,7 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/extension_tree_builder.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/view_friend_requests.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/widget_friend_requests_request.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/user_profile_lookup/extension_user_profile.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -85,5 +86,13 @@ class ControllerFriendRequests
   void addParent(ViewFriendRequests parent)
   {
     this.parent = parent;
+  }
+
+  /// Direct user to basic profile window with some specialized info
+  ///@param username name of user
+  ///@param id identification number of user to load bio/image
+  void transferUserProfile(String username, String id)
+  {
+    Navigator.push(parent.context, MaterialPageRoute(builder: (context) => new UserProfileStateful(username, id)));
   }
 }

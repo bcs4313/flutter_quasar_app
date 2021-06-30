@@ -13,16 +13,16 @@ class WidgetFriendRequest extends StatelessWidget {
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
   ControllerFriendRequests controller;
-  String nickname; // nickname from friend request
+  String username; // nickname from friend request
   String id; // ID number of request to use for image loading / callback
 
   /// Constructor for this widget
   ///@param nickname nickname from friend request
   ///@param id ID number of request to use for image loading and callback
   ///@param controller controller to command upon request rejection/acceptance
-  WidgetFriendRequest(String nickname, String id, ControllerFriendRequests controller)
+  WidgetFriendRequest(String username, String id, ControllerFriendRequests controller)
   {
-    this.nickname = nickname;
+    this.username = username;
     this.id = id;
     this.controller = controller;
   }
@@ -40,12 +40,12 @@ class WidgetFriendRequest extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
                     ),
-                    child: Text(nickname,
+                    child: Text(username,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       textAlign: TextAlign.center,
                     ),
                     onPressed:() => {
-                      //transferModifyEvent(context, id),
+                      controller.transferUserProfile(username, id),
                     }
                 ),
               ),
@@ -54,7 +54,7 @@ class WidgetFriendRequest extends StatelessWidget {
                 height: 10 * SizeConfig.scaleVertical,
                 child: ElevatedButton( // Raised buttons have bevels to stand out form the background
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Col.purple_2),
+                      backgroundColor: MaterialStateProperty.all(Col.green),
                     ),
                     child: Icon(
                       Icons.check_circle,
@@ -71,7 +71,7 @@ class WidgetFriendRequest extends StatelessWidget {
                 height: 10 * SizeConfig.scaleVertical,
                 child: ElevatedButton( // Raised buttons have bevels to stand out form the background
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Col.green),
+                      backgroundColor: MaterialStateProperty.all(Col.red),
                     ),
                     child: Icon(
                       Icons.cancel_rounded,
