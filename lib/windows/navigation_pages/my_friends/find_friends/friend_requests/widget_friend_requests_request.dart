@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_modifier/initializer_view_event_modifier.dart';
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
-import 'controller_event_editor.dart';
+import 'controller_friend_requests.dart';
 
 /// class for building an event editor UI widget for a single event
 /// in the mainpage (edit event properties, add user, delete user).
@@ -23,6 +23,10 @@ class WidgetFriendRequest extends StatelessWidget {
   WidgetFriendRequest(String username, String id, ControllerFriendRequests controller)
   {
     this.username = username;
+    if(username == null)
+      {
+        this.username = "undefined (unsafe)";
+      }
     this.id = id;
     this.controller = controller;
   }
@@ -62,7 +66,7 @@ class WidgetFriendRequest extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      //controller.createEvent(context, S_KEY),
+                      controller.acceptFriend(id),
                     }
                 ),
               ),
@@ -79,7 +83,7 @@ class WidgetFriendRequest extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      //controller.transferTreeBuilder(context, this.id)
+                      controller.removeFriend(id),
                     }
                 ),
               ),

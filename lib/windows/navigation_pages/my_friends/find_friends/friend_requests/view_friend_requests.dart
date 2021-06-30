@@ -5,7 +5,7 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
-import 'controller_event_editor.dart';
+import 'controller_friend_requests.dart';
 import 'extension_friend_requests.dart';
 
 /// Event Editing Mainpage UI

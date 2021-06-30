@@ -2,9 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_creator/initializer_view_event_creator.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/extension_tree_builder.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/view_friend_requests.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/widget_friend_requests_request.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/user_profile_lookup/extension_user_profile.dart';
@@ -46,6 +43,10 @@ class ControllerFriendRequests
                   var map_full = request.data();
                   var nickname = map_full["Username"];
                   var id = map_full["ID"];
+                  if(nickname == null)
+                    {
+                      nickname = "undefined (unsafe)";
+                    }
                   WidgetFriendRequest tab = new WidgetFriendRequest(nickname, id, parent.controller);
                   index++;
                   widgetList.add(tab);
@@ -69,8 +70,8 @@ class ControllerFriendRequests
               }
             }
           });
-          // there will be a limitation of
           ListView view = ListView(
+            key: Key(widgetList.length.toString()),
             children: widgetList,
           );
 
@@ -80,6 +81,63 @@ class ControllerFriendRequests
 
           return view;
     });
+  }
+
+  /// Accept a friend request by putting their id into a friends list
+  /// in the friend_access_profiles directory
+  ///@param id id of user to accept
+  void acceptFriend(String id)
+  {
+    var firestore = FirebaseFirestore.instance;
+    var auth = FirebaseAuth.instance;
+    var map = new Map<String, dynamic>();
+    var map_friends = new Map<String, String>();
+    map_friends[id] = "true";
+    map["friends"] = map_friends;
+
+    firestore.collection('friend_access_profiles')
+        .doc(auth.currentUser.uid).update(map).then((value)
+    {
+      removeFriend(id);
+    });
+  }
+
+  /// Remove friend from the request areas
+  /// In the dump directories
+  ///@param id id of user to decline
+  void removeFriend(String id)
+  {
+    var firestore = FirebaseFirestore.instance;
+    var auth = FirebaseAuth.instance;
+
+    // email dump deletion
+    firestore.collection('request_email_dump').
+    doc(auth.currentUser.email).collection("docs").doc(id).delete();
+
+    // id dump deletion
+    firestore.collection('request_id_dump').
+    doc(auth.currentUser.uid).collection("docs").doc(id).delete();
+
+    print(widgetList.length);
+    // now remove this widget from the friend request view as a visual indicator.
+    for(int i = 0; i < widgetList.length; i++)
+      {
+        Widget w = widgetList[i];
+        WidgetFriendRequest tab = w;
+        print("tab id: ==" + tab.id);
+        if(tab.id == id)
+          {
+            print("removing...");
+            widgetList.remove(w);
+          }
+      }
+    // now update the view
+    ListView view_new = ListView(
+      key: Key(widgetList.length.toString()),
+      children: widgetList,
+    );
+    print(widgetList.length);
+    parent.updateConstruct(view_new);
   }
 
   // add parent to the following widget

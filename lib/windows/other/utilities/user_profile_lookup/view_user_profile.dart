@@ -22,6 +22,10 @@ class ViewUserProfile extends State<UserProfileStateful>
   ViewUserProfile(String username, String id, ControllerUserProfile controller)
   {
     this.username = username;
+    if(username == null)
+      {
+        this.username = "undefined (unsafe)";
+      }
     this.id = id;
     this.controller = controller;
     controller.parent = this;

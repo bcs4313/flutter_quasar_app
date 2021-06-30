@@ -58,10 +58,10 @@ class ControllerEmailRequester
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
 
-    var collection = await firestore.collection('event_groups')
+    var collection = await firestore.collection('friend_access_profiles')
         .doc(auth.currentUser.uid.toString()).get();
     Map<String, dynamic> map = collection.data();
 
-    username = map["owner_name"];
+    username = map["owner_username"];
   }
 }
