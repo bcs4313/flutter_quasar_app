@@ -47,7 +47,7 @@ class ViewFriendLarge extends State<FriendLargeStateful> {
             children:[
               Container(
                 width: 80 * SizeConfig.scaleHorizontal,
-                height: 10 * SizeConfig.scaleVertical,
+                height: 10.2 * SizeConfig.scaleVertical,
                 child: ElevatedButton( // Raised buttons have bevels to stand out form the background
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
@@ -65,7 +65,7 @@ class ViewFriendLarge extends State<FriendLargeStateful> {
                 padding: EdgeInsets.only(),
                 child: SizedBox(
                   width: 10 * SizeConfig.scaleVertical,
-                  height: 10 * SizeConfig.scaleVertical,
+                  height: 10.2 * SizeConfig.scaleVertical,
                   child: CircleAvatar(
                   backgroundImage: pfp.image,
                   radius: 2 * SizeConfig.scaleVertical,

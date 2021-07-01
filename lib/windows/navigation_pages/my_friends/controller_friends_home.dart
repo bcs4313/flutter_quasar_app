@@ -22,6 +22,7 @@ class ControllerFriendsHome
   // used for global scaffold calls (and Snackbars)
   ViewFriendsHome parent; // view of this controller
   PickedFile file; // file stored in this controller to upload
+  List<List<String>> friendList; // list to use
 
   /// Analyze the friend document a user has and create
   /// individual "pages" for them to scroll through
@@ -54,6 +55,7 @@ class ControllerFriendsHome
           friendsList.add(friend_group);
         }
       print("friend list constructed: " + friendsList.toString());
+      parent.count = (friendsList.length / 5).ceil();
       displayFive(friendsList, 0);
     });
   }
@@ -79,7 +81,26 @@ class ControllerFriendsHome
 
     parent.setState(() {
       parent.eventConstruct = view;
+      parent.count = step+1;
     });
+  }
+
+  /// Go back a page in the view if applicable
+  void arrowBackward()
+  {
+    if(parent.disposition > 0)
+      {
+        displayFive(friendList, parent.disposition - 1);
+      }
+  }
+
+  /// Go forward a page in the view if applicable
+  void arrowForward()
+  {
+    if(parent.disposition < (parent.count - 1))
+      {
+        displayFive(friendList, parent.disposition - 1);
+      }
   }
 
   /// Direct user to friend adding window

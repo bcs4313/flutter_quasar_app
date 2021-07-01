@@ -19,6 +19,7 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
 
   ListView eventConstruct; // construct of the friendlist in this view
   int disposition = 0; // current page to look in friend_wise (5 at a time)
+  int count = 0; // amount of pages there are
 
   ViewFriendsHome(ControllerFriendsHome controller, FriendsHomeStateful stateful)
   {
@@ -76,11 +77,66 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
                 textAlign: TextAlign.center,
               ),
             ),
+            Container(
+              height: 6 * SizeConfig.scaleVertical,
+              width: 100 * SizeConfig.scaleHorizontal,
+              child: Row(
+                children:[
+                  IconButton(
+                    icon: SizedBox(
+                      height: 6 * SizeConfig.scaleVertical,
+                      width: 25 * SizeConfig.scaleHorizontal,
+                      child: FittedBox(
+                        child: Icon(
+                            Icons.arrow_back,
+                          color: Col.white,
+                        ),
+                      ),
+                    ),
+                    color: Colors.white,
+                    onPressed: (){ controller.arrowBackward(); },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 34 * SizeConfig.scaleHorizontal),
+                  ),
+                  Container(
+                    width: 10 * SizeConfig.scaleHorizontal,
+                    height: 6 * SizeConfig.scaleVertical,
+                    child: FittedBox(
+
+                      child: Text(
+                        "Page " + (disposition+1).toString() + " of " + (count).toString(),
+                        style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
+                        textAlign: TextAlign.center,
+                      ),
+
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 32 * SizeConfig.scaleHorizontal),
+                    child: IconButton(
+                      icon: SizedBox(
+                        height: 6 * SizeConfig.scaleVertical,
+                        width: 25 * SizeConfig.scaleHorizontal,
+                        child: FittedBox(
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: Col.white,
+                          ),
+                        ),
+                      ),
+                      color: Colors.white,
+                      onPressed: (){ controller.arrowForward(); },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
-              padding: EdgeInsets.only(top: 3 * SizeConfig.scaleHorizontal),
+              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleHorizontal),
               child: Container(
                 color: Col.purple_1,
-                height: 52 * SizeConfig.scaleVertical,
+                height: 45 * SizeConfig.scaleVertical,
                 width: 100 * SizeConfig.scaleHorizontal,
                 child: eventConstruct,
               ),
