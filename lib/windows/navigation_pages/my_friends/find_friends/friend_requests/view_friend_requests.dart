@@ -113,6 +113,7 @@ class ViewFriendRequests extends State<FriendRequestsStateful>
 
   void updateConstruct(ListView newconstruct)
   {
+    print("update construct");
     setState(() {
       eventConstruct = newconstruct;
     });

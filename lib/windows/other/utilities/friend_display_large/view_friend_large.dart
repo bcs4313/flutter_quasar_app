@@ -42,12 +42,12 @@ class ViewFriendLarge extends State<FriendLargeStateful> {
 
     // if these pieces of data are done loading then return the full widget
     return Container(
-            height: 10 * SizeConfig.scaleVertical,
+            height: 9 * SizeConfig.scaleVertical,
             child: Row(
             children:[
               Container(
                 width: 80 * SizeConfig.scaleHorizontal,
-                height: 10.2 * SizeConfig.scaleVertical,
+                height: 9 * SizeConfig.scaleVertical,
                 child: ElevatedButton( // Raised buttons have bevels to stand out form the background
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
@@ -64,7 +64,7 @@ class ViewFriendLarge extends State<FriendLargeStateful> {
               Padding(
                 padding: EdgeInsets.only(),
                 child: SizedBox(
-                  width: 10 * SizeConfig.scaleVertical,
+                  width: 9 * SizeConfig.scaleVertical,
                   height: 10.2 * SizeConfig.scaleVertical,
                   child: CircleAvatar(
                   backgroundImage: pfp.image,

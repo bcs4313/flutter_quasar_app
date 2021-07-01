@@ -25,7 +25,7 @@ class ControllerFriendRequests
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-
+    print("construct_call");
 
     // Initiate list to return later
     firestore.collection('request_email_dump')
@@ -49,6 +49,7 @@ class ControllerFriendRequests
                     }
                   WidgetFriendRequest tab = new WidgetFriendRequest(nickname, id, parent.controller);
                   index++;
+                  print("found a friend (email)");
                   widgetList.add(tab);
                 }
             }
@@ -72,20 +73,21 @@ class ControllerFriendRequests
                 print("name: " + nickname);
                 WidgetFriendRequest tab = new WidgetFriendRequest(nickname, id, parent.controller);
                 index++;
+                print("found a friend (id)");
                 widgetList.add(tab);
-
-                print(widgetList.length);
-                ListView view = ListView(
-                  key: Key(widgetList.length.toString()),
-                  children: widgetList,
-                );
-
-                // update the stateful widget of the mainpage, populating it
-                // with event buttons
-                parent.updateConstruct(view);
-                return view;
               }
             }
+            print(widgetList.length);
+            ListView view = ListView(
+              key: Key(widgetList.length.toString()),
+              children: widgetList,
+            );
+
+            // update the stateful widget of the mainpage, populating it
+            // with event buttons
+            print("updating...");
+            parent.updateConstruct(view);
+            return view;
           });
     });
     return new ListView();

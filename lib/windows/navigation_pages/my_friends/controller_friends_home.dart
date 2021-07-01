@@ -68,16 +68,25 @@ class ControllerFriendsHome
   async {
     List<Widget> widgets = [];
     print("friend list being used: " + friends.toString());
-    // loop through the list and display them in the view
-    for(int i = 0; i < friends[step].length; i++)
-      {
+
+    ListView view;
+    try {
+      // loop through the list and display them in the view
+      for (int i = 0; i < friends[step].length; i++) {
         FriendLargeStateful friendWidget;
         friendWidget = new FriendLargeStateful(friends[step][i]);
         widgets.add(friendWidget);
       }
-    ListView view = new ListView(
-      children: widgets,
-    );
+      view = new ListView(
+        children: widgets,
+      );
+    }
+    on RangeError catch (e)
+    {
+      view = new ListView(
+        children: [Container()],
+      );
+    }
 
     parent.setState(() {
       parent.eventConstruct = view;
