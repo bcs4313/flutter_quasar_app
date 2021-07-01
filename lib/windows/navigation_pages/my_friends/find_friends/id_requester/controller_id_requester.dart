@@ -42,10 +42,26 @@ class ControllerIDRequester
               content: Text('Friend request was sent.'),
               duration: Duration(seconds: 5),
             ));
-        Navigator.pop(context); // go back a window as an indicator of the request completion
+        updateSelf(context);
       });
     });
 
+  }
+
+  /// Include user id / email sent into the users friend_access_profiles
+  /// directory to allow that user to update their friendlist after
+  /// they accept
+  void updateSelf(BuildContext context)
+  {
+    var firestore = FirebaseFirestore.instance;
+    var auth = FirebaseAuth.instance;
+
+    List<String> attachment = [id];
+    firestore.collection('friend_access_profiles')
+        .doc(auth.currentUser.uid).update({"pending_requests_id" : FieldValue.arrayUnion(attachment)}).then((value)
+    {
+      Navigator.pop(context); // go back a window as an indicator of the request completion
+    });
   }
 
   /// Get the username of the current user to include in this request
@@ -54,10 +70,11 @@ class ControllerIDRequester
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
 
-    var collection = await firestore.collection('event_groups')
-        .doc(auth.currentUser.uid.toString()).get();
-    Map<String, dynamic> map = collection.data();
+    await firestore.collection('friend_access_profiles')
+        .doc(auth.currentUser.uid.toString()).get().then((collection){
+      Map<String, dynamic> map = collection.data();
 
-    username = map["owner_name"];
+      username = map["owner_username"];
+    });
   }
 }

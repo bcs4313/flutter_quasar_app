@@ -56,11 +56,27 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(top: 8 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
-                child: Text(
-                    "ID: " + homecontroller.ID,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink)
+              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
+              child: Text(
+                'ID',
+                style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+                padding: EdgeInsets.only(top: 2 * SizeConfig.scaleVertical, left: 12 * SizeConfig.scaleHorizontal, right: 12 * SizeConfig.scaleHorizontal),
+                child: TextFormField(
+                    initialValue: homecontroller.ID,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Col.pink, fontSize: 3 * SizeConfig.scaleHorizontal),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.purple, width: 0.2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.purple, width: 0.2),
+                      ),
+                    ),
                 )
             ),
             Padding(

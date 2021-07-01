@@ -56,7 +56,6 @@ class ViewFriendRequests extends State<FriendRequestsStateful>
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       appBar: DrawerBarConstruct("Friend Requests"),
-      drawer: DrawerConstruct(),
 
       body: Center(
         child: Column(

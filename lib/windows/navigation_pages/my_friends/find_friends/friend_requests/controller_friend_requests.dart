@@ -60,50 +60,56 @@ class ControllerFriendRequests
             {
               if(i < requests_2.length)
               {
+                print("retrieve");
                 var request_2 = requests_2.elementAt(i);
                 var map_full = request_2.data();
                 var nickname = map_full["Username"];
+                if(nickname == null)
+                {
+                  nickname = "undefined (unsafe)";
+                }
                 var id = map_full["ID"];
+                print("name: " + nickname);
                 WidgetFriendRequest tab = new WidgetFriendRequest(nickname, id, parent.controller);
                 index++;
                 widgetList.add(tab);
+
+                print(widgetList.length);
+                ListView view = ListView(
+                  key: Key(widgetList.length.toString()),
+                  children: widgetList,
+                );
+
+                // update the stateful widget of the mainpage, populating it
+                // with event buttons
+                parent.updateConstruct(view);
+                return view;
               }
             }
           });
-          ListView view = ListView(
-            key: Key(widgetList.length.toString()),
-            children: widgetList,
-          );
-
-          // update the stateful widget of the mainpage, populating it
-          // with event buttons
-          parent.updateConstruct(view);
-
-          return view;
     });
+    return new ListView();
   }
 
-  /// Accept a friend request by putting their id into a friends list
+  /// Accept a friend request by putting their id into the friends list
+  /// of the current user.
   /// in the friend_access_profiles directory
   ///@param id id of user to accept
   void acceptFriend(String id)
   {
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
-    var map = new Map<String, dynamic>();
-    var map_friends = new Map<String, String>();
-    map_friends[id] = "true";
-    map["friends"] = map_friends;
 
+    List<String> attachment = [id];
     firestore.collection('friend_access_profiles')
-        .doc(auth.currentUser.uid).update(map).then((value)
+        .doc(auth.currentUser.uid).update({"friends" : FieldValue.arrayUnion(attachment)}).then((value)
     {
       removeFriend(id);
     });
   }
 
   /// Remove friend from the request areas
-  /// In the dump directories
+  /// In the dump directories. Later, notify that friend of acception.
   ///@param id id of user to decline
   void removeFriend(String id)
   {
@@ -115,7 +121,7 @@ class ControllerFriendRequests
     doc(auth.currentUser.email).collection("docs").doc(id).delete();
 
     // id dump deletion
-    firestore.collection('request_id_dump').
+    firestore.collection('request_ID_dump').
     doc(auth.currentUser.uid).collection("docs").doc(id).delete();
 
     print(widgetList.length);
@@ -124,7 +130,6 @@ class ControllerFriendRequests
       {
         Widget w = widgetList[i];
         WidgetFriendRequest tab = w;
-        print("tab id: ==" + tab.id);
         if(tab.id == id)
           {
             print("removing...");
@@ -136,8 +141,40 @@ class ControllerFriendRequests
       key: Key(widgetList.length.toString()),
       children: widgetList,
     );
-    print(widgetList.length);
-    parent.updateConstruct(view_new);
+    updateFriend(view_new, id);
+  }
+
+  /// Update the friend that requested
+  /// a friendship's pending requests, removing the
+  /// id from the list. Also add the id of that friend
+  /// to the friends list
+  ///@param view_new the listview to update after this process completes
+  ///(its the final process of accepting the request).
+  ///@param id id of user to accept
+  void updateFriend(ListView view_new, String id)
+  {
+    var firestore = FirebaseFirestore.instance;
+    var auth = FirebaseAuth.instance;
+
+    // write own id in the user's "Friends" tab
+    List<String> attachmentFRIEND = [auth.currentUser.uid.toString()];
+    firestore.collection('friend_access_profiles').doc(id).update({"friends" : FieldValue.arrayUnion(attachmentFRIEND)}).then((value) {
+      // remove id in pending tabs
+      List<String> attachmentID = [id];
+      firestore.collection('friend_access_profiles').doc(id).update(
+          {"pending_requests_id": FieldValue.arrayRemove(attachmentID)}).then((
+          value) {
+        List<String> attachmentEMAIL = [auth.currentUser.email];
+        // remove email in pending tabs
+        firestore.collection('friend_access_profiles')
+            .doc(id)
+            .update(
+            {"pending_requests_email": FieldValue.arrayRemove(attachmentEMAIL)})
+            .then((value) {
+          parent.updateConstruct(view_new);
+        });
+      });
+    });
   }
 
   // add parent to the following widget
