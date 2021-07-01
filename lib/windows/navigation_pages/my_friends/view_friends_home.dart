@@ -17,10 +17,31 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
   ControllerFriendsHome controller;
   FriendsHomeStateful stateful;
 
+  ListView eventConstruct; // construct of the friendlist in this view
+  int disposition = 0; // current page to look in friend_wise (5 at a time)
+
   ViewFriendsHome(ControllerFriendsHome controller, FriendsHomeStateful stateful)
   {
     this.controller = controller;
     this.stateful = stateful;
+
+    // This will remain the event construct until the controller replaces it
+    eventConstruct = new ListView(
+      children:[
+        Padding(
+          padding: EdgeInsets.only(top: 6 * SizeConfig.scaleVertical, left: 14 * SizeConfig.scaleHorizontal, right: 14 * SizeConfig.scaleHorizontal),
+          child: SizedBox(
+            width: 80 * SizeConfig.scaleHorizontal,
+            height: 70 * SizeConfig.scaleHorizontal,
+            child: CircularProgressIndicator(
+              value: null,
+              strokeWidth: 0.5 * SizeConfig.scaleVertical,
+              color: Col.pink,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   // portrait/landscape build separation
@@ -36,7 +57,6 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
   /// generate a portrait projection of the window view
   Scaffold generatePortraitView(BuildContext context)
   {
-    //final ControllerForgotPassword controller = new ControllerForgotPassword();
     return Scaffold(
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
@@ -56,8 +76,17 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
                 textAlign: TextAlign.center,
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 3 * SizeConfig.scaleHorizontal),
+              child: Container(
+                color: Col.purple_1,
+                height: 52 * SizeConfig.scaleVertical,
+                width: 100 * SizeConfig.scaleHorizontal,
+                child: eventConstruct,
+              ),
+            ),
             Container(
-              height: 6 * SizeConfig.scaleVertical,
+              height: 2 * SizeConfig.scaleVertical,
             ),
             Container(
               width: 90 * SizeConfig.scaleHorizontal,

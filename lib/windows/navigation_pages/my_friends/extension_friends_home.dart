@@ -14,6 +14,9 @@ class FriendsHomeStateful extends StatefulWidget {
     ControllerFriendsHome controller = new ControllerFriendsHome();
     ViewFriendsHome parent = new ViewFriendsHome(controller, this);
     controller.parent = parent;
+
+    // generate a list of friends to look through
+    controller.initializeFriendList();
     return parent;
 }
 }
