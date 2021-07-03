@@ -15,6 +15,8 @@ class WidgetFriendRequest extends StatelessWidget {
   ControllerFriendRequests controller;
   String username; // nickname from friend request
   String id; // ID number of request to use for image loading / callback
+  String bio;
+  String wishlist;
 
   /// Constructor for this widget
   ///@param nickname nickname from friend request
@@ -49,7 +51,8 @@ class WidgetFriendRequest extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     onPressed:() => {
-                      controller.transferUserProfile(username, id),
+                      controller.transferUserProfile(username, id,
+                          "(Friendship is required to view this bio)", ("Friendship is required to view this wishlist")),
                     }
                 ),
               ),

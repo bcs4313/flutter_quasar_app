@@ -13,7 +13,9 @@ import '../../../size_config.dart';
 
 import 'package:image_picker/image_picker.dart';
 
-import 'my_profile_private/extension_profile_private.dart'; // select images to import in IOS/ANDROID
+import 'my_profile_bio/extension_my_bio.dart';
+import 'my_profile_private/extension_profile_private.dart';
+import 'my_profile_wishlist/extension_my_wishlist.dart'; // select images to import in IOS/ANDROID
 
 /// Profile Home Controller
 ///
@@ -28,6 +30,8 @@ class ControllerProfileHome
   String email = FirebaseAuth.instance.currentUser.email; // email to store in profile
   String ID = FirebaseAuth.instance.currentUser.uid; // id to store in profile
   String password = "????????"; // password to store in profile
+  String bio = ""; // bio to store in profile
+  String wishlist = "";
 
   bool adjustEmail = false; // confirm email to be adjusted
   bool adjustPassword = false; // confirm password to be adjusted
@@ -47,16 +51,17 @@ class ControllerProfileHome
         // since there is no network overhead.
         imageQuality: 100, // 0-100 range, 100 being max, and 0 being min for quality
       );
-      file = pickedFile; // store file in controller
-      Image img = Image.file(new File(pickedFile.path));
-      parent.setState(() {
-        parent.pfp = img;
-      });
+      if(pickedFile != null) {
+        file = pickedFile; // store file in controller
+        Image img = Image.file(new File(pickedFile.path));
+        parent.setState(() {
+          parent.pfp = img;
+        });
+      }
     } catch (e) {
       U_SimpleSnack("Image Loading Failed. Error Message: " + e.toString(), 5000, parent.context);
     }
   }
-
   /// Take data that was inputted by the user and upload it to
   /// their respective locations.
   Future<void> uploadChanges()
@@ -91,7 +96,12 @@ class ControllerProfileHome
         var firestore = FirebaseFirestore.instance;
         var reference = firestore.collection('friend_access_profiles')
             .doc(auth.currentUser.uid.toString());
-        await reference.set({'owner_username': parent.stateful.username});
+
+        Map<String, dynamic> metamap = new Map();
+        metamap["owner_username"] = parent.stateful.username;
+        metamap["owner_bio"] = bio;
+        metamap["owner_wishlist"] = wishlist;
+        await reference.update(metamap);
         U_SimpleSnack('Profile Successfully Updated', 5000, parent.context);
         try
             {
@@ -134,6 +144,12 @@ class ControllerProfileHome
       if(map.keys.contains("owner_username")) {
         parent.stateful.username = map["owner_username"];
         parent.textController.text = map["owner_username"];
+        if(map["owner_bio"] != null) {
+          bio = map["owner_bio"];
+        }
+        if(map["owner_wishlist"] != null) {
+          wishlist = map["owner_wishlist"];
+        }
       }
     });
 
@@ -154,5 +170,17 @@ class ControllerProfileHome
   void transferProfilePrivate(BuildContext context)
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => new ProfilePrivateStateful(this)));
+  }
+
+  /// Direct user to bio editor window.
+  void transferMyBio(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new MyBioStateful(this)));
+  }
+
+  /// Direct user to wishlist editor window.
+  void transferMyWishlist(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new MyWishlistStateful(this)));
   }
 }

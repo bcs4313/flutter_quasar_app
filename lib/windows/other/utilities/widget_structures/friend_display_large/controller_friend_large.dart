@@ -41,8 +41,18 @@ class ControllerFriendLarge
     firestore.collection("friend_access_profiles").doc(parent.id).get().then((value) {
       var doc = value.data();
       String name = doc["owner_username"];
+      String b;
+      String w;
+      if(doc["owner_bio"] != null) {
+        b = doc["owner_bio"];
+      }
+      if(doc["owner_wishlist"] != null) {
+        w = doc["owner_wishlist"];
+      }
       parent.setState(() {
         parent.username = name;
+        parent.bio = b;
+        parent.wishlist = w;
       });
     });
   }
@@ -50,6 +60,6 @@ class ControllerFriendLarge
   /// direct user to user profile window
   void transferUserProfile(BuildContext context)
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(parent.username, parent.id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(parent.username, parent.id, parent.bio, parent.wishlist)));
   }
 }

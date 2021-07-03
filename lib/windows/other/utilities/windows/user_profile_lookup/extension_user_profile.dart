@@ -10,17 +10,22 @@ import 'controller_user_profile.dart';
 class U_UserProfileStateful extends StatefulWidget {
   String username = "";
   String id = "";
+  String bio = "";
+  String wishlist = "";
+
   bool isFriend = false;
-  U_UserProfileStateful(String username, String id)
+  U_UserProfileStateful(String username, String id, String bio, String wishlist)
   {
     this.username = username;
     this.id = id;
+    this.bio = bio;
+    this.wishlist = wishlist;
   }
 
   @override
   State<StatefulWidget> createState() {
     ControllerUserProfile controller = new ControllerUserProfile();
-    ViewUserProfile parent = new ViewUserProfile(username, id, controller);
+    ViewUserProfile parent = new ViewUserProfile(username, id, controller, bio, wishlist);
     return parent;
 }
 }

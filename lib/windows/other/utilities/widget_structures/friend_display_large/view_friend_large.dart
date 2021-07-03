@@ -18,6 +18,8 @@ class ViewFriendLarge extends State<U_FriendLargeStateful> {
 
   // username of this friend
   String username = "Loading...";
+  String bio = "";
+  String wishlist = "";
 
   // Image of the user
   Image pfp;

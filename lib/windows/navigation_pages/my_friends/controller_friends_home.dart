@@ -36,21 +36,33 @@ class ControllerFriendsHome
       print("friend doc: " + doc.toString());
       List<dynamic> friends = doc["friends"];
 
-      print("list loop length: " + friends.length.toString());
-      // hard limit of 50 friend retrievals
-      for(int i = 0; i < friends.length && i < 10; i++)
-        {
+      if(friends != null) {
+        print("list loop length: " + friends.length.toString());
+        // hard limit of 50 friend retrievals
+        for (int i = 0; i < friends.length && i < 10; i++) {
           List<String> friend_group = [];
-          for(int f = 0; f < 5 && (f + (i * 5) < friends.length); f++)
-            {
-              String friend_id = friends[i + f].toString();
-              friend_group.add(friend_id);
-            }
+          for (int f = 0; f < 5 && (f + (i * 5) < friends.length); f++) {
+            String friend_id = friends[i + f].toString();
+            friend_group.add(friend_id);
+          }
           friendsList.add(friend_group);
         }
-      print("friend list constructed: " + friendsList.toString());
-      parent.count = (friendsList.length / 5).ceil();
-      displayFive(friendsList, 0);
+        print("friend list constructed: " + friendsList.toString());
+        parent.count = (friendsList.length / 5).ceil();
+        displayFive(friendsList, 0);
+      }
+      else
+        {
+          // update the listview to remove the loading circle
+          var view = new ListView(
+            children: [Container()],
+          );
+          parent.setState(() {
+            parent.eventConstruct = view;
+            parent.count = 0;
+            parent.disposition = -1;
+          });
+        }
     });
   }
 

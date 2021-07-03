@@ -54,7 +54,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
+              padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child:
               Text(
                   'My Profile',
@@ -63,7 +63,52 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
+              padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical)
+            ),
+            Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 3 * SizeConfig.scaleHorizontal),
+              ),
+              Container(
+              color: Col.blue,
+              width: 40 * SizeConfig.scaleHorizontal,
+              height: 7 * SizeConfig.scaleVertical,
+              child: TextButton.icon(
+              label: Text("Edit Bio",
+                  style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                      height: 1.3,
+                      fontFamily: 'Roboto',
+                      color: Col.white)),
+              icon: Icon(
+                Icons.wysiwyg,
+                color: Col.white,
+              ), onPressed: () {
+              controller.transferMyBio(context);
+            },),),
+              Padding(
+                padding: EdgeInsets.only(left: 14 * SizeConfig.scaleHorizontal),
+              ),
+              Container(
+                color: Col.blue,
+                width: 40 * SizeConfig.scaleHorizontal,
+                height: 7 * SizeConfig.scaleVertical,
+                child: TextButton.icon(
+                  label: Text("Edit Wishlist",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.white)),
+                  icon: Icon(
+                    Icons.list_alt,
+                    color: Col.white,
+                  ), onPressed: () {
+                  controller.transferMyWishlist(context);
+                },),),
+            ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 1 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: TextField(
                   obscureText: false,
                   controller: textController,
@@ -91,12 +136,33 @@ class ViewProfileHome extends State<ProfileHomeStateful>
                 },
               child: Padding(
                 padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical),
-                child: CircleAvatar(
+                child: Stack(children: [
+                  CircleAvatar(
                   backgroundImage: pfp.image,
                   radius: 15 * SizeConfig.scaleVertical,
                 ),
-              ),
-            ),
+                Positioned(
+                    right: 6 * SizeConfig.scaleHorizontal,
+                    top: 23 * SizeConfig.scaleVertical,
+                    //bottom: 3 * SizeConfig.scaleVertical,
+
+                    child:
+                    Container(
+                      width: 9 * SizeConfig.scaleHorizontal,
+                      height: 9 * SizeConfig.scaleVertical,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white)
+                      ),
+                      child: Icon
+                        (Icons.camera_alt_rounded,
+                        color: Colors.white,
+                        size: 7 * SizeConfig.scaleHorizontal,
+                      ),
+                    )),
+                ]
+              )
+            )),
             Container(
               height: 6 * SizeConfig.scaleVertical,
             ),
@@ -122,7 +188,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               ),
             ),
             Container(
-              height: 6 * SizeConfig.scaleVertical,
+              height: 3 * SizeConfig.scaleVertical,
             ),
             Container(
               width: 90 * SizeConfig.scaleHorizontal,

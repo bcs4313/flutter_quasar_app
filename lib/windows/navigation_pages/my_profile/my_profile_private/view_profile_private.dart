@@ -18,10 +18,10 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
 
   ViewProfilePrivate(ControllerProfileHome homecontroller)
   {
-    this.homecontroller = homecontroller;
+    this.homeController = homecontroller;
   }
 
-  ControllerProfileHome homecontroller; // updates old window view
+  ControllerProfileHome homeController; // updates old window view
 
   // portrait/landscape build separation
   @override
@@ -66,7 +66,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
             Padding(
                 padding: EdgeInsets.only(top: 2 * SizeConfig.scaleVertical, left: 12 * SizeConfig.scaleHorizontal, right: 12 * SizeConfig.scaleHorizontal),
                 child: TextFormField(
-                    initialValue: homecontroller.ID,
+                    initialValue: homeController.ID,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Col.pink, fontSize: 3 * SizeConfig.scaleHorizontal),
                     decoration: InputDecoration(
@@ -90,7 +90,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
             Padding(
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
               child: TextFormField(
-                  initialValue: homecontroller.email,
+                  initialValue: homeController.email,
                   obscureText: false,
                   style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                   decoration: InputDecoration(
@@ -104,7 +104,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
                   // Textfield Change Recording
                   onChanged: (value)
                   {
-                    homecontroller.email = value;
+                    homeController.email = value;
                   }
               ),
             ),
@@ -119,7 +119,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 6 * SizeConfig.scaleHorizontal, right: 6 * SizeConfig.scaleHorizontal),
               child: TextFormField(
                   obscureText: false,
-                  initialValue: homecontroller.password,
+                  initialValue: homeController.password,
                   style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -133,7 +133,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
                   // Textfield Change Recording
                   onChanged: (value)
                   {
-                    homecontroller.password = value;
+                    homeController.password = value;
                   }
               ),
             ),
@@ -150,11 +150,11 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
                     padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
                     child: SizedBox(
                         child: Checkbox(
-                          value: homecontroller.adjustEmail,
+                          value: homeController.adjustEmail,
                           onChanged: (bool value) {
                             setState(() {
                               //controller.setAutoJoin(value);
-                              homecontroller.adjustEmail = value;
+                              homeController.adjustEmail = value;
                             });
                           },
                         )
@@ -176,10 +176,10 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
                     padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
                     child: SizedBox(
                         child: Checkbox(
-                          value: homecontroller.adjustPassword,
+                          value: homeController.adjustPassword,
                           onChanged: (bool value) {
                             setState(() {
-                              homecontroller.adjustPassword = value;
+                              homeController.adjustPassword = value;
                             });
                           },
                         )

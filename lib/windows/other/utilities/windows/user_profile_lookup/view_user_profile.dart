@@ -16,11 +16,19 @@ class ViewUserProfile extends State<U_UserProfileStateful>
   Image pfp = Image(image: AssetImage('assets/images/pfp.png'));
   String username;
   String id;
+  String bio = "";
+  String wishlist = "";
   ControllerUserProfile controller;
   Widget unfriendButton = Container(); // used if the profile being viewed is a friend
 
   /// Constructor for a basic profile view
-  ViewUserProfile(String username, String id, ControllerUserProfile controller)
+  ///@param username name of user
+  ///@param id identification number of user
+  ///@param controller controller of this view
+  ///@param bio bio for the user with the id
+  ///@param wishlist list of things that the user wants (from the user with the id)
+  ViewUserProfile(String username, String id, ControllerUserProfile controller,
+      String bio, String wishlist)
   {
     this.username = username;
     if(username == null)
@@ -29,6 +37,8 @@ class ViewUserProfile extends State<U_UserProfileStateful>
       }
     this.id = id;
     this.controller = controller;
+    this.bio = bio;
+    this.wishlist = wishlist;
     controller.parent = this;
     controller.retrieveInfo();
 
@@ -60,6 +70,48 @@ class ViewUserProfile extends State<U_UserProfileStateful>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 3 * SizeConfig.scaleHorizontal),
+                    ),
+                    Container(
+                      color: Col.blue,
+                      width: 40 * SizeConfig.scaleHorizontal,
+                      height: 7 * SizeConfig.scaleVertical,
+                      child: TextButton.icon(
+                        label: Text("Bio",
+                            style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
+                                height: 1.3,
+                                fontFamily: 'Roboto',
+                                color: Col.white)),
+                        icon: Icon(
+                          Icons.wysiwyg,
+                          color: Col.white,
+                        ), onPressed: () {
+                        controller.transferUserBio(context);
+                      },),),
+                    Padding(
+                      padding: EdgeInsets.only(left: 14 * SizeConfig.scaleHorizontal),
+                    ),
+                    Container(
+                      color: Col.blue,
+                      width: 40 * SizeConfig.scaleHorizontal,
+                      height: 7 * SizeConfig.scaleVertical,
+                      child: TextButton.icon(
+                        label: Text("Wishlist",
+                            style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3,
+                                height: 1.3,
+                                fontFamily: 'Roboto',
+                                color: Col.white)),
+                        icon: Icon(
+                          Icons.list_alt,
+                          color: Col.white,
+                        ), onPressed: () {
+                        controller.transferUserWishlist(context);
+                      },),),
+                  ]
+              ),
               Padding(
                 padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
                 child: Text(

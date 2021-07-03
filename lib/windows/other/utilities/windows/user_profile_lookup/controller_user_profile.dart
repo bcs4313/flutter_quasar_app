@@ -4,6 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/unfriend_confirmation/view_friend_destroyer.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/user_bio/view_user_bio.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/user_wishlist/view_user_wishlist.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/view_user_profile.dart';
 
 import '../../../../../col.dart';
@@ -87,5 +89,17 @@ class ControllerUserProfile
             }
         }
     });
+  }
+
+  /// direct user to the bio window
+  void transferUserBio(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new ViewUserBio(parent.bio, parent.username)));
+  }
+
+  /// direct user to the wishlist window
+  void transferUserWishlist(BuildContext context)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new ViewUserWishlist(parent.wishlist, parent.username)));
   }
 }
