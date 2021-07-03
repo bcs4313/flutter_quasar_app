@@ -6,15 +6,22 @@ import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_frie
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/widget_friend_requests_request.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
+import '../../view_friends_home.dart';
+
 /// @author Cody Smith at RIT
 ///
 class ControllerFriendRequests
 {
-  /// OPERATIONS
-  /// -- These methods do things that are specific to this app window
-
   var widgetList = <Widget>[];
   ViewFriendRequests parent; // stateful widget to update after various changes to this controller
+  ViewFriendsHome host; // host object to update the state of upon updating the friendlist
+
+  /// Constructor for this controller
+  ///@param host friends list view to redraw upon modifying the friend list
+  ControllerFriendRequests(ViewFriendsHome host)
+  {
+    this.host = host;
+  }
 
   /// construct an array of widgets with each row dedicated to a
   /// singular event in the Firebase database for this user.
@@ -106,14 +113,15 @@ class ControllerFriendRequests
     firestore.collection('friend_access_profiles')
         .doc(auth.currentUser.uid).update({"friends" : FieldValue.arrayUnion(attachment)}).then((value)
     {
-      removeFriend(id);
+      removeFriend(id, true);
     });
   }
 
   /// Remove friend from the request areas
   /// In the dump directories. Later, notify that friend of acception.
-  ///@param id id of user to decline
-  void removeFriend(String id)
+  ///@param id id of user to remove
+  ///@param decline if the user is being declined.
+  void removeFriend(String id, bool decline)
   {
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
@@ -143,7 +151,14 @@ class ControllerFriendRequests
       key: Key(widgetList.length.toString()),
       children: widgetList,
     );
-    updateFriend(view_new, id);
+
+    if(decline == false) {
+      updateFriend(view_new, id, false);
+    }
+    else
+      {
+        updateFriend(view_new, id, true);
+      }
   }
 
   /// Update the friend that requested
@@ -153,30 +168,76 @@ class ControllerFriendRequests
   ///@param view_new the listview to update after this process completes
   ///(its the final process of accepting the request).
   ///@param id id of user to accept
-  void updateFriend(ListView view_new, String id)
+  ///@param decline if the user is being declined
+  void updateFriend(ListView view_new, String id, bool decline)
   {
     var firestore = FirebaseFirestore.instance;
     var auth = FirebaseAuth.instance;
 
-    // write own id in the user's "Friends" tab
-    List<String> attachmentFRIEND = [auth.currentUser.uid.toString()];
-    firestore.collection('friend_access_profiles').doc(id).update({"friends" : FieldValue.arrayUnion(attachmentFRIEND)}).then((value) {
+    if(decline == false) {
+      // write own id in the user's "Friends" tab
+      List<String> attachmentFRIEND = [auth.currentUser.uid.toString()];
+      firestore.collection('friend_access_profiles').doc(id).update(
+          {"friends": FieldValue.arrayUnion(attachmentFRIEND)}).then((value) {
+        // remove id in pending tabs
+        List<String> attachmentID = [id];
+        firestore.collection('friend_access_profiles').doc(id)
+            .update(
+            {"pending_requests_id": FieldValue.arrayRemove(attachmentID)})
+            .then((value) {
+          List<String> attachmentEMAIL = [auth.currentUser.email];
+          // remove email in pending tabs
+          firestore.collection('friend_access_profiles')
+              .doc(id)
+              .update(
+              {
+                "pending_requests_email": FieldValue.arrayRemove(
+                    attachmentEMAIL)
+              })
+              .then((value) {
+            parent.updateConstruct(view_new);
+
+            // reload friendlist
+            host.setState(() {
+              host.controller.initializeFriendList();
+            });
+          });
+        });
+      });
+    }
+    else {
       // remove id in pending tabs
       List<String> attachmentID = [id];
-      firestore.collection('friend_access_profiles').doc(id).update(
-          {"pending_requests_id": FieldValue.arrayRemove(attachmentID)}).then((
-          value) {
+      firestore.collection('friend_access_profiles').doc(id)
+          .update(
+          {"pending_requests_id": FieldValue.arrayRemove(attachmentID)})
+          .then((value) {
         List<String> attachmentEMAIL = [auth.currentUser.email];
         // remove email in pending tabs
         firestore.collection('friend_access_profiles')
             .doc(id)
             .update(
-            {"pending_requests_email": FieldValue.arrayRemove(attachmentEMAIL)})
+            {
+              "pending_requests_email": FieldValue.arrayRemove(
+                  attachmentEMAIL)
+            })
             .then((value) {
           parent.updateConstruct(view_new);
+
+          // reload friendlist
+          host.setState(() {
+            host.controller.initializeFriendList();
+          });
+        });
+
+        parent.updateConstruct(view_new);
+
+        // reload friendlist
+        host.setState(() {
+          host.controller.initializeFriendList();
         });
       });
-    });
+    }
   }
 
   // add parent to the following widget
@@ -190,6 +251,6 @@ class ControllerFriendRequests
   ///@param id identification number of user to load bio/image
   void transferUserProfile(String username, String id)
   {
-    Navigator.push(parent.context, MaterialPageRoute(builder: (context) => new UserProfileStateful(username, id)));
+    Navigator.push(parent.context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(username, id)));
   }
 }
