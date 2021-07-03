@@ -9,7 +9,7 @@ import 'extension_user_profile.dart';
 
 /// Profile Editor UI
 ///
-class ViewUserProfile extends State<UserProfileStateful>
+class ViewUserProfile extends State<U_UserProfileStateful>
 {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();

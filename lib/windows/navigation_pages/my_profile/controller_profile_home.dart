@@ -6,9 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_profile/view_profile_home.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
@@ -54,11 +53,7 @@ class ControllerProfileHome
         parent.pfp = img;
       });
     } catch (e) {
-      ScaffoldMessenger.of(parent.context).showSnackBar(SnackBar(
-        content: Text(
-            "Image Loading Failed. Error Message: " + e.toString()),
-        duration: Duration(seconds: 5),
-      ));
+      U_SimpleSnack("Image Loading Failed. Error Message: " + e.toString(), 5000, parent.context);
     }
   }
 
@@ -97,11 +92,7 @@ class ControllerProfileHome
         var reference = firestore.collection('friend_access_profiles')
             .doc(auth.currentUser.uid.toString());
         await reference.set({'owner_username': parent.stateful.username});
-        ScaffoldMessenger.of(parent.context).showSnackBar(
-            SnackBar(
-              content: Text('Profile Successfully Updated'),
-              duration: Duration(seconds: 5),
-            ));
+        U_SimpleSnack('Profile Successfully Updated', 5000, parent.context);
         try
             {
               if(adjustEmail == true)
@@ -115,29 +106,17 @@ class ControllerProfileHome
             }
             on FirebaseException catch(e)
             {
-              ScaffoldMessenger.of(parent.context).showSnackBar(
-                  SnackBar(
-                    content: Text('Failed to update private info: ' + e.toString()),
-                    duration: Duration(seconds: 5),
-                  ));
+              U_SimpleSnack('Failed to update private info: ' + e.toString(), 5000, parent.context);
             }
       }
       on FirebaseException catch(e)
       {
-        ScaffoldMessenger.of(parent.context).showSnackBar(
-            SnackBar(
-              content: Text('Failed to update public username: ' + e.toString()),
-              duration: Duration(seconds: 5),
-            ));
+        U_SimpleSnack('Failed to update public username: ' + e.toString(), 5000, parent.context);
       }
     }
     on FirebaseException catch (e)
     {
-      ScaffoldMessenger.of(parent.context).showSnackBar(
-          SnackBar(
-            content: Text('Image failed to upload: ' + e.toString()),
-            duration: Duration(seconds: 5),
-          ));
+      U_SimpleSnack('Image failed to upload: ' + e.toString(), 5000, parent.context);
     }
   }
 

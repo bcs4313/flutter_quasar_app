@@ -67,8 +67,8 @@ class ControllerFriendsHome
     try {
       // loop through the list and display them in the view
       for (int i = 0; i < friends[step].length; i++) {
-        FriendLargeStateful friendWidget;
-        friendWidget = new FriendLargeStateful(friends[step][i]);
+        U_FriendLargeStateful friendWidget;
+        friendWidget = new U_FriendLargeStateful(friends[step][i]);
         widgets.add(friendWidget);
       }
       view = new ListView(
@@ -115,6 +115,6 @@ class ControllerFriendsHome
   /// Direct user to friend request window
   void transferFriendRequests(BuildContext context)
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => new FriendRequestsStateful()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new FriendRequestsStateful(this.parent)));
   }
 }

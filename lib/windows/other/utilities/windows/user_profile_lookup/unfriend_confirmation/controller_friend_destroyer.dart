@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/extension_friends_home.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -48,11 +49,7 @@ class ControllerFriendDestroyer
     }
     on Exception catch(e)
     {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('There was an issue unfriending this user: ' + e.toString()),
-            duration: Duration(seconds: 5),
-          ));
+      U_SimpleSnack('There was an issue unfriending this user: ' + e.toString(), 5000, context);
     }
   }
   ///

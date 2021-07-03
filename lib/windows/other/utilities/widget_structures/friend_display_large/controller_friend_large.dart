@@ -50,6 +50,6 @@ class ControllerFriendLarge
   /// direct user to user profile window
   void transferUserProfile(BuildContext context)
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => new UserProfileStateful(parent.username, parent.id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(parent.username, parent.id)));
   }
 }

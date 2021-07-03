@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/email_notif_view/view_email_notif.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_create_account.dart';
 
@@ -59,24 +60,12 @@ class ControllerCreateAccount
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('The password provided was too weak to use. Try making the password a bit longer.'),
-              duration: Duration(seconds: 5),
-            ));
+        U_SimpleSnack('The password provided was too weak to use. Try making the password a bit longer.', 5000, context);
       } else if (e.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('This email is already in use. To recover the account check the Forgot Password? section of the app'),
-              duration: Duration(seconds: 8),
-            ));
+        U_SimpleSnack('This email is already in use. To recover the account check the Forgot Password? section of the app', 8000, context);
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error Creating Account: ' + e.toString()),
-            duration: Duration(seconds: 8),
-          ));
+      U_SimpleSnack('Error Creating Account: ' + e.toString(), 8000, context);
     }
   }
 

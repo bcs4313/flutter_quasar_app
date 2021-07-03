@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_creator/initializer_view_event_creator.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_event_creator.dart';
 
@@ -53,11 +54,7 @@ class ControllerEventCreator
         print("event slot: " + event_slot.toString());
         // event max check
         if (event_slot == -1) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                "Event creation failed. Maximum event count for basic users is 8."),
-            duration: Duration(seconds: 5),
-          ));
+          U_SimpleSnack("Event creation failed. Maximum event count for basic users is 8.", 5000, context);
         }
         else
         {

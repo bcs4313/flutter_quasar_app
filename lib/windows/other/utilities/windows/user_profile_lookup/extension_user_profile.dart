@@ -7,11 +7,11 @@ import 'controller_user_profile.dart';
 /// All variables that cannot be reinitialized must be placed within
 /// this class
 
-class UserProfileStateful extends StatefulWidget {
+class U_UserProfileStateful extends StatefulWidget {
   String username = "";
   String id = "";
   bool isFriend = false;
-  UserProfileStateful(String username, String id)
+  U_UserProfileStateful(String username, String id)
   {
     this.username = username;
     this.id = id;

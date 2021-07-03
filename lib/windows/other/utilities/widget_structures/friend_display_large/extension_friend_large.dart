@@ -7,10 +7,10 @@ import 'controller_friend_large.dart';
 /// All variables that cannot be reinitialized must be placed within
 /// this class
 
-class FriendLargeStateful extends StatefulWidget {
+class U_FriendLargeStateful extends StatefulWidget {
   String id = "";
 
-  FriendLargeStateful(String id)
+  U_FriendLargeStateful(String id)
   {
     this.id = id;
   }

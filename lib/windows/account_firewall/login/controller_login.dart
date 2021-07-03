@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/forgot_password/view_forgot_password.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/home_page/view_homepage.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_login.dart';
 
@@ -43,16 +44,10 @@ class ControllerLogin
       switch(e.message)
       {
         case "The email address is badly formatted":
-          S_KEY.currentState.showSnackBar(SnackBar(
-            content: Text('The email seems to be formatted incorrectly. See if you can fix it before trying again.'),
-            duration: Duration(seconds: 6),
-          ));
+          U_SimpleSnack('The email seems to be formatted incorrectly. See if you can fix it before trying again.', 6000, context);
           return;
         default:
-          S_KEY.currentState.showSnackBar(SnackBar(
-            content: Text("Login Denied."),
-            duration: Duration(seconds: 2),
-          ));
+          U_SimpleSnack("Login Denied.", 2000, context);
           return;
       }
     }

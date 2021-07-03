@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -41,11 +42,7 @@ class ControllerEmailRequester
       // update dump with request info
       ref.set(dump).then((value)
       {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Friend request was sent.'),
-              duration: Duration(seconds: 5),
-            ));
+        U_SimpleSnack('Friend request was sent.', 5000, context);
         updateSelf(context);
       });
     });

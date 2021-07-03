@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_forgot_password.dart';
 
@@ -24,10 +25,7 @@ class ControllerForgotPassword
 
     auth.sendPasswordResetEmail(email: getEmail()).catchError((onError)
         {
-          ScaffoldMessenger.of(S_KEY.currentContext).showSnackBar(SnackBar(
-            content: Text('Email formatting was invalid. Please try again.'),
-            duration: Duration(seconds: 5),
-          ));
+          U_SimpleSnack('Email formatting was invalid. Please try again.', 5000, S_KEY.currentContext);
           return true;
         });
     return false;

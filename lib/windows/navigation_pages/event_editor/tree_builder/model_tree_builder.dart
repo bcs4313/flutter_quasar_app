@@ -11,6 +11,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -131,22 +132,11 @@ class ModelTreeBuilder
     try {
       await reference.set(map_full).whenComplete(() =>
       {
-      ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-        'Schedule Upload Complete'),
-        duration: Duration(seconds: 5),
-      ))
-
+      U_SimpleSnack('Schedule Upload Complete', 5000, context),
       });
     }
     on FirebaseException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                'Error: Schedule upload failed. Error Code: ' + e.toString()),
-            duration: Duration(seconds: 5),
-          ));
+      U_SimpleSnack('Error: Schedule upload failed. Error Code: ' + e.toString(), 5000, context);
     }
   }
 

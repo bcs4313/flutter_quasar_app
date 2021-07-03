@@ -8,7 +8,7 @@ import 'extension_friend_large.dart';
 
 /// class for building a friend widget for a singular friend
 /// in the friend mainpage (profile info / username, User image).
-class ViewFriendLarge extends State<FriendLargeStateful> {
+class ViewFriendLarge extends State<U_FriendLargeStateful> {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 

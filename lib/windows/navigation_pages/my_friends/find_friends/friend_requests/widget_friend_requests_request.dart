@@ -83,7 +83,7 @@ class WidgetFriendRequest extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      controller.removeFriend(id),
+                      controller.removeFriend(id, true),
                     }
                 ),
               ),
