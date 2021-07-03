@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/user_profile_lookup/view_user_profile.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/view_user_profile.dart';
 
 import 'controller_user_profile.dart';
 
@@ -10,7 +10,7 @@ import 'controller_user_profile.dart';
 class UserProfileStateful extends StatefulWidget {
   String username = "";
   String id = "";
-
+  bool isFriend = false;
   UserProfileStateful(String username, String id)
   {
     this.username = username;

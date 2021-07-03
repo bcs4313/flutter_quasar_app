@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 
-import '../../../../col.dart';
-import '../../../../size_config.dart';
+import '../../../../../col.dart';
+import '../../../../../size_config.dart';
 import 'controller_user_profile.dart';
 import 'extension_user_profile.dart';
 
@@ -17,6 +17,7 @@ class ViewUserProfile extends State<UserProfileStateful>
   String username;
   String id;
   ControllerUserProfile controller;
+  Widget unfriendButton = Container(); // used if the profile being viewed is a friend
 
   /// Constructor for a basic profile view
   ViewUserProfile(String username, String id, ControllerUserProfile controller)
@@ -30,6 +31,9 @@ class ViewUserProfile extends State<UserProfileStateful>
     this.controller = controller;
     controller.parent = this;
     controller.retrieveInfo();
+
+    // add friend options if this person is a friend
+    controller.friendModify();
   }
 
   // portrait/landscape build separation
@@ -70,6 +74,12 @@ class ViewUserProfile extends State<UserProfileStateful>
                   backgroundImage: pfp.image,
                   radius: 15 * SizeConfig.scaleVertical,
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical),
+              ),
+              Container(
+                child: unfriendButton,
               ),
             ],
           ),

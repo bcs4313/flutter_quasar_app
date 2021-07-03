@@ -1,14 +1,8 @@
-import 'dart:collection';
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/view_friends_home.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/friend_display_large/extension_friend_large.dart';
-import '../../../col.dart';
-import '../../../size_config.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/friend_display_large/extension_friend_large.dart';
 
 import 'package:image_picker/image_picker.dart';
 

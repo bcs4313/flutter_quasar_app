@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../col.dart';
-import '../../../../size_config.dart';
+import '../../../../../col.dart';
+import '../../../../../size_config.dart';
 import 'controller_friend_large.dart';
 import 'extension_friend_large.dart';
 
@@ -20,7 +20,7 @@ class ViewFriendLarge extends State<FriendLargeStateful> {
   String username = "Loading...";
 
   // Image of the user
-  Image pfp = null;
+  Image pfp;
 
   /// constructor for this profile widget
   ///@param id id number of the user to load

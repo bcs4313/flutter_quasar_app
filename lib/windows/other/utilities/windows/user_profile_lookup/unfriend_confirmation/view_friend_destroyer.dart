@@ -3,27 +3,27 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 
-import '../../../../../col.dart';
-import '../../../../../size_config.dart';
-import 'controller_event_destroyer.dart';
+import '../../../../../../col.dart';
+import '../../../../../../size_config.dart';
+import 'controller_friend_destroyer.dart';
 
 
 /// Event Modifier UI
 ///
 ///
-class ViewEventDestroyer extends StatelessWidget
+class ViewFriendDestroyer extends StatelessWidget
 {
-  ControllerEventDestroyer controller;
+  ControllerFriendDestroyer controller;
 
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
   /// Constructor for this view
   ///@param eventNum the event we are currently modifying
-  ViewEventDestroyer(String eventNum)
+  ViewFriendDestroyer(String friendID)
   {
-    this.controller = new ControllerEventDestroyer();
-    controller.assignEventData(eventNum);
+    this.controller = new ControllerFriendDestroyer();
+    controller.assignFriendData(friendID);
   }
 
   // portrait/landscape build separation
@@ -52,7 +52,7 @@ class ViewEventDestroyer extends StatelessWidget
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 5 * SizeConfig.scaleHorizontal, right: 5 * SizeConfig.scaleHorizontal),
               child: Text(
-                'Are you sure you want to delete this event?',
+                'Are you sure you want to unfriend this user?',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
               ),
@@ -88,7 +88,7 @@ class ViewEventDestroyer extends StatelessWidget
                       ),
                       onPressed: ()
                       {
-                        controller.pushMapDeletion(context);
+                        controller.pushFriendDeletion(context);
                       },
                       child: const Text('Yes'
                       ),

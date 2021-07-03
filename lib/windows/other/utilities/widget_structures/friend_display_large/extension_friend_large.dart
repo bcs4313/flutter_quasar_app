@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/friend_display_large/view_friend_large.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/user_profile_lookup/view_user_profile.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/friend_display_large/view_friend_large.dart';
 
 import 'controller_friend_large.dart';
 

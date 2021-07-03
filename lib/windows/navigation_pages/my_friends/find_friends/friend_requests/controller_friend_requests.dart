@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/view_friend_requests.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/widget_friend_requests_request.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/user_profile_lookup/extension_user_profile.dart';
+import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
 /// @author Cody Smith at RIT
 ///
