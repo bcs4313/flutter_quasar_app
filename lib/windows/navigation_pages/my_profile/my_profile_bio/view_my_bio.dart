@@ -21,18 +21,8 @@ class ViewMyBio extends State<MyBioStateful>
 
   ControllerProfileHome homeController; // updates old window view
 
-  // portrait/landscape build separation
   @override
-  Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return generatePortraitView(context);
-    } else {
-      return generateLandscapeView(context);
-    }
-  }
-
-  /// generate a portrait projection of the window view
-  Scaffold generatePortraitView(BuildContext context)
+  Widget build(BuildContext context)
   {
     //final ControllerForgotPassword controller = new ControllerForgotPassword();
     return Scaffold(
@@ -81,11 +71,5 @@ class ViewMyBio extends State<MyBioStateful>
         ),
       )
     );
-  }
-
-  /// generate a landscape projection of the window view
-  Scaffold generateLandscapeView(BuildContext context)
-  {
-    return generatePortraitView(context);
   }
 }

@@ -16,20 +16,10 @@ class ViewLogin extends StatelessWidget
   // model for view
   ModelLogin model;
 
-  // portrait/landscape build separation
   @override
-  Widget build(BuildContext context) {
-    this.model = new ModelLogin();
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-    return generatePortraitView(context);
-    } else {
-    return generateLandscapeView(context);
-    }
-  }
-
-  /// generate a portrait projection of the window view
-  Scaffold generatePortraitView(BuildContext context)
+  Widget build(BuildContext context)
   {
+    this.model = new ModelLogin();
     ControllerLogin controller = new ControllerLogin();
     return Scaffold(
       key: S_KEY,
@@ -163,12 +153,6 @@ class ViewLogin extends StatelessWidget
         ),
       ),
     );
-  }
-
-  /// generate a landscape projection of the window view
-  Scaffold generateLandscapeView(BuildContext context)
-  {
-    return generatePortraitView(context);
   }
 
 //floatingActionButton: FloatingActionButton(

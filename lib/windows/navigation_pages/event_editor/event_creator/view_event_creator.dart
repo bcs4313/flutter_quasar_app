@@ -20,18 +20,10 @@ class ViewEventCreator extends State<InitializerEventCreator>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  // portrait/landscape build separation
-  @override
-  Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return generatePortraitView(context);
-    } else {
-      return generateLandscapeView(context);
-    }
-  }
 
-  /// generate a portrait projection of the window view
-  Scaffold generatePortraitView(BuildContext context)
+
+  @override
+  Widget build(BuildContext context)
   {
     ControllerEventCreator controller = new ControllerEventCreator();
     return Scaffold(
@@ -198,11 +190,5 @@ class ViewEventCreator extends State<InitializerEventCreator>
           ),
         )
     );
-  }
-
-  /// generate a landscape projection of the window view
-  Scaffold generateLandscapeView(BuildContext context)
-  {
-    return generatePortraitView(context);
   }
 }

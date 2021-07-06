@@ -15,20 +15,29 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            FocusManager.instance.primaryFocus.unfocus();
+          }
+        },
+    child: MaterialApp(
       title: 'Quasar App',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         hintColor: Col.purple_3,
+        backgroundColor: Col.purple_0
       ),
       home: MyHomePage(title: 'Hello guys and gals Mutahar here.'),
 
-    );
+    ));
   }
 }
 

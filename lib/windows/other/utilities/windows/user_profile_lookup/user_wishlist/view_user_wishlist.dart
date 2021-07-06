@@ -23,18 +23,10 @@ class ViewUserWishlist extends StatelessWidget
     this.username = username;
   }
 
-  // portrait/landscape build separation
-  @override
-  Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return generatePortraitView(context);
-    } else {
-      return generateLandscapeView(context);
-    }
-  }
 
-  /// generate a portrait projection of the window view
-  Scaffold generatePortraitView(BuildContext context)
+
+  @override
+  Widget build(BuildContext context)
   {
     //final ControllerForgotPassword controller = new ControllerForgotPassword();
     return Scaffold(
@@ -83,11 +75,5 @@ class ViewUserWishlist extends StatelessWidget
         ),
       )
     );
-  }
-
-  /// generate a landscape projection of the window view
-  Scaffold generateLandscapeView(BuildContext context)
-  {
-    return generatePortraitView(context);
   }
 }
