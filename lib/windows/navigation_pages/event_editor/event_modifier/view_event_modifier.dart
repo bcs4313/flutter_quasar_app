@@ -16,7 +16,6 @@ import 'initializer_view_event_modifier.dart';
 class ViewEventModifier extends State<InitializerEventModifier>
 {
   // stateful vars
-  bool switchFriendsOnly = true;
   bool switchAutoJoin = true;
 
   ControllerEventModifier controller;
@@ -24,12 +23,10 @@ class ViewEventModifier extends State<InitializerEventModifier>
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  ViewEventModifier(ControllerEventModifier controller, bool switchFriendsOnly, bool switchAutoJoin, String title, String description)
+  ViewEventModifier(ControllerEventModifier controller, bool switchAutoJoin, String title, String description)
   {
     this.controller = controller;
-    this.switchFriendsOnly = switchFriendsOnly;
     this.switchAutoJoin = switchAutoJoin;
-    controller.setFriendsOnly(switchFriendsOnly);
     controller.setAutoJoin(switchAutoJoin);
     controller.setDescription(description);
     controller.setTitle(title);
@@ -136,29 +133,6 @@ class ViewEventModifier extends State<InitializerEventModifier>
               ),
               Padding(
                 padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
-                child: Row(
-                  children:[
-                    Text(
-                      'Friends Allowed Only',
-                      style: TextStyle(fontSize: 4 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
-                      child: SizedBox(
-                        child: Checkbox(
-                          value: switchFriendsOnly,
-                          onChanged: (bool value) {
-                            setState(() {
-                              controller.setFriendsOnly(value);
-                              switchFriendsOnly = value;
-                            });
-                          },
-                        )
-                      ),
-                    ),
-                  ],
-                ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),

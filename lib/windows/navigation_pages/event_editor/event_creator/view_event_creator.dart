@@ -117,33 +117,7 @@ class ViewEventCreator extends State<InitializerEventCreator>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
-                child: Row(
-                  children:[
-                    Text(
-                      'Friends Allowed Only',
-                      style: TextStyle(fontSize: 4 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
-                      child: SizedBox(
-                          child: Checkbox(
-                            value: switchFriendsOnly,
-                            onChanged: (bool value) {
-                              setState(() {
-                                controller.setFriendsOnly(value);
-                                switchFriendsOnly = value;
-                              });
-                            },
-                          )
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
+                padding: EdgeInsets.only(top: 12 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
                 child: Row(
                   children:[
                     Text(

@@ -13,6 +13,5 @@ class ModelEventCreator
   // Stored Vars
   static String title = "";
   static String description = "";
-  static bool friendsOnly = true;
   static bool autoJoin = true;
 }

@@ -15,6 +15,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  // we will initialize algolia for the entire application
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

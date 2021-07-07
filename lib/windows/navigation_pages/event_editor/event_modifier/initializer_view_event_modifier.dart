@@ -31,7 +31,7 @@ class InitializerEventModifier extends StatefulWidget
   {
     ControllerEventModifier controller = new ControllerEventModifier();
     controller.assignEventData(eventNum);
-    return new ViewEventModifier(controller, controller.getFriendsOnly(),
-        controller.getAutoJoin(), controller.getTitle(), controller.getDescription());
+    return new ViewEventModifier(controller, controller.getAutoJoin(),
+        controller.getTitle(), controller.getDescription());
   }
 }

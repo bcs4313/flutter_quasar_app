@@ -19,13 +19,11 @@ class ControllerEventModifier
   void setTitle(String title) { ModelEventModifier.title = title; }
   void setDescription(String description) {ModelEventModifier.description = description; }
   void setAutoJoin(bool autojoin) { ModelEventModifier.autoJoin = autojoin; }
-  void setFriendsOnly(bool friendsonly) { ModelEventModifier.friendsOnly = friendsonly; }
   void setEventNum(String eventNum) { ModelEventModifier.eventNum = eventNum; }
   // gets
   String getTitle() { return ModelEventModifier.title; }
   String getDescription() { return ModelEventModifier.description; }
   bool getAutoJoin() { return ModelEventModifier.autoJoin; }
-  bool getFriendsOnly() { return ModelEventModifier.friendsOnly; }
   String getEventNum() { return ModelEventModifier.eventNum; }
 
   /// Gather event data from a specific event in firebase and display it on screen
@@ -57,13 +55,6 @@ class ControllerEventModifier
 
       print("Retrieved Title is: " + env_data["title"]);
 
-      if(env_data["friends_only"] == "true") {
-        setFriendsOnly(true);
-      }
-      else {
-        setFriendsOnly(false);
-      }
-
       if(env_data["auto_join"] == "true") {
         setAutoJoin(true);
       }
@@ -93,8 +84,6 @@ class ControllerEventModifier
       // now to modify each string in the data of this event
       f_data["description"] = getDescription();
       f_data["title"] = getTitle();
-      if(getFriendsOnly() == true) { f_data["friends_only"] = "true"; }
-      else { f_data["friends_only"] = "false"; }
       if(getAutoJoin() == true) { f_data["auto_join"] = "true"; }
       else { f_data["auto_join"] = "false"; }
 
@@ -116,8 +105,6 @@ class ControllerEventModifier
     env_data_map["event_num"] = "1";
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
-    if(getFriendsOnly() == true) { env_data_map["friends_only"] = "true"; }
-    else { env_data_map["friends_only"] = "false"; }
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 

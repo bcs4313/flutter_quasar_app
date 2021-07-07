@@ -19,13 +19,11 @@ class ControllerEventCreator
   void setTitle(String title) { ModelEventCreator.title = title; }
   void setDescription(String description) { ModelEventCreator.description = description; }
   void setAutoJoin(bool autojoin) { ModelEventCreator.autoJoin = autojoin; }
-  void setFriendsOnly(bool friendsonly) { ModelEventCreator.friendsOnly = friendsonly; }
 
   // gets
   String getTitle() { return ModelEventCreator.title; }
   String getDescription() { return ModelEventCreator.description; }
   bool getAutoJoin() { return ModelEventCreator.autoJoin; }
-  bool getFriendsOnly() { return ModelEventCreator.friendsOnly; }
 
   /// Create an event within the Firebase database with the given information
   /// from our model.
@@ -43,7 +41,8 @@ class ControllerEventCreator
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         print('Event Document exists');
-        Map env_map_full = documentSnapshot.data();
+        Map map_full = documentSnapshot.data();
+        Map env_map_full = map_full["base"];
         for (int i = 1; i <= 8; i++) {
           if (env_map_full.containsKey("event_" + i.toString()) == false) {
             event_slot = i;
@@ -63,7 +62,7 @@ class ControllerEventCreator
 
 
           firestore.collection('event_groups')
-              .doc(auth.currentUser.uid.toString()).update(cat_map).then((void val) {
+              .doc(auth.currentUser.uid.toString()).update({"base.event_" + event_slot.toString() : cat_map}).then((void val) {
             pushCreateEvent(context);
           });
         }
@@ -80,8 +79,6 @@ class ControllerEventCreator
 
   Map generateMapUpdate(int pos)
   {
-    Map map_full = new HashMap<String, dynamic>();
-    Map env_map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>();
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
     HashMap env_whitelist_map = new HashMap<String, String>();
     HashMap env_data_map = new HashMap<String, String>();
@@ -90,8 +87,6 @@ class ControllerEventCreator
     env_data_map["event_num"] = pos.toString();
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
-    if(getFriendsOnly() == true) { env_data_map["friends_only"] = "true"; }
-    else { env_data_map["friends_only"] = "false"; }
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 
@@ -103,18 +98,11 @@ class ControllerEventCreator
     env_cat_map["Data"] = env_data_map;
     env_cat_map["Whitelist"] = env_whitelist_map;
 
-    // shove event in full map
-    env_map_full["event_" + pos.toString()] = env_cat_map;
-
-    map_full["base"] = env_map_full;
-
-    return map_full;
+    return env_cat_map;
   }
 
   Map generateBaseMap()
   {
-    Map map_full = new HashMap<String, HashMap<String, HashMap<String, HashMap<String, String>>>>();
-    Map env_map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>();
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
     HashMap env_whitelist_map = new HashMap<String, String>();
     HashMap env_data_map = new HashMap<String, String>();
@@ -123,8 +111,6 @@ class ControllerEventCreator
     env_data_map["event_num"] = "1";
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
-    if(getFriendsOnly() == true) { env_data_map["friends_only"] = "true"; }
-    else { env_data_map["friends_only"] = "false"; }
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 
@@ -136,10 +122,7 @@ class ControllerEventCreator
     env_cat_map["Data"] = env_data_map;
     env_cat_map["Whitelist"] = env_whitelist_map;
 
-    env_map_full["event_" + "1"] = env_cat_map;
-    map_full["base"] = env_map_full;
-
-    return map_full;
+    return env_cat_map;
   }
 
   ///
