@@ -14,11 +14,16 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
 
   // Identify the user by id
   String id = "???";
+  String wishlist = "";
+  String bio = "";
   ControllerEventLarge controller;
 
   String eventName = "Loading...";
+  String eventNum = "-1";
+  String username = "?";
   String description = "";
   String autoJoin = "false";
+  int KEY;
 
   // Image of the user
   Image pfp;
@@ -26,7 +31,9 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
   /// constructor for this profile widget
   ///@param id id number of the user to load
   ///@param controller controls this stateful view
-  ViewEventLarge(String id, String eventName, String description, String autoJoin, Image pfp, ControllerEventLarge controller)
+  ViewEventLarge(String id, String eventName, String description, String autoJoin,
+      Image pfp, ControllerEventLarge controller, String wishlist, String bio
+      , int KEY, String username, String eventNum)
   {
     this.id = id;
     this.eventName = eventName;
@@ -34,6 +41,13 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
     this.description = description;
     this.controller = controller;
     this.pfp = pfp;
+    this.wishlist = wishlist;
+    this.bio = bio;
+    this.KEY = KEY;
+    this.username = username;
+    this.eventNum = eventNum;
+    print("bio =" + bio);
+    print("KEY = " + KEY.toString());
     controller.initialize(this);
   }
 
@@ -41,11 +55,12 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
   Widget build(BuildContext context) {
     if(pfp == null)
       {
-        return Container();
+        return Container(key: Key("ENV_LARGE + " + KEY.toString()));
       }
 
     // if these pieces of data are done loading then return the full widget
     return Container(
+            key: Key("ENV_LARGE + " + KEY.toString()),
             height: 9 * SizeConfig.scaleVertical,
             child: Row(
             children:[
@@ -61,20 +76,22 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
                       textAlign: TextAlign.center,
                     ),
                     onPressed:() => {
-                      controller.transferUserProfile(context),
+                      controller.transferEventJoin(context),
                     }
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(),
-                child: SizedBox(
+                child: GestureDetector(
+                  onTap: () => {controller.transferUserProfile(context)},
+                  child: SizedBox(
                   width: 9 * SizeConfig.scaleVertical,
                   height: 10.2 * SizeConfig.scaleVertical,
                   child: CircleAvatar(
                   backgroundImage: pfp.image,
                   radius: 2 * SizeConfig.scaleVertical,
                 ),),
-              ),
+              )),
 
             ]),
     );

@@ -8,6 +8,7 @@ import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simp
 import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/event_display_large/extension_event_large.dart';
 
 import '../../../col.dart';
+import 'event_preview/view_event_preview.dart';
 
 /// @author Cody Smith at RIT
 ///
@@ -63,22 +64,19 @@ class ControllerJoinEvent
               Image img = Image.memory(data); // load the image from memory
               pfps.add(img);
 
-            var doc = eventRef.get().then((value){
+            eventRef.get().then((value){
               Map<String, dynamic> events_full = value.data();
               Map<String, dynamic> env_base = events_full["base"];
 
-              // go through all of the events from this user and load them
-              for(int x = 0; x < env_base.keys.length; x++)
-                {
-                  Map<String, dynamic> env_map = env_base[env_base.keys.elementAt(x)];
-                  env_map["owner"] = friendIDS[i].toString();
-                  env_map["index"] = i;
-                  eventMaps.add(env_map);
-                }
-              if(i == friendIDS.length - 1)
-                {
-                  finishProcess();
-                }
+              /// get user profile info to load for the user, such as
+              /// bio and wishlist information
+              var ref = firestore.collection("friend_access_profiles").
+              doc(friendIDS[i].toString());
+              ref.get().then((fREF) => {
+                // create a map from this process
+                createMap(env_base, friendIDS, i, fREF.data()["owner_bio"],
+                    fREF.data()["owner_wishlist"], fREF.data()["owner_username"]),
+              });
             });
           }
       }});
@@ -90,6 +88,27 @@ class ControllerJoinEvent
     }
 
   }
+
+  void createMap(Map<String, dynamic> env_base, List<dynamic> friendIDS, int i,
+      String bio, String wishlist, String username)
+  {
+    // go through all of the events from this user and load them
+    for(int x = 0; x < env_base.keys.length; x++)
+    {
+      Map<String, dynamic> env_map = env_base[env_base.keys.elementAt(x)];
+      env_map["owner"] = friendIDS[i].toString();
+      env_map["index"] = i;
+      env_map["owner_bio"] = bio;
+      env_map["owner_wishlist"] = wishlist;
+      env_map["owner_username"] = username;
+      eventMaps.add(env_map);
+    }
+    if(i == friendIDS.length - 1)
+    {
+      finishProcess();
+    }
+  }
+
 
   /// This is called when all asynchronous operations from firebase
   /// have finished. At this point we will convert each map into
@@ -103,26 +122,43 @@ class ControllerJoinEvent
         Map<String, dynamic> eventMap = eventMaps[i];
         print(eventMaps.toString());
         Map<String, dynamic> mapData = eventMap["Data"];
-        String eventName = mapData["title"];
-        String description = mapData["description"];
-        String autoJoin = mapData["auto_join"];
-        Image pfp;
+        if(mapData != null) {
+          String eventName = mapData["title"];
+          String description = mapData["description"];
+          String autoJoin = mapData["auto_join"];
+          String eventNum = mapData["event_num"];
+          Image pfp;
 
-        // find out which image to use in the list
-        int imgIndex = eventMap["index"];
-        print("index = " + imgIndex.toString());
-        pfp = pfps[imgIndex];
-        print(pfp.toString());
-        // create the event widget
-        U_EventLargeStateful eventWidget = new U_EventLargeStateful(eventMap["owner"], eventName, description, autoJoin, pfp);
-        widgetList.add(eventWidget);
-        print(widgetList.length.toString());
+          // find out which image to use in the list
+          int imgIndex = eventMap["index"];
+          print("index = " + imgIndex.toString());
+          pfp = pfps[imgIndex];
+
+          // create the event widget
+          U_EventLargeStateful eventWidget = new U_EventLargeStateful(
+              eventMap["owner"],
+              eventName,
+              description,
+              autoJoin,
+              pfp
+              ,
+              eventMap["owner_wishlist"],
+              eventMap["owner_bio"],
+              i,
+              eventMap["owner_username"],
+              eventNum);
+          print("key = " + eventWidget.key.toString());
+          widgetList.add(eventWidget);
+          print(widgetList.length.toString());
+        }
       }
 
     ListView view = new ListView(
       key: Key("UPDATEDVIEW__" + widgetList.length.toString()),
       children: widgetList,
     );
+
+    print("listView = " + view.toString());
 
     parent.updateConstruct(view);
   }

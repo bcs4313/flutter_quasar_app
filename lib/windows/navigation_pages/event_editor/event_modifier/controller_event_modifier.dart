@@ -78,7 +78,8 @@ class ControllerEventModifier
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       Map f_env_map_full = documentSnapshot.data();
-      Map f_env_map = f_env_map_full[getEventNum()];
+      Map f_env_map_base = f_env_map_full["base"];
+      Map f_env_map = f_env_map_base[getEventNum()];
       Map f_data = f_env_map["Data"];
 
       // now to modify each string in the data of this event
@@ -90,7 +91,7 @@ class ControllerEventModifier
       // update event in document with the data provided
       firestore.collection('event_groups')
           .doc(auth.currentUser.uid.toString()).update(
-          { getEventNum() : f_env_map }).then((value) => pushEditorMainPage(context));
+          { "base." + getEventNum() : f_env_map }).then((value) => pushEditorMainPage(context));
         });
   }
 

@@ -58,21 +58,21 @@ class ViewFriendLarge extends State<U_FriendLargeStateful> {
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       textAlign: TextAlign.center,
                     ),
-                    onPressed:() => {
-                      controller.transferUserProfile(context),
-                    }
+                    onPressed:() => {controller.transferUserProfile(context)},
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(),
-                child: SizedBox(
+                child: GestureDetector(
+                  onTap: () => {controller.transferUserProfile(context)},
+                  child: SizedBox(
                   width: 9 * SizeConfig.scaleVertical,
                   height: 10.2 * SizeConfig.scaleVertical,
                   child: CircleAvatar(
                   backgroundImage: pfp.image,
                   radius: 2 * SizeConfig.scaleVertical,
                 ),),
-              ),
+              )),
 
             ]),
     );
