@@ -43,7 +43,6 @@ class NodePainter extends CustomPainter {
           canvas.drawLine(front_vector, back_vector, p);
         }
         else {
-          print("d");
           Offset front_vector = new Offset(front.x, front.y - front.height / 2);
           Offset back_vector = new Offset(back.x, back.y + front.height / 2);
           canvas.drawLine(front_vector, back_vector, p);

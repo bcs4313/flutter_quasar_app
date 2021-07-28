@@ -34,7 +34,7 @@ class ControllerEmailRequester
       dump["Username"] = username;
 
       // create a reference in user's dump directory
-      var ref = firestore.collection("request_email_dump").doc(email).collection("docs").doc(auth.currentUser.uid);
+      var ref = firestore.collection("request_email_dump").doc(email.toLowerCase()).collection("docs").doc(auth.currentUser.uid);
 
       // update dump with request info
       ref.set(dump);

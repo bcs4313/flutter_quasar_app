@@ -7,6 +7,9 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/view_ev
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/extension_tree_builder.dart';
 
+import 'event_user_manager/event_requests/view_friend_requests.dart';
+import 'event_user_manager/view_user_manager.dart';
+
 /// @author Cody Smith at RIT
 ///
 class ControllerEventEditor
@@ -74,5 +77,13 @@ class ControllerEventEditor
   void transferTreeBuilder(BuildContext context, String eventID)
   {
     Navigator.push(context, MaterialPageRoute(builder: (context) => TreeBuilderStateful(eventID)));
+  }
+
+  /// Direct user to User Manager window, changing which window to direct to
+  /// depending on if the event has auto-join or not.
+  ///@param eventID the id of the event we are editing
+  void transferUserManager(BuildContext context, WidgetMainPageEvent parent)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewUserManager(parent)));
   }
 }

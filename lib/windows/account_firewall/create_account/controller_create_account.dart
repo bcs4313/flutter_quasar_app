@@ -46,8 +46,11 @@ class ControllerCreateAccount
         // send Email Verification
         user.sendEmailVerification();
 
+
         Map<String, dynamic>  map_full = new HashMap();
         map_full["owner_username"] = getDisplayName();
+        List<String> friendList = [];
+        map_full["friends"] = friendList;
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         // generate basic hashmap to store events and user data
         firestore.collection('friend_access_profiles')

@@ -69,7 +69,7 @@ class ControllerEventCreator
       }
       else
       {
-        firestore.collection('event_groups').doc(auth.currentUser.uid.toString()).set(generateBaseMap()).then((void val){
+        firestore.collection('event_groups').doc(auth.currentUser.uid.toString()).set({"base" : {"event_1" : generateBaseMap()}}).then((void val){
           pushCreateEvent(context);
         });
       }
@@ -79,8 +79,8 @@ class ControllerEventCreator
 
   Map generateMapUpdate(int pos)
   {
-    HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
-    HashMap env_whitelist_map = new HashMap<String, String>();
+    HashMap env_cat_map = new HashMap<String, dynamic>();
+    List<String> env_whitelist = [];
     HashMap env_data_map = new HashMap<String, String>();
 
     // Populate Data Category
@@ -92,11 +92,11 @@ class ControllerEventCreator
 
     // Populate Whitelist Category
     FirebaseAuth auth = FirebaseAuth.instance;
-    env_whitelist_map["0"] = auth.currentUser.uid.toString();
+    env_whitelist.add(auth.currentUser.uid.toString());
 
     // Populate Categorical map
     env_cat_map["Data"] = env_data_map;
-    env_cat_map["Whitelist"] = env_whitelist_map;
+    env_cat_map["Whitelist"] = env_whitelist;
 
     return env_cat_map;
   }

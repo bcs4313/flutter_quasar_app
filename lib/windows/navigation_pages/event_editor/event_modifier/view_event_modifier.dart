@@ -103,7 +103,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                       padding: EdgeInsets.only(left: 2 * SizeConfig.scaleHorizontal),
                       child: Container(
                         width: 51 * SizeConfig.scaleHorizontal,
-                        height: 30 * SizeConfig.scaleVertical,
+                        height: 35 * SizeConfig.scaleVertical,
                         child: TextFormField(
                             initialValue: controller.getDescription(),
                             maxLength: 1200,
@@ -130,7 +130,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
+                padding: EdgeInsets.only(top: 2 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),

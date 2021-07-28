@@ -74,8 +74,13 @@ class ControllerEventPreview
         requestMap["Username"] = username;
 
         // now we will update the dump doc with this request
-        firestore.collection("request_env_dump").doc(parent.id).collection("event" + parent.eventNum).doc
-          (auth.currentUser.uid.toString()).set(requestMap);
+        firestore.collection("request_env_dump").doc(parent.id).collection("event_" + parent.eventNum).doc
+          (auth.currentUser.uid.toString()).set(requestMap).then((value) {
+          print("update complete");
+          U_SimpleSnack("Request sent successfully",
+              4000, context);
+          Navigator.pop(context); // close the windows
+        });
       });
     }
     on FirebaseException catch (e)

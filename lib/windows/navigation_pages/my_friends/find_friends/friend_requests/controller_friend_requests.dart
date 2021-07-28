@@ -36,10 +36,9 @@ class ControllerFriendRequests
 
     // Initiate list to return later
     firestore.collection('request_email_dump')
-        .doc(auth.currentUser.email).collection("docs").get().then((value)  {
+        .doc(auth.currentUser.email.toLowerCase()).collection("docs").get().then((value)  {
           var requests = value.docs;
-
-
+          print("requests found: " + value.docs.length.toString());
           int index = 0;
           // limitation of 10 requests in view for usability purposes
           for(int i = 0; i < 10; i++)
