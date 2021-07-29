@@ -9,8 +9,8 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_bu
 import 'deletion_confirmation/view_tree_destroyer.dart';
 import 'model_tree_builder.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the complex tree view of the scheduler system (ViewTreeBuilder)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerTreeBuilder
 {
   ViewTreeBuilder parent; // stateful widget to update after various changes to this controller

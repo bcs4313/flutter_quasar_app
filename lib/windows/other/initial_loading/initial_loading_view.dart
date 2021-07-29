@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
+/// This view appears before the user sees the login screen
+/// and before all necessary modules for the app to run are intiialized.
+///@author Cody Smith at RIT (bcs4313)
 class InitialLoadingView
 {
   static Scaffold generatePortraitView()
   {
     return Scaffold(
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
-      //backgroundColor: Col.purple_0,
+      backgroundColor: Col.purple_0,
       //appBar: AppBar(
       //  title: Text(widget.title),
       //),

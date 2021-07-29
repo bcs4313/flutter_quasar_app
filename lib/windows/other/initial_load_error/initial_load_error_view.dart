@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
+/// If the phone loading this application is outdated,
+/// this window will show up, telling them that
+/// the application is not compatible with the device.
+///@author Cody Smith at RIT (bcs4313)
 class InitialLoadErrorView
 {
   static Scaffold generatePortraitView()

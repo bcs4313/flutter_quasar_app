@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_profile/my_profile_private/view_profile_private.dart';
-
 import '../controller_profile_home.dart';
+
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
-
+///@author Cody Smith at RIT (bcs4313)
 class ProfilePrivateStateful extends StatefulWidget {
 
   ControllerProfileHome homecontroller;

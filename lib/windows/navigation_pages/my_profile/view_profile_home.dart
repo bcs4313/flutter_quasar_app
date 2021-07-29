@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_profile_home.dart';
 import 'extension_profile_home.dart';
-import 'dart:io'; // input/output streams
 
-/// Profile Editor UI
-///
+/// View of a user's own profile, including options to edit various
+/// things about it.
+///@author Cody Smith at RIT (bcs4313)
 class ViewProfileHome extends State<ProfileHomeStateful>
 {
   // used for global scaffold calls (and Snackbars)

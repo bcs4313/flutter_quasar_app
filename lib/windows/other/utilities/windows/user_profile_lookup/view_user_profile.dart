@@ -7,8 +7,8 @@ import '../../../../../size_config.dart';
 import 'controller_user_profile.dart';
 import 'extension_user_profile.dart';
 
-/// Profile Editor UI
-///
+/// Profile Lookup UI
+///@author Cody Smith at RIT (bcs4313)
 class ViewUserProfile extends State<U_UserProfileStateful>
 {
   // used for global scaffold calls (and Snackbars)

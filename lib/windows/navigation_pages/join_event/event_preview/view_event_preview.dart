@@ -6,6 +6,9 @@ import 'controller_event_preview.dart';
 import '../../../../col.dart';
 import '../../../../size_config.dart';
 
+/// A view that displays info about the specific event prior to
+/// joining/requesting to join an event.
+///@author Cody Smith at RIT (bcs4313)
 class ViewEventPreview extends StatelessWidget
 {
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();

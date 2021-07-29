@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
+/// A shell for the implementation of an appBar with a
+/// Drawer widget.
+///@author Cody Smith at RIT (bcs4313)
 class DrawerBarConstruct extends StatelessWidget implements PreferredSizeWidget {
 
   String text;

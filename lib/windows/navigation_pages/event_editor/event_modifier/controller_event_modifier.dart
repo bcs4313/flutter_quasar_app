@@ -8,8 +8,8 @@ import 'deletion_confirmation/view_event_destroyer.dart';
 
 import 'model_event_modifier.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of the view that changes metadata of an event.
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventModifier
 {
 

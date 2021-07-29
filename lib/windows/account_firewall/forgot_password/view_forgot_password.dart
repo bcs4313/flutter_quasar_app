@@ -4,10 +4,9 @@ import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_forgot_password.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// View that lets a user request for their password to be changed
+/// via an email verification method.
+///@author Cody Smith at RIT (bcs4313)
 class ViewForgotPassword extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

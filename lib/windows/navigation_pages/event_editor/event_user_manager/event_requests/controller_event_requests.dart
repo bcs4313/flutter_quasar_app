@@ -2,15 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/view_friend_requests.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/widget_friend_requests_request.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/view_event_requests.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/widget_event_requests_request.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
 import '../../widget_event_edtor_event.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for a view that lists requests to join an event
+/// from other users (ViewEventRequests)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventRequests
 {
   var widgetList = <Widget>[];
@@ -27,7 +28,7 @@ class ControllerEventRequests
   Map<String, Widget> widgetMap = new Map();
 
   /// Constructor for this controller
-  ///@param host friends list view to redraw upon modifying the friend list
+  ///@param host communicates information about the event we are editing
   ///@param eventID id number of the event this controls
   ControllerEventRequests(WidgetMainPageEvent host, String eventID)
   {

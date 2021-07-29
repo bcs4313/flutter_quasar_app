@@ -9,8 +9,8 @@ import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simp
 
 import 'model_event_creator.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of the view that allows users to create events. (ViewEventCreator)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventCreator
 {
   /// OPERATIONS

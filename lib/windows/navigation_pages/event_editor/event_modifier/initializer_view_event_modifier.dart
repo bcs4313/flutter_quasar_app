@@ -14,7 +14,7 @@ import 'controller_event_modifier.dart';
 /// Views that are stateful are required to store stateful vars inside of the
 /// view itself. They are separate from the model's vars.
 ///
-/// @author Cody Smith at RIT
+///@author Cody Smith at RIT (bcs4313)
 ///
 class InitializerEventModifier extends StatefulWidget
 {

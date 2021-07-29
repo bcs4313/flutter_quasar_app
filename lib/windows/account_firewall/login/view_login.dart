@@ -5,9 +5,8 @@ import '../../../size_config.dart';
 import 'controller_login.dart';
 import 'model_login.dart';
 
-/// Login Screen UI
-///
-///
+/// View that allows users to log into their account.
+///@author Cody Smith at RIT (bcs4313)
 class ViewLogin extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

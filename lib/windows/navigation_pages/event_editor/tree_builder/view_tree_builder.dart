@@ -9,10 +9,10 @@ import '../../../../size_config.dart';
 import 'controller_tree_builder.dart';
 import 'extension_tree_builder.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// A complex view that uses a draggable node editing
+/// system to allow a sophisticated construction of a
+/// multi option schedule.
+///@author Cody Smith at RIT (bcs4313)
 class ViewTreeBuilder extends State<TreeBuilderStateful>
 {
   // used for global scaffold calls (and Snackbars)

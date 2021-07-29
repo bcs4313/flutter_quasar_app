@@ -5,6 +5,7 @@ import 'controller_join_event.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class JoinEventStateful extends StatefulWidget {
 @override
 State<StatefulWidget> createState() {

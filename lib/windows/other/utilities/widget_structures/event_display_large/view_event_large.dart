@@ -6,18 +6,20 @@ import '../../../../../size_config.dart';
 import 'controller_event_large.dart';
 import 'extension_event_large.dart';
 
-/// class for building a friend widget for a singular friend
-/// in the friend mainpage (profile info / username, User image).
+/// class for building an event widget that is linked to a host
+/// user. (Event Name + Link, Host User + Link)
+///@author Cody Smith at RIT (bcs4313)
 class ViewEventLarge extends State<U_EventLargeStateful> {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  // Identify the user by id
+  // A long list of variables for the constructor to update
+  // to provide important info for the user without extra
+  // requests
   String id = "???";
   String wishlist = "";
   String bio = "";
   ControllerEventLarge controller;
-
   String eventName = "Loading...";
   String eventNum = "-1";
   String username = "?";
@@ -28,9 +30,20 @@ class ViewEventLarge extends State<U_EventLargeStateful> {
   // Image of the user
   Image pfp;
 
-  /// constructor for this profile widget
-  ///@param id id number of the user to load
-  ///@param controller controls this stateful view
+  /// A massive constructor for this event widget. This is necessary
+  /// for this utility because if we called Firebase for this info
+  /// unnecessary calls would be made.
+  ///@param id id of the user who owns the event
+  ///@param eventName name of the event
+  ///@param description description of the event
+  ///@param autoJoin can a user join without needing to request? ("false", "true")
+  ///@param pfp an Image object of the user's profile picture
+  ///@param controller manages this widget
+  ///@param wishlist wishlist of the user
+  ///@param bio bio of the user
+  ///@param KEY a unique integer key that allows this object to update asynchronously
+  ///@param username username of the user in question
+  ///@param eventNum event index location for this user
   ViewEventLarge(String id, String eventName, String description, String autoJoin,
       Image pfp, ControllerEventLarge controller, String wishlist, String bio
       , int KEY, String username, String eventNum)

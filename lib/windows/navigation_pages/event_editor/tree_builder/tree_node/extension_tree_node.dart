@@ -6,6 +6,7 @@ import '../controller_tree_builder.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class TreeNodeStateful extends StatefulWidget {
   // dimensional variables
   double x; // x location in tree

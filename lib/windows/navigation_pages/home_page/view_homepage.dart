@@ -5,10 +5,10 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 import '../../../col.dart';
 import '../../../size_config.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// This view serves as the first thing a user sees upon login.
+/// Displaying what currently they should be up to and an ordered
+/// list of events to look into at any time.
+///@author Cody Smith at RIT (bcs4313)
 class ViewHomepage extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

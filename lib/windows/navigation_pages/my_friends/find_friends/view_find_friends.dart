@@ -5,10 +5,9 @@ import '../../../../col.dart';
 import '../../../../size_config.dart';
 import 'controller_find_friends.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// View that is pushed when a user is seeking to send a request to someone.
+/// This view gives the option to send a request via email or ID.
+///@author Cody Smith at RIT (bcs4313)
 class ViewFindFriends extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
 
 import '../model_tree_builder.dart';
 import '../view_tree_builder.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of the view that confirms the deletion of a node in a schedule tree.
+/// (ViewTreeDestroyer)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerTreeDestroyer
 {
 

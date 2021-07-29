@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/view_friend_requests.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_user_manager/event_requests/view_event_requests.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/find_friends/friend_requests/view_friend_requests.dart';
 import '../../widget_event_edtor_event.dart';
-import 'controller_friend_requests.dart';
+import 'controller_event_requests.dart';
 
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class EventRequestsStateful extends StatefulWidget {
 
   WidgetMainPageEvent parent;

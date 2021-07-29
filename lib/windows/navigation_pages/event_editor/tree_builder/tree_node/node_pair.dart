@@ -8,6 +8,7 @@ import 'extension_tree_node.dart';
 
 /// A pair of nodes the painter will use to connect
 /// with its own lines
+///@author Cody Smith at RIT (bcs4313)
 class NodePair {
   ViewTreeNodeDraggable front;
   ViewTreeNodeDraggable back;

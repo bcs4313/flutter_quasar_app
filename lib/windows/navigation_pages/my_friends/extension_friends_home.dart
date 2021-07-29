@@ -7,6 +7,7 @@ import 'controller_friends_home.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class FriendsHomeStateful extends StatefulWidget {
   String username = "";
   @override

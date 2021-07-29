@@ -7,7 +7,7 @@ import 'controller_event_large.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
-
+///@author Cody Smith at RIT (bcs4313)
 class U_EventLargeStateful extends StatefulWidget {
   String id = ""; // id of user hosting this event
   String eventName = "Loading..."; // name of the event

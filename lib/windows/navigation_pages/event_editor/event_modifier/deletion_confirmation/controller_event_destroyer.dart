@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of a view that confirms the deletion of a selected event.
+/// Prevents accidental deletion (ViewEventDestroyer)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventDestroyer
 {
   String eventNum; // event string id we are targeting for destruction

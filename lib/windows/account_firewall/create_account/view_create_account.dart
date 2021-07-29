@@ -4,10 +4,8 @@ import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_create_account.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// View that lets users create an account for themselves.
+///@author Cody Smith at RIT (bcs4313)
 class ViewCreateAccount extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

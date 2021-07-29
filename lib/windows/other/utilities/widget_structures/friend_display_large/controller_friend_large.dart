@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/friend_display_large/view_friend_large.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
-/// Profile Home Controller
-///
+/// Controller for the friend viewing widget in friendlists
+///@author Cody Smith at RIT (bcs4313)
 class ControllerFriendLarge
 {
   // used for global scaffold calls (and Snackbars)

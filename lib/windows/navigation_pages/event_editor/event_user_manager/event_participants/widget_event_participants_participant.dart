@@ -1,17 +1,17 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
-import 'controller_friend_requests.dart';
+import 'controller_event_participants.dart';
 
-/// class for building an event editor UI widget for a single event
-/// in the mainpage (edit event properties, add user, delete user).
-class WidgetEventRequest extends StatelessWidget {
+/// class for building an event editor UI widget for a single event participant
+/// in the participant view (User + ProfileLink, Manage Roles, Kick).
+///@author Cody Smith at RIT (bcs4313)
+class WidgetEventParticipant extends StatelessWidget {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
-  ControllerEventRequests controller;
+  ControllerEventParticipants controller;
   String username; // nickname from friend request
   String id; // ID number of request to use for image loading / callback
   String bio;
@@ -21,7 +21,7 @@ class WidgetEventRequest extends StatelessWidget {
   ///@param nickname nickname from friend request
   ///@param id ID number of request to use for image loading and callback
   ///@param controller controller to command upon request rejection/acceptance
-  WidgetEventRequest(String username, String id, ControllerEventRequests controller)
+  WidgetEventParticipant(String username, String id, ControllerEventParticipants controller)
   {
     this.username = username;
     if(username == null)
@@ -68,7 +68,7 @@ class WidgetEventRequest extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      controller.addToEvent(id, context)
+                      //controller.addToEvent(id, context)
                     }
                 ),
               ),
@@ -85,7 +85,7 @@ class WidgetEventRequest extends StatelessWidget {
                       color: Col.black_1,
                     ),
                     onPressed:() => {
-                      controller.removeFromDump(id, context)
+                      //controller.removeFromDump(id, context)
                     }
                 ),
               ),

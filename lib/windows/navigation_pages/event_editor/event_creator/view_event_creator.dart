@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_creator/initializer_view_event_creator.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
 import 'controller_event_creator.dart';
 
-/// Login Screen UI
-///
-///
+/// View that allows users to create an event with a relative title,
+/// description, and an option to enable automatic joins or not (on by default)
+///@author Cody Smith at RIT (bcs4313)
 class ViewEventCreator extends State<InitializerEventCreator>
 {
   // stateful vars

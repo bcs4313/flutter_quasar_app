@@ -5,9 +5,8 @@ import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_
 import 'package:flutter_quasar_app/windows/account_firewall/forgot_password/view_forgot_password.dart';
 
 /// The model is responsible for storage of data in this window.
-/// This is a model for creating events in Firebase.
-/// @author Cody Smith at RIT
-///
+/// This is a model for modifying events in Firebase.
+///@author Cody Smith at RIT (bcs4313)
 class ModelEventModifier
 {
   // Stored Vars

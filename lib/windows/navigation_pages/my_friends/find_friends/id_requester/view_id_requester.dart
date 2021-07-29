@@ -6,10 +6,8 @@ import '../../../../../size_config.dart';
 import 'controller_id_requester.dart';
 import 'extension_id_requester.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// View that lets a user enter an ID number to send a friend request.
+///@author Cody Smith at RIT (bcs4313)
 class ViewIDRequester extends State<IDRequesterStateful>
 {
   // used for global scaffold calls (and Snackbars)

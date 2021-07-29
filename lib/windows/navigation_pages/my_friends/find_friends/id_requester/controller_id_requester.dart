@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of the view that lets users send an ID-based friend request.
+/// (ViewIDRequester)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerIDRequester
 {
   String id = "";

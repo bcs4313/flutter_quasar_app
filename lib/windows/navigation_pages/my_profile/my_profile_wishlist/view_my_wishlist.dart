@@ -7,8 +7,9 @@ import '../../../../size_config.dart';
 import '../controller_profile_home.dart';
 import 'extension_my_wishlist.dart';
 
-/// Profile Editor UI
-///
+/// A simple view of a user's wishlist that can be edited.
+/// Edits of a wishlist are transferred to ViewProfileHome.
+///@author Cody Smith at RIT (bcs4313)
 class ViewMyWishlist extends State<MyWishlistStateful>
 {
   // used for global scaffold calls (and Snackbars)

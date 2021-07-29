@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/join_event/event_preview/view_event_preview.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
-/// Class that handles updates to the event preview window
+/// Controller that manages the preview for an event (ViewEventPreview).
 ///@author Cody Smith @ RIT (bcs4313)
-
 class ControllerEventPreview
 {
   ViewEventPreview parent;

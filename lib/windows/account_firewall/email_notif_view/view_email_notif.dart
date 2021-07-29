@@ -4,10 +4,8 @@ import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_email_notif.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// Simple view that tells users that they need to verify
+/// their email before they can be let in.
 class ViewEmailNotif extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

@@ -7,8 +7,9 @@ import '../../../../size_config.dart';
 import '../controller_profile_home.dart';
 import 'extension_my_bio.dart';
 
-/// Profile Editor UI
-///
+/// A simple view of a user's bio that can be edited.
+/// Edits of a bio are transferred to ViewProfileHome.
+///@author Cody Smith at RIT (bcs4313)
 class ViewMyBio extends State<MyBioStateful>
 {
   // used for global scaffold calls (and Snackbars)

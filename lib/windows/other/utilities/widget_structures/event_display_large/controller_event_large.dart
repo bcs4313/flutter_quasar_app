@@ -6,8 +6,8 @@ import 'package:flutter_quasar_app/windows/navigation_pages/join_event/event_pre
 import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/event_display_large/view_event_large.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
-/// Profile Home Controller
-///
+/// Controller for the event-friend link widget.
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventLarge
 {
   // used for global scaffold calls (and Snackbars)

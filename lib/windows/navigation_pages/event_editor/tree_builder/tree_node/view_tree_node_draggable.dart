@@ -10,6 +10,7 @@ import '../controller_tree_builder.dart';
 
 /// Tree Node
 /// A basic node that is part of the tree in a schedule builder
+///@author Cody Smith at RIT (bcs4313)
 class ViewTreeNodeDraggable extends State<TreeNodeStateful>
 {
   // dimensional variables

@@ -248,8 +248,8 @@ class ControllerFriendRequests
   /// Direct user to basic profile window with some specialized info
   ///@param username name of user
   ///@param id identification number of user to load bio/image
-  void transferUserProfile(String username, String id)
+  void transferUserProfile(String username, String id, String wishlist, String bio)
   {
-    Navigator.push(parent.context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(username, id)));
+    Navigator.push(parent.context, MaterialPageRoute(builder: (context) => new U_UserProfileStateful(username, id, wishlist, bio)));
   }
 }

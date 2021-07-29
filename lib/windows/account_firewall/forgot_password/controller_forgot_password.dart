@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_forgot_password.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that allows passwords to be reset.
+/// (ViewForgotPassword)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerForgotPassword
 {
   // sets

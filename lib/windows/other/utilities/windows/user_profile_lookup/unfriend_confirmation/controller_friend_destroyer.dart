@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/extension_friends_home.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller of the unfriend confirmation view (ViewFriendDestroyer)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerFriendDestroyer
 {
   String friendID; // friend string id we are targeting for destruction
@@ -25,8 +25,6 @@ class ControllerFriendDestroyer
   /// Also deletes any potential schedule associated with it.
   void pushFriendDeletion(BuildContext context)
   {
-
-
     // Remove user id from friend's directory
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;

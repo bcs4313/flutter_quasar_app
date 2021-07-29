@@ -8,8 +8,10 @@ import '../../../size_config.dart';
 import 'controller_friends_home.dart';
 import 'extension_friends_home.dart';
 
-/// Friend View UI
-///
+/// A UI that loads all the friends a user has, 5 per page, and
+/// lets them view their profile information, along with an unfriend
+/// option.
+///@author Cody Smith at RIT (bcs4313)
 class ViewFriendsHome extends State<FriendsHomeStateful>
 {
   // used for global scaffold calls (and Snackbars)

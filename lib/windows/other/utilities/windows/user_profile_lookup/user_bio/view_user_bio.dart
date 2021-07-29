@@ -5,8 +5,8 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 import '../../../../../../col.dart';
 import '../../../../../../size_config.dart';
 
-/// Bio UI
-///
+/// Simple view to see the bio of a user
+///@author Cody Smith at RIT (bcs4313)
 class ViewUserBio extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)
@@ -22,8 +22,6 @@ class ViewUserBio extends StatelessWidget
     this.bio = bio;
     this.username = username;
   }
-
-
 
   @override
   Widget build(BuildContext context)

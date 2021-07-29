@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/extension_event_editor.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
 
 import '../../../../../col.dart';
@@ -12,10 +9,9 @@ import '../../../../../size_config.dart';
 import 'controller_node_editor.dart';
 import 'extension_node_editor.dart';
 
-/// Event Editing Mainpage UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// A view to edit the info about an individual node, including a title, description,
+/// and time range.
+///@author Cody Smith at RIT (bcs4313)
 class ViewNodeEditor extends State<NodeEditorStateful>
 {
   // used for global scaffold calls (and Snackbars)
@@ -144,6 +140,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                           color: Col.white,
                           size: 14 * SizeConfig.scaleHorizontal,
                         ),
+                        onPressed: () {},
                       ),
                     ),
                   ),

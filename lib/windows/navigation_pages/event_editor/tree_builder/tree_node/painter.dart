@@ -5,11 +5,15 @@ import '../../../../../col.dart';
 import '../controller_tree_builder.dart';
 import 'node_pair.dart';
 
-/// Paints connections between nodes in the schedule builder tree
+/// Paints connections between nodes in the schedule builder tree.
+/// This is done with the NodePair Object.
+///@author Cody Smith at RIT (bcs4313)
 class NodePainter extends CustomPainter {
 
   ControllerTreeBuilder controller;
 
+  /// Constructor for this painter
+  ///@param controller used for callback to the nodes it must draw connections to.
   NodePainter(ControllerTreeBuilder controller)
   {
     this.controller = controller;

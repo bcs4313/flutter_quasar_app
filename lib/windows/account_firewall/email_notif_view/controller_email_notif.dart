@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/login/view_login.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that notifies users that they need to verify their email.
+/// (ViewEmailNotif)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEmailNotif
 {
   /// Push user to login window (restart window stack)

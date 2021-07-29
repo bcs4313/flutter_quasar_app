@@ -6,7 +6,7 @@ import '../../../../size_config.dart';
 /// A class that simplifies text widget code by
 /// forcing text to be a certain size and
 /// color.
-/// Example: U_TextCapsule("hello", Col.pink, 300, 300)
+/// Example: U_TextCapsule("hello", 300, 300, Color: Col.pink)
 /// Create a text widget that is in a 300 x 300 box, saying hello.
 /// it is pink.
 ///@author Cody Smith at RIT (bcs4313)

@@ -5,7 +5,7 @@ import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_
 
 /// Very Simple model for account signup
 ///
-/// @author Cody Smith at RIT
+///@author Cody Smith at RIT (bcs4313)
 class ModelCreateAccount
 {
   static String email;

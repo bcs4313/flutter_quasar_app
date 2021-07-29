@@ -7,10 +7,8 @@ import '../../../../../../col.dart';
 import '../../../../../../size_config.dart';
 import 'controller_friend_destroyer.dart';
 
-
-/// Event Modifier UI
-///
-///
+/// View to confirm the deletion of a user from a friendlist
+///@author Cody Smith at RIT (bcs4313)
 class ViewFriendDestroyer extends StatelessWidget
 {
   ControllerFriendDestroyer controller;

@@ -8,9 +8,8 @@ import '../../../../../size_config.dart';
 import 'controller_event_destroyer.dart';
 
 
-/// Event Modifier UI
-///
-///
+/// View that confirms the deletion of an event.
+///@author Cody Smith at RIT (bcs4313)
 class ViewEventDestroyer extends StatelessWidget
 {
   ControllerEventDestroyer controller;

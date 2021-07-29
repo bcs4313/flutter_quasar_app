@@ -11,8 +11,8 @@ import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
 
-/// Profile Home Controller
-///
+/// Controller for a user profile lookup
+///@author Cody Smith at RIT (bcs4313)
 class ControllerUserProfile
 {
   // used for global scaffold calls (and Snackbars)

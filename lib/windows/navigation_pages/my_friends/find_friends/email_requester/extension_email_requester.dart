@@ -5,6 +5,7 @@ import 'controller_email_requester.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class EmailRequesterStateful extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

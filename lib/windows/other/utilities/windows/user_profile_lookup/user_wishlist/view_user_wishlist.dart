@@ -5,8 +5,8 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 import '../../../../../../col.dart';
 import '../../../../../../size_config.dart';
 
-/// Wishlist UI
-///
+/// Simple window to view a user wishlist
+///@author Cody Smith at RIT (bcs4313)
 class ViewUserWishlist extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)

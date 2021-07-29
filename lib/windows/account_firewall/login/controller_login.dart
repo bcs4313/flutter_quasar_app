@@ -8,13 +8,9 @@ import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simp
 
 import 'model_login.dart';
 
-/// The model is responsible for all actions called by our view.
-///
-/// Notes about the methods in each model:
-/// Transfer methods simply take us from one view to the next
-/// All other methods are documented to show their intention.
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that lets people log into their account.
+/// (ViewLogin)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerLogin
 {
   // sets

@@ -10,8 +10,9 @@ import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simp
 
 import 'model_create_account.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that lets users sign up to create their
+/// own account (ViewCreateAccount)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerCreateAccount
 {
   // sets

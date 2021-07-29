@@ -7,6 +7,7 @@ import 'controller_node_editor.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
+///@author Cody Smith at RIT (bcs4313)
 class NodeEditorStateful extends StatefulWidget {
 
   ViewTreeNodeDraggable node;

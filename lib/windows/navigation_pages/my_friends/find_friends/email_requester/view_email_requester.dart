@@ -6,10 +6,9 @@ import '../../../../../size_config.dart';
 import 'controller_email_requester.dart';
 import 'extension_email_requester.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// This view allows a user to enter an email to send a friend
+/// request to someone else.
+///@author Cody Smith at RIT (bcs4313)
 class ViewEmailRequester extends State<EmailRequesterStateful>
 {
   // used for global scaffold calls (and Snackbars)

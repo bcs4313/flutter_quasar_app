@@ -6,8 +6,8 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_bu
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/view_event_editor.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for editing an individual node (ViewNodeEditor)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerNodeEditor
 {
   /// OPERATIONS

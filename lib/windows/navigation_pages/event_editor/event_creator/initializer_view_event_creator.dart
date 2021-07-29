@@ -12,7 +12,7 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_c
 /// Views that are stateful are required to store stateful vars inside of the
 /// view itself. They are separate from the model's vars.
 ///
-/// @author Cody Smith at RIT
+///@author Cody Smith at RIT (bcs4313)
 ///
 class InitializerEventCreator extends StatefulWidget
 {

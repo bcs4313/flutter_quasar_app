@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_utility.dart';
 import 'package:flutter_quasar_app/windows/other/app_metadata/app_metadata.dart';
 
-import 'controller_drawer.dart';
-
+/// The actual drawer widget that expands when a user
+/// clicks on the left part of the appbar.
+/// Each part of the drawer creates a utility with a locale
+/// that is a string of the Class we call, with the controller taking that string and
+/// pushing the user to the intended location.
+///@author Cody Smith at RIT (bcs4313)
 class DrawerConstruct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

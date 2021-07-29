@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -10,9 +9,8 @@ import '../view_tree_builder.dart';
 import 'controller_tree_destroyer.dart';
 
 
-/// Event Modifier UI
-///
-///
+/// View to confirm the deletion of a node. Prevents accidental node deletion.
+///@author Cody Smith at RIT (bcs4313)
 class ViewTreeDestroyer extends StatelessWidget
 {
   ControllerTreeDestroyer controller;

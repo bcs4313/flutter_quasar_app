@@ -6,10 +6,8 @@ import '../../../../size_config.dart';
 import '../widget_event_edtor_event.dart';
 import 'controller_user_manager.dart';
 
-/// Login Screen UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// View that serves as a preview
+///@author Cody Smith at RIT (bcs4313)
 class ViewUserManager extends StatelessWidget
 {
   // used for global scaffold calls (and Snackbars)
@@ -32,7 +30,7 @@ class ViewUserManager extends StatelessWidget
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-      appBar: DrawerBarConstruct("Friends Tab"),
+      appBar: DrawerBarConstruct("Management Selector"),
 
       body: Center(
         child: Column(
@@ -66,7 +64,7 @@ class ViewUserManager extends StatelessWidget
                     Icons.perm_identity,
                     color: Col.white,
                   ), onPressed: () {
-                    //controller.transferEmailRequester(context);
+                     controller.transferEventParticipants(context);
                 },
                 ),
               ),

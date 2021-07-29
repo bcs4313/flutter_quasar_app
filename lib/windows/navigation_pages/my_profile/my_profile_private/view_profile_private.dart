@@ -1,16 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
 import '../controller_profile_home.dart';
 import 'extension_profile_private.dart';
 
-/// Profile Editor UI
-///
+/// A private tab where a user can view their own id, email address,
+/// and password respectively. These can also be edited.
+///@author Cody Smith at RIT (bcs4313)
 class ViewProfilePrivate extends State<ProfilePrivateStateful>
 {
   // used for global scaffold calls (and Snackbars)

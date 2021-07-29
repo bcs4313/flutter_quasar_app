@@ -7,7 +7,7 @@ import 'controller_profile_home.dart';
 /// Serves as the extension of a stateful widget
 /// All variables that cannot be reinitialized must be placed within
 /// this class
-
+///@author Cody Smith at RIT (bcs4313)
 class ProfileHomeStateful extends StatefulWidget {
   String username = "";
   @override

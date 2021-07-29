@@ -6,6 +6,10 @@ import 'package:flutter_quasar_app/windows/navigation_pages/join_event/extension
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/extension_friends_home.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_profile/extension_profile_home.dart';
 
+/// Controller of the drawer feature of our application.
+/// Basically it takes requests to replace a window with another. The argument
+/// is a case sensitive string of the view to push.
+///@author Cody Smith at RIT (bcs4313)
 class ControllerDrawer {
 
   static BuildContext context;

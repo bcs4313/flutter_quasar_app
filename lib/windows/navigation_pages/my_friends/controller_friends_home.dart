@@ -9,8 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'find_friends/friend_requests/extension_friend_requests.dart';
 import 'find_friends/view_find_friends.dart';
 
-/// Profile Home Controller
-///
+/// Controller of the friend list window (ViewFriendsHome)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerFriendsHome
 {
   // used for global scaffold calls (and Snackbars)

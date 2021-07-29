@@ -8,9 +8,9 @@ import 'controller_event_modifier.dart';
 import 'initializer_view_event_modifier.dart';
 
 
-/// Event Modifier UI
-///
-///
+/// View that allows a user to modify the metadata of an event and submit
+/// it to firebase.
+///@author Cody Smith at RIT (bcs4313)
 class ViewEventModifier extends State<InitializerEventModifier>
 {
   // stateful vars

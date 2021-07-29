@@ -7,11 +7,12 @@ import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/view_ev
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/widget_event_edtor_event.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/extension_tree_builder.dart';
 
-import 'event_user_manager/event_requests/view_friend_requests.dart';
+import 'event_user_manager/event_requests/view_event_requests.dart';
 import 'event_user_manager/view_user_manager.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that lists events for a user
+/// to manage (ViewEventEditor)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerEventEditor
 {
   /// OPERATIONS

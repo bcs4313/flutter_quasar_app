@@ -9,10 +9,8 @@ import 'extension_join_event.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 
-/// Event Editing Mainpage UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
+/// A view that lists events that a user may potentially join from friends.
+///@author Cody Smith at RIT (bcs4313)
 class ViewJoinEvent extends State<JoinEventStateful>
 {
   // used for global scaffold calls (and Snackbars)

@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_profile/view_profile_home.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
-import '../../../col.dart';
-import '../../../size_config.dart';
 
 import 'package:image_picker/image_picker.dart';
 
@@ -17,8 +14,8 @@ import 'my_profile_bio/extension_my_bio.dart';
 import 'my_profile_private/extension_profile_private.dart';
 import 'my_profile_wishlist/extension_my_wishlist.dart'; // select images to import in IOS/ANDROID
 
-/// Profile Home Controller
-///
+/// Controller for a user's own profile view (ViewProfileHome)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerProfileHome
 {
   // used for global scaffold calls (and Snackbars)

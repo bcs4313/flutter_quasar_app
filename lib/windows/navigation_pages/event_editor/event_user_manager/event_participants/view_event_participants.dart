@@ -4,14 +4,13 @@ import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/draw
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
-import 'controller_friend_requests.dart';
-import 'extension_friend_requests.dart';
+import 'controller_event_participants.dart';
+import 'extension_event_participants.dart';
 
-/// Event Editing Mainpage UI
-///
-/// This both serves as the model and view for our window.
-/// The controller is separate from this file.
-class ViewEventRequests extends State<EventRequestsStateful>
+/// View that lists users in an event that the host
+/// can view, manage roles of, and kick.
+///@author Cody Smith at RIT (bcs4313)
+class ViewEventParticipants extends State<EventParticipantsStateful>
 {
   // used for global scaffold calls (and Snackbars)
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
@@ -19,11 +18,11 @@ class ViewEventRequests extends State<EventRequestsStateful>
   // Widget list to fconstruct in this UI
   ListView eventConstruct;
 
-  ControllerEventRequests controller; // controls event request states
+  ControllerEventParticipants controller; // controls event request states
 
   /// initialize stateful widget with a controller
   ///@param controller the controller to link to that modifies the state of this widget
-  ViewEventRequests(ControllerEventRequests controller)
+  ViewEventParticipants(ControllerEventParticipants controller)
   {
     this.controller = controller;
     controller.addParent(this); // add parent so controller can manage its own state
@@ -58,7 +57,7 @@ class ViewEventRequests extends State<EventRequestsStateful>
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-      appBar: DrawerBarConstruct("Event Request Viewer"),
+      appBar: DrawerBarConstruct("Event Particpant Viewer"),
 
       body: Center(
         child: Column(
@@ -67,7 +66,7 @@ class ViewEventRequests extends State<EventRequestsStateful>
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: Text(
-                'Requests to Join',
+                'Current Members',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
               ),
@@ -84,15 +83,15 @@ class ViewEventRequests extends State<EventRequestsStateful>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 24.5 * SizeConfig.scaleHorizontal),
-                    child: Text('Accept',
+                    padding: EdgeInsets.only(left: 22.5 * SizeConfig.scaleHorizontal),
+                    child: Text('Change Roles',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3, color: Col.pink),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 13 * SizeConfig.scaleHorizontal),
-                    child: Text('Decline',
+                    child: Text('Kick',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),

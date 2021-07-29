@@ -10,8 +10,9 @@ import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/eve
 import '../../../col.dart';
 import 'event_preview/view_event_preview.dart';
 
-/// @author Cody Smith at RIT
-///
+/// Controller for the view that loads events that a user may join
+/// from friends they have. (ViewJoinEvent)
+///@author Cody Smith at RIT (bcs4313)
 class ControllerJoinEvent
 {
   /// OPERATIONS

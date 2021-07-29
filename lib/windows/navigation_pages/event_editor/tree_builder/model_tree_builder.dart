@@ -6,21 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/node_pair.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
-import 'dart:convert';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/view_tree_builder.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
-/// @author Cody Smith at RIT
-///
 /// Model structure used for a scheduler tree
 /// Necessary for construction since
 /// this tree will have to be stored within firebase
 /// and downloaded by users.
 ///
-///Note: Implements an automatic serializer
+///Note: Serialization has been coded manually.
+///@author Cody Smith at RIT (bcs4313)
 class ModelTreeBuilder
 {
   // Stored Vars
