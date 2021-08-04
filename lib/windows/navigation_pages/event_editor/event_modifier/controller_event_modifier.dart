@@ -46,7 +46,7 @@ class ControllerEventModifier
       print("MAP:" + env_map_full.toString());
       Map<dynamic, dynamic> env_cat_map = env_map_full[eventNum];
       print("MAP 2: " + env_cat_map.toString());
-      Map<dynamic, dynamic> env_data = env_cat_map["Data"];
+      Map<dynamic, dynamic> env_data = env_cat_map["MetaData"];
       print("MAP 3: " + env_data.toString());
 
       // set data found by firebase to the event in question
@@ -80,7 +80,7 @@ class ControllerEventModifier
       Map f_env_map_full = documentSnapshot.data();
       Map f_env_map_base = f_env_map_full["base"];
       Map f_env_map = f_env_map_base[getEventNum()];
-      Map f_data = f_env_map["Data"];
+      Map f_data = f_env_map["MetaData"];
 
       // now to modify each string in the data of this event
       f_data["description"] = getDescription();
@@ -114,7 +114,7 @@ class ControllerEventModifier
     env_whitelist.add(auth.currentUser.uid.toString());
 
     // Populate Categorical map
-    env_cat_map["Data"] = env_data_map;
+    env_cat_map["MetaData"] = env_data_map;
     env_cat_map["Whitelist"] = env_whitelist;
 
     env_map_full["event_" + "1"] = env_cat_map;

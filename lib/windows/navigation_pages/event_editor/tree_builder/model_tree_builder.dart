@@ -121,12 +121,12 @@ class ModelTreeBuilder
 
     FirebaseAuth auth = FirebaseAuth.instance;
     var storage = FirebaseFirestore.instance;
-    var reference = storage.collection("event_trees").doc
-      (auth.currentUser.uid.toString()).collection("t_event_" + eventID).doc("build"); // create a path to the storage base
+    var reference = storage.collection("event_groups").doc
+      (auth.currentUser.uid.toString()); // create a path to the storage base
 
     // now we will upload the json file in base64 format
     try {
-      await reference.set(map_full).whenComplete(() =>
+      await reference.update({"base.event_" + eventID + ".Schedule": map_full}).whenComplete(() =>
       {
       U_SimpleSnack('Schedule Upload Complete', 5000, context),
       });
@@ -148,12 +148,13 @@ class ModelTreeBuilder
     // retrieve the base64 file
     FirebaseAuth auth = FirebaseAuth.instance;
     var storage = FirebaseFirestore.instance;
-    var reference = storage.collection("event_trees").doc
-      (auth.currentUser.uid.toString()).collection("t_event_" + eventID).doc("build"); // create a path to the storage base
+    var reference = storage.collection("event_groups").doc
+      (auth.currentUser.uid.toString()); // create a path to the storage base
     reference
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      Map env_map_full = documentSnapshot.data();
+      Map<dynamic, dynamic> data = documentSnapshot.data();
+      Map env_map_full = data["base"]["event_" + eventID]["Schedule"];
       if(env_map_full != null)
         {
           //print("Map Retrieved::: " + env_map_full.toString() + "\n\n building...");

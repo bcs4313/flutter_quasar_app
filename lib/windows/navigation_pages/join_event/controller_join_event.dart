@@ -122,7 +122,7 @@ class ControllerJoinEvent
       {
         Map<String, dynamic> eventMap = eventMaps[i];
         print(eventMaps.toString());
-        Map<String, dynamic> mapData = eventMap["Data"];
+        Map<String, dynamic> mapData = eventMap["MetaData"];
         if(mapData != null) {
           String eventName = mapData["title"];
           String description = mapData["description"];

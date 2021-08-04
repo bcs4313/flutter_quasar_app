@@ -35,6 +35,7 @@ class ViewHomepage extends State<HomepageStateful>
   ViewHomepage(ControllerHomepage controller)
   {
     this.controller = controller;
+    controller.loadEvents(); // load events/parts as widgets in the home view
   }
 
   @override

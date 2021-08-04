@@ -95,7 +95,7 @@ class ControllerEventCreator
     env_whitelist.add(auth.currentUser.uid.toString());
 
     // Populate Categorical map
-    env_cat_map["Data"] = env_data_map;
+    env_cat_map["MetaData"] = env_data_map;
     env_cat_map["Whitelist"] = env_whitelist;
 
     return env_cat_map;
@@ -119,7 +119,7 @@ class ControllerEventCreator
     env_whitelist_map["0"] = auth.currentUser.uid.toString();
 
     // Populate Categorical map
-    env_cat_map["Data"] = env_data_map;
+    env_cat_map["MetaData"] = env_data_map;
     env_cat_map["Whitelist"] = env_whitelist_map;
 
     return env_cat_map;

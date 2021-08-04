@@ -42,7 +42,7 @@ class ControllerEventEditor
             {
                Map<dynamic, dynamic> env_cat_map = env_map_full[nav];
                print("MAP 2: " + env_cat_map.toString());
-               Map<dynamic, dynamic> env_data = env_cat_map["Data"];
+               Map<dynamic, dynamic> env_data = env_cat_map["MetaData"];
                print("MAP 3: " + env_data.toString());
                String title = env_data["title"];
                String event_num = env_data["event_num"];

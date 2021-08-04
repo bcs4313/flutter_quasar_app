@@ -39,12 +39,11 @@ class ControllerEventPreview
 
         // now we will add a doc link to the user's friend_access_profile to
         // make finding which events they're in an efficient process
-        Map<String, String> eventLink = new Map(); // a user id to lookup followed by an event index number
-        List<Map<String, String>> mapLinks = []; // list of event links
-        eventLink[parent.id] = parent.eventNum;
-        mapLinks.add(eventLink);
+        List<String> eventLink = [];
+        eventLink.add(parent.eventNum + "#" + parent.id);
+
         firestore.collection("friend_access_profiles").doc(auth.currentUser.uid.toString()).
-        update({"eventLinks" : FieldValue.arrayUnion(mapLinks)}).then((value){
+        update({"eventLinks" : FieldValue.arrayUnion(eventLink)}).then((value){
           print("update complete");
           U_SimpleSnack("Event Successfully joined",
               4000, context);
@@ -88,12 +87,10 @@ class ControllerEventPreview
 
           // now we will add a doc link to the user's friend_access_profile to
           // make finding which events they're in an efficient process
-          Map<String, String> eventLink = new Map(); // a user id to lookup followed by an event index number
-          List<Map<String, String>> mapLinks = []; // list of event links
-          eventLink[parent.id] = parent.eventNum;
-          mapLinks.add(eventLink);
+          List<String> eventLink = [];
+          eventLink.add(parent.eventNum + "#" + parent.id);
           firestore.collection("friend_access_profiles").doc(auth.currentUser.uid.toString()).
-          update({"eventLinks" : FieldValue.arrayUnion(mapLinks)}).then((value){
+          update({"eventLinks" : FieldValue.arrayUnion(eventLink)}).then((value){
             print("update complete");
             U_SimpleSnack("Request sent successfully",
                 4000, context);
