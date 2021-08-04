@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/create_account/view_create_account.dart';
 import 'package:flutter_quasar_app/windows/account_firewall/forgot_password/view_forgot_password.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/home_page/view_homepage.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/home_page/extension_homepage.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
 
 import 'model_login.dart';
@@ -51,7 +51,7 @@ class ControllerLogin
 
   void transferHomePage(BuildContext context)
   {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewHomepage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomepageStateful()));
   }
 
   void transferCreateAccount(BuildContext context)

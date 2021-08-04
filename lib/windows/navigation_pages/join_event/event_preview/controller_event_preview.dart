@@ -36,10 +36,20 @@ class ControllerEventPreview
       firestore.collection("event_groups").
       doc(parent.id).update({"base.event_" + parent.eventNum + ".Whitelist":
       FieldValue.arrayUnion(uidLink)}).then((value) {
-        print("update complete");
-        U_SimpleSnack("Event Successfully joined",
-            4000, context);
-        Navigator.pop(context); // close the window
+
+        // now we will add a doc link to the user's friend_access_profile to
+        // make finding which events they're in an efficient process
+        Map<String, String> eventLink = new Map(); // a user id to lookup followed by an event index number
+        List<Map<String, String>> mapLinks = []; // list of event links
+        eventLink[parent.id] = parent.eventNum;
+        mapLinks.add(eventLink);
+        firestore.collection("friend_access_profiles").doc(auth.currentUser.uid.toString()).
+        update({"eventLinks" : FieldValue.arrayUnion(mapLinks)}).then((value){
+          print("update complete");
+          U_SimpleSnack("Event Successfully joined",
+              4000, context);
+          Navigator.pop(context); // close the window
+        });
       });
     }
     on FirebaseException catch (e)
@@ -75,10 +85,20 @@ class ControllerEventPreview
         // now we will update the dump doc with this request
         firestore.collection("request_env_dump").doc(parent.id).collection("event_" + parent.eventNum).doc
           (auth.currentUser.uid.toString()).set(requestMap).then((value) {
-          print("update complete");
-          U_SimpleSnack("Request sent successfully",
-              4000, context);
-          Navigator.pop(context); // close the windows
+
+          // now we will add a doc link to the user's friend_access_profile to
+          // make finding which events they're in an efficient process
+          Map<String, String> eventLink = new Map(); // a user id to lookup followed by an event index number
+          List<Map<String, String>> mapLinks = []; // list of event links
+          eventLink[parent.id] = parent.eventNum;
+          mapLinks.add(eventLink);
+          firestore.collection("friend_access_profiles").doc(auth.currentUser.uid.toString()).
+          update({"eventLinks" : FieldValue.arrayUnion(mapLinks)}).then((value){
+            print("update complete");
+            U_SimpleSnack("Request sent successfully",
+                4000, context);
+            Navigator.pop(context); // close the window
+          });
         });
       });
     }
