@@ -3,18 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/join_event/view_join_event.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/modified_widgets/simple_snack.dart';
-import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/event_display_large/extension_event_large.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/home_page/view_homepage.dart';
+import 'package:flutter_quasar_app/windows/navigation_pages/home_page/widget_event_homepage.dart';
 
-import '../../../col.dart';
+import 'event_home/extension_event_home.dart';
 
 /// Controller for the main home view. Responsible for
 /// listing events the user is in with proper ordering and
 /// any upcoming parts of an event in process.
 ///@author Cody Smith at RIT (bcs4313)
 class ControllerHomepage {
-  List<Map<dynamic, dynamic>> epic = [];
+  ViewHomepage parent;
 
   /// Take the event links from the friend_access_profiles location of firebase
   /// and download each individual event from them. Take these events and
@@ -92,10 +91,10 @@ class ControllerHomepage {
   void retrieveEvents(List<List<String>> struct)
   {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
     List<dynamic> eventList = [];
     for(int i = 0; i < struct.length; i++)
       {
-        print("loop");
         // retrieve the doc containing all of the events from this user
         firestore.collection("event_groups").doc(struct[i][0]).get().then((value)
         {
@@ -110,8 +109,15 @@ class ControllerHomepage {
               Map<dynamic, dynamic> event = group["event_" + index];
               if(event == null)
                 {
-                  ///@todo remove the event link from the friend_access_profiles
-                  ///location upon discovering that the event no longer exists
+                  print("null event found--> \n" + "eventLinks."
+                      + index.toString() + "#" +  struct[i][0].toString() + "\n ... deleting");
+                  // Since the event is null, we no longer should be including it
+                  // as a proper event link.
+                  List<String> eventLink = [];
+                  eventLink.add(index.toString() + "#" +  struct[i][0].toString());
+                  firestore.collection("friend_access_profiles").
+                  doc(auth.currentUser.uid.toString()).update({"eventLinks":
+                  FieldValue.arrayRemove(eventLink)});
                 }
               eventList.add(event);
             }
@@ -126,12 +132,42 @@ class ControllerHomepage {
   /// Take a list of organized event maps and populate the view with
   /// with widgets of what to do and what events the user is part of.
   /// Color code current events based on if they are active or not.
+  ///@param eventList a list of event map structures to process
+  ///and display on the screen to use.
   void constructWidgets(List<dynamic> eventList)
   {
+    List<Widget> events = [];
+    List<Widget> parts = [];
     for(int i = 0; i < eventList.length; i++)
       {
         print("eventList: " + eventList[i].toString());
-
+        var eventWidget = HomePageEventWidget(eventList[i], this);
+        events.add(eventWidget);
       }
+
+    ListView currentEvents = new ListView(
+      children: events,
+    );
+    // the parent is the protected member stinky code
+    // ignore: invalid_use_of_protected_member
+    parent.setState(() {
+      parent.eventView = currentEvents;
+      parent.partView = ListView();
+    });
+  }
+
+  /// Add the parent of this controller to be
+  /// modified.
+  ///@param homepage the parent to control
+  void addParent(ViewHomepage parent)
+  {
+    this.parent = parent;
+  }
+
+  /// Direct user to event Home window
+  ///@param envMap event map info needed to view and work with this event
+  void transferEventHome(BuildContext context, Map<dynamic, dynamic> envMap)
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => new EventHomeStateful(envMap)));
   }
 }

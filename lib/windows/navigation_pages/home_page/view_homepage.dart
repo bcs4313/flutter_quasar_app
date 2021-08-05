@@ -17,6 +17,8 @@ class ViewHomepage extends State<HomepageStateful>
   final GlobalKey<ScaffoldState> S_KEY = new GlobalKey<ScaffoldState>();
 
   ControllerHomepage controller;
+  ListView eventView = ListView(); // list of events to view
+  ListView partView = ListView(); // list of event schedule parts to view
 
   /// A widget that contains each individual event a user is currently in.
   /// Each event contains a subwidget (widget_event_homepage.dart) that
@@ -35,6 +37,7 @@ class ViewHomepage extends State<HomepageStateful>
   ViewHomepage(ControllerHomepage controller)
   {
     this.controller = controller;
+    controller.addParent(this);
     controller.loadEvents(); // load events/parts as widgets in the home view
   }
 
@@ -77,6 +80,7 @@ class ViewHomepage extends State<HomepageStateful>
                       width: 45 * SizeConfig.scaleHorizontal,
                       height: 60 * SizeConfig.scaleVertical,
                       color: Col.purple_0,
+                      child: eventView,
                     ),
                   ],
                 ),
@@ -95,6 +99,7 @@ class ViewHomepage extends State<HomepageStateful>
                       width: 45 * SizeConfig.scaleHorizontal,
                         height: 60 * SizeConfig.scaleVertical,
                         color: Col.purple_0,
+                        child: partView,
                       ),
                     ],
                 ),

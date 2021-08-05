@@ -1,26 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/size_config.dart';
-import 'controller_homepage.dart';
-import 'event_home/controller_event_home.dart';
 
 import '../../../col.dart';
 
-/// A widget that represents an event that a user
-/// has joined. Clicking on it results in getting to
-/// the home window for that specific event.
 class HomePageEventWidget extends StatelessWidget
 {
   Map<dynamic, dynamic> eventMap;
-  ControllerHomepage controller;
   String title = "";
 
   /// A simple widget in the homepage list that
-  /// represents a joined event. Clicking on
+  /// represents an event part. Clicking on
   /// it allows you to view it.
   ///@param eventMap a map of all the info needed
   ///to view and work with this event
-  HomePageEventWidget(Map<dynamic, dynamic> eventMap, ControllerHomepage controller)
+  HomePageEventWidget(Map<dynamic, dynamic> eventMap)
   {
     this.eventMap = eventMap;
     if(eventMap == null)
@@ -28,7 +22,6 @@ class HomePageEventWidget extends StatelessWidget
        return;
       }
     this.title = eventMap["MetaData"]["title"];
-    this.controller = controller;
   }
 
   @override
@@ -48,7 +41,9 @@ class HomePageEventWidget extends StatelessWidget
             style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 5,
                 height: 1.3,
                 fontFamily: 'Roboto',
-                color: Col.pink)), onPressed: () { controller.transferEventHome(context, eventMap); },
+                color: Col.pink)), onPressed: () {
+        //controller.transferEmailRequester(context);
+      },
       ),
     );
   }
