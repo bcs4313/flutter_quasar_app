@@ -85,6 +85,7 @@ class ControllerEventModifier
       // now to modify each string in the data of this event
       f_data["description"] = getDescription();
       f_data["title"] = getTitle();
+      f_data["owner"] = auth.currentUser.uid.toString();
       if(getAutoJoin() == true) { f_data["auto_join"] = "true"; }
       else { f_data["auto_join"] = "false"; }
 
@@ -95,8 +96,11 @@ class ControllerEventModifier
         });
   }
 
+  /// Create an event datamap that is used to :Important: Create
+  /// a brand new event document in Firebase for this user.
   Map generateBaseMap()
   {
+    FirebaseAuth auth = FirebaseAuth.instance;
     Map env_map_full = new HashMap<String, HashMap<String, HashMap<String, String>>>();
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
     List<String> env_whitelist = [];
@@ -106,11 +110,11 @@ class ControllerEventModifier
     env_data_map["event_num"] = "1";
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
+    env_data_map["owner"] = auth.currentUser.uid.toString();
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 
     // Populate Whitelist Category
-    FirebaseAuth auth = FirebaseAuth.instance;
     env_whitelist.add(auth.currentUser.uid.toString());
 
     // Populate Categorical map

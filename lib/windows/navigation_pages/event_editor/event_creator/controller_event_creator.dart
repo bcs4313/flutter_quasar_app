@@ -77,6 +77,9 @@ class ControllerEventCreator
     );
   }
 
+  /// Create an event datamap that is used to :Important: add an event
+  /// to an existing event document
+  ///@param pos the integer position of this event, serves as its own ID.
   Map generateMapUpdate(int pos)
   {
     HashMap env_cat_map = new HashMap<String, dynamic>();
@@ -87,6 +90,7 @@ class ControllerEventCreator
     env_data_map["event_num"] = pos.toString();
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
+    env_data_map["owner"] = FirebaseAuth.instance.currentUser.uid.toString();
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 
@@ -101,6 +105,8 @@ class ControllerEventCreator
     return env_cat_map;
   }
 
+  /// Create an event datamap that is used to :Important: Create
+  /// a brand new event document in Firebase for this user.
   Map generateBaseMap()
   {
     HashMap env_cat_map = new HashMap<String, HashMap<String, String>>();
@@ -111,6 +117,7 @@ class ControllerEventCreator
     env_data_map["event_num"] = "1";
     env_data_map["description"] = getDescription();
     env_data_map["title"] = getTitle();
+    env_data_map["owner"] = FirebaseAuth.instance.currentUser.uid.toString();
     if(getAutoJoin() == true) { env_data_map["auto_join"] = "true"; }
     else { env_data_map["auto_join"] = "false"; }
 

@@ -51,8 +51,32 @@ class ViewEventHome extends State<EventHomeStateful>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Row(children: [
+              Container(
+                width: 75 * SizeConfig.scaleHorizontal,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 12.5 * SizeConfig.scaleHorizontal),
+              width: 25 * SizeConfig.scaleHorizontal,
+              height: 5 * SizeConfig.scaleVertical,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: TextButton.icon(
+                  label: Text("Quit",
+                      style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6,
+                          height: 1.3,
+                          fontFamily: 'Roboto',
+                          color: Col.red_1)),
+                  icon: Icon(
+                    Icons.exit_to_app,
+                    color: Col.red_1,
+                  ), onPressed: () {
+                    controller.transferExitConfirmation(context);
+                },),
+              ),
+            ),]),
             Padding(
-              padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
+              padding: EdgeInsets.only(left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child: Text(
                   title,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
