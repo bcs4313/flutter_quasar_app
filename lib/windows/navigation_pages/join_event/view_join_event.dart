@@ -27,7 +27,11 @@ class ViewJoinEvent extends State<JoinEventStateful>
   {
     this.controller = controller;
     controller.addParent(this); // add parent so controller can manage its own state
-    controller.loadFriendEvents(); // get friend events from ALL friends
+
+    // post build callback
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.loadFriendEvents(); // get friend events from ALL friends
+    });
 
     // This will remain the event construct until the controller replaces it
     eventConstruct = new ListView(

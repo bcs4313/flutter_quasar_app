@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/friend_display_large/view_friend_large.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/extension_user_profile.dart';
 
-/// Controller for the friend viewing widget in friendlists
+/// Controller for the friend viewing widget in friendlists / event members
 ///@author Cody Smith at RIT (bcs4313)
 class ControllerFriendLarge
 {

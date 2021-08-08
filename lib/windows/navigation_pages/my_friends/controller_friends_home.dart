@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/my_friends/view_friends_home.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/widget_structures/friend_display_large/extension_friend_large.dart';
 
-import 'package:image_picker/image_picker.dart';
-
 import 'find_friends/friend_requests/extension_friend_requests.dart';
 import 'find_friends/view_find_friends.dart';
 
@@ -15,7 +13,6 @@ class ControllerFriendsHome
 {
   // used for global scaffold calls (and Snackbars)
   ViewFriendsHome parent; // view of this controller
-  PickedFile file; // file stored in this controller to upload
   List<List<String>> friendList; // list to use
 
   /// Analyze the friend document a user has and create

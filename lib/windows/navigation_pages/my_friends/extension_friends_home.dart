@@ -17,7 +17,9 @@ class FriendsHomeStateful extends StatefulWidget {
     controller.parent = parent;
 
     // generate a list of friends to look through
-    controller.initializeFriendList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.initializeFriendList();
+    });
     return parent;
 }
 }

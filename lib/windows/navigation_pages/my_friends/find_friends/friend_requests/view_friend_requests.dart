@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -28,7 +27,11 @@ class ViewFriendRequests extends State<FriendRequestsStateful>
   {
     this.controller = controller;
     controller.addParent(this); // add parent so controller can manage its own state
-    controller.constructWidgets();
+
+    // Post build callback to widget construction
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.constructWidgets();
+    });
 
     // This will remain the event construct until the controller replaces it
     eventConstruct = new ListView(

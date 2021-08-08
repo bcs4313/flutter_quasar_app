@@ -44,7 +44,7 @@ class ViewEventHome extends State<EventHomeStateful>
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-        appBar: DrawerBarConstruct("Friends Tab"),
+        appBar: DrawerBarConstruct("Event MainPage"),
       drawer: DrawerConstruct(),
 
       body: Center(
@@ -125,7 +125,7 @@ class ViewEventHome extends State<EventHomeStateful>
                     Icons.group_add,
                     color: Col.white,
                   ), onPressed: () {
-                    //controller.transferFindFriends(context);
+                      controller.transferViewMembers(context);
                 },),
               ),
             ),

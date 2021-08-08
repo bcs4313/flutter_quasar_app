@@ -34,7 +34,7 @@ class ViewEventExiter extends StatelessWidget
       key: S_KEY,
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
-      appBar: DrawerBarConstruct("Event Modifier"),
+      appBar: DrawerBarConstruct("Quit Confirmation"),
 
       body: Center(
         child: Column(
