@@ -172,7 +172,7 @@ class ViewEventHome extends State<EventHomeStateful>
                     Icons.account_tree,
                     color: Col.black,
                   ), onPressed: () {
-                  //controller.transferFriendRequests(context);
+                  controller.transferScheduleView(context);
                 },),
               ),
             ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
@@ -58,7 +60,7 @@ class ViewEventCreator extends State<InitializerEventCreator>
                         width: 70 * SizeConfig.scaleHorizontal,
                         child: TextField(
                             obscureText: false,
-                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
+                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleVertical * 0.52),
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(color: Colors.purple, width: 1.0),
@@ -93,9 +95,10 @@ class ViewEventCreator extends State<InitializerEventCreator>
                         width: 51 * SizeConfig.scaleHorizontal,
                         height: 30 * SizeConfig.scaleVertical,
                         child: TextField(
-                            maxLines: 1000000, // max lines controls the container height along with text style
+                            maxLines: 10000, // max lines controls the container height along with text style
+                            maxLength: 1200,
                             obscureText: false,
-                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
+                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleVertical * 0.52),
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(color: Colors.purple, width: 1.0),

@@ -70,7 +70,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                           initialValue: controller.getTitle(),
                           obscureText: false,
                           maxLength: 50,
-                          style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
+                          style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleVertical * 0.52),
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.purple, width: 1.0),
@@ -109,7 +109,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                             maxLength: 1200,
                             maxLines: 100, // max lines controls the container height along with text style
                             obscureText: false,
-                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleHorizontal),
+                            style: TextStyle(color: Col.pink, fontSize: 4 * SizeConfig.scaleVertical * 0.52),
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(color: Colors.purple, width: 1.0),
