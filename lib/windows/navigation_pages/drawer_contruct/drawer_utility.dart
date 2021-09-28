@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/controller_drawer.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 
@@ -21,7 +22,7 @@ class DrawerUtility
         title: Row(
           children: <Widget>[
             Icon(icon),
-            Padding(padding: EdgeInsets.only(left: 8.0), child: Text(text))
+            Padding(padding: EdgeInsets.only(left: 8.0), child: AutoSizeText(text))
           ],
         ),
         onTap: () => ControllerDrawer.transferFlex(locale),
@@ -44,7 +45,7 @@ class DrawerUtility
           Positioned(
               bottom: 12.0,
               left: 16.0,
-              child: Text("Main Menu",
+              child: AutoSizeText("Main Menu",
                   style: TextStyle(
                       color: Col.black,
                       fontSize: 20.0,

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../../../col.dart';
 import '../../../../../../size_config.dart';
-import '../extension_tree_builder.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../controller_tree_builder.dart';
 
@@ -63,7 +63,7 @@ class ViewTreeNodeStatic extends StatelessWidget
             // view the node, pretty simple compared to the original editor
             controller.transferNodeEditor(controller.parent.context, this);
           },
-          label: Text(title,
+          label: AutoSizeText(title,
               style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Col.white)),

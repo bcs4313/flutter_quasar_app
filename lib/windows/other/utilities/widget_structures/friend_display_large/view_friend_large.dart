@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -55,7 +56,7 @@ class ViewFriendLarge extends State<U_FriendLargeStateful> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
                     ),
-                    child: Text(username,
+                    child: AutoSizeText(username,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       textAlign: TextAlign.center,
                     ),

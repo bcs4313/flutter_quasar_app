@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -72,7 +73,7 @@ class ViewUserProfile extends State<U_UserProfileStateful>
                       width: 40 * SizeConfig.scaleHorizontal,
                       height: 7 * SizeConfig.scaleVertical,
                       child: TextButton.icon(
-                        label: Text("Bio",
+                        label: AutoSizeText("Bio",
                             style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                                 height: 1.3,
                                 fontFamily: 'Roboto',
@@ -91,7 +92,7 @@ class ViewUserProfile extends State<U_UserProfileStateful>
                       width: 40 * SizeConfig.scaleHorizontal,
                       height: 7 * SizeConfig.scaleVertical,
                       child: TextButton.icon(
-                        label: Text("Wishlist",
+                        label: AutoSizeText("Wishlist",
                             style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3,
                                 height: 1.3,
                                 fontFamily: 'Roboto',
@@ -106,7 +107,7 @@ class ViewUserProfile extends State<U_UserProfileStateful>
               ),
               Padding(
                 padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-                child: Text(
+                child: AutoSizeText(
                   username,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                   textAlign: TextAlign.center,

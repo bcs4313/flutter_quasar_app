@@ -7,6 +7,7 @@ import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/user_bio/view_user_bio.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/user_wishlist/view_user_wishlist.dart';
 import 'package:flutter_quasar_app/windows/other/utilities/windows/user_profile_lookup/view_user_profile.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -78,7 +79,7 @@ class ControllerUserProfile
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Col.red),
                   ),
-                      child: Text("Unfriend",
+                      child: AutoSizeText("Unfriend",
                     style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.white),
                     textAlign: TextAlign.center,
                   ),

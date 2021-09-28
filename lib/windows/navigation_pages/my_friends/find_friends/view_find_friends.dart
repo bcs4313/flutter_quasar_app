@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -29,7 +30,7 @@ class ViewFindFriends extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'To send a friend request to someone, choose one of the options below.',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -46,7 +47,7 @@ class ViewFindFriends extends StatelessWidget
                 child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("Request Via Email",
+                  label: AutoSizeText("Request Via Email",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -72,7 +73,7 @@ class ViewFindFriends extends StatelessWidget
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: TextButton.icon(
-                    label: Text("Request Via ID",
+                    label: AutoSizeText("Request Via ID",
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                             height: 1.3,
                             fontFamily: 'Roboto',

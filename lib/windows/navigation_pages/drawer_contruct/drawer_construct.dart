@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_utility.dart';
 import 'package:flutter_quasar_app/windows/other/app_metadata/app_metadata.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// The actual drawer widget that expands when a user
 /// clicks on the left part of the appbar.
@@ -28,7 +29,7 @@ class DrawerConstruct extends StatelessWidget {
           DrawerUtility.createDrawerItem(context: context, icon: Icons.account_box, text: 'Documentation', locale: "ViewHomepage"),
           DrawerUtility.createDrawerItem(context: context, icon: Icons.bug_report, text: 'Report an issue', locale: "ViewHomepage"),
           ListTile(
-            title: Text(AppMetadata.version),
+            title: AutoSizeText(AppMetadata.version),
             onTap: () {},
           ),
         ],

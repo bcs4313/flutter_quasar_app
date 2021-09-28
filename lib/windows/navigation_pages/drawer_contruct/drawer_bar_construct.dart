@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
@@ -18,7 +19,7 @@ class DrawerBarConstruct extends StatelessWidget implements PreferredSizeWidget 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(text),
+      title: AutoSizeText(text),
       flexibleSpace: Container(
         decoration: new BoxDecoration(
         gradient: new LinearGradient(

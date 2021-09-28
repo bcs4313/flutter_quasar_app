@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
 import 'controller_event_requests.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// class for building an event editor UI widget for a single event
 /// in the event request view (User + ProfileLink, Accept, Decline).
@@ -46,7 +47,7 @@ class WidgetEventRequest extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
                     ),
-                    child: Text(username,
+                    child: AutoSizeText(username,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       textAlign: TextAlign.center,
                     ),

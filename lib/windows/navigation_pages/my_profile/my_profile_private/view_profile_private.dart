@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -38,7 +39,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'Edit Private Info',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -46,7 +47,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
             ),
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'ID',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -70,7 +71,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
             ),
             Padding(
               padding: EdgeInsets.only(right: 77 * SizeConfig.scaleHorizontal, top: 4 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                   'Email',
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
@@ -99,7 +100,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
             ),
             Padding(
               padding: EdgeInsets.only(right: 70 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
-              child: Text('Password',
+              child: AutoSizeText('Password',
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
               ),
@@ -130,7 +131,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
               child: Row(
                 children:[
-                  Text(
+                  AutoSizeText(
                     'Confirm Email Change',
                     style: TextStyle(fontSize: 4 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                     textAlign: TextAlign.center,
@@ -156,7 +157,7 @@ class ViewProfilePrivate extends State<ProfilePrivateStateful>
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
               child: Row(
                 children:[
-                  Text(
+                  AutoSizeText(
                     'Confirm Password Change',
                     style: TextStyle(fontSize: 4 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                     textAlign: TextAlign.center,

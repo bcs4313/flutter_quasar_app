@@ -37,6 +37,7 @@ dependencies:
   # allows the serialization of important data models without the difficulty of maintaining it
   image_picker: ^0.8.0+3
   flutter_native_image: ^0.0.5
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:

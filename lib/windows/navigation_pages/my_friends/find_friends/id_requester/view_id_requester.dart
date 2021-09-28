@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -40,7 +41,7 @@ class ViewIDRequester extends State<IDRequesterStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'Please enter a valid ID to complete the request.',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -79,7 +80,7 @@ class ViewIDRequester extends State<IDRequesterStateful>
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: TextButton(
-                    child: Text("Send",
+                    child: AutoSizeText("Send",
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                             height: 1.3,
                             fontFamily: 'Roboto',

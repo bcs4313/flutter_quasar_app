@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/home_page/event_home/view_schedule/tree_node/painter.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/home_page/event_home/view_schedule/tree_node/view_tree_node_static.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -56,7 +57,7 @@ class ViewTreeAssembler extends State<TreeAssemblerStateful>
             Container(
               padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical,
                   bottom: 3 * SizeConfig.scaleVertical),
-              child: Text("Event Schedule",
+              child: AutoSizeText("Event Schedule",
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6,
                     height: 1.3,
                     fontFamily: 'Roboto',

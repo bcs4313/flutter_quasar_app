@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -74,7 +75,7 @@ class ViewEventMembers extends State<EventMembersStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'Event Participants',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -107,7 +108,7 @@ class ViewEventMembers extends State<EventMembersStateful>
                     height: 6 * SizeConfig.scaleVertical,
                     child: FittedBox(
 
-                      child: Text(
+                      child: AutoSizeText(
                         "Page " + (disposition+1).toString() + " of " + (count).toString(),
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                         textAlign: TextAlign.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
@@ -14,7 +15,7 @@ class InitialLoadingView
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       //appBar: AppBar(
-      //  title: Text(widget.title),
+      //  title: AutoSizeText(widget.title),
       //),
 
       body: Center(
@@ -23,7 +24,7 @@ class InitialLoadingView
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 23 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                   'Loading...',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 14, fontFamily: 'Roboto', color: Col.pink)
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -62,7 +63,7 @@ class ViewEventHome extends State<EventHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("Quit",
+                  label: AutoSizeText("Quit",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -77,7 +78,7 @@ class ViewEventHome extends State<EventHomeStateful>
             ),]),
             Padding(
               padding: EdgeInsets.only(left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   title,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -116,7 +117,7 @@ class ViewEventHome extends State<EventHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("View Members",
+                  label: AutoSizeText("View Members",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -139,7 +140,7 @@ class ViewEventHome extends State<EventHomeStateful>
                 child: FittedBox(
                   fit: BoxFit.contain,
                   child: TextButton.icon(
-                    label: Text("Add Gifts",
+                    label: AutoSizeText("Gifts",
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                             height: 1.3,
                             fontFamily: 'Roboto',
@@ -163,7 +164,7 @@ class ViewEventHome extends State<EventHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("View Schedule",
+                  label: AutoSizeText("View Schedule",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',

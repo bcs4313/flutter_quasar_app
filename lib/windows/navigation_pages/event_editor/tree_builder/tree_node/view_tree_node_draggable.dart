@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import '../view_tree_builder.dart';
 import 'extension_tree_node.dart';
 
@@ -62,7 +63,7 @@ class ViewTreeNodeDraggable extends State<TreeNodeStateful>
       child: FittedBox(
         fit: BoxFit.contain,
       child: TextButton.icon(
-          label: Text(title,
+          label: AutoSizeText(title,
               style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Col.white)),

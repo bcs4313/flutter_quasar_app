@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
@@ -15,7 +16,7 @@ class InitialLoadErrorView
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       //appBar: AppBar(
-      //  title: Text(widget.title),
+      //  title: AutoSizeText(widget.title),
       //),
 
       body: Center(
@@ -24,7 +25,7 @@ class InitialLoadErrorView
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 23 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                   'There was an error loading this application.\nIt may not be compatible with your device.',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 10, fontFamily: 'Roboto', color: Col.pink)
               ),

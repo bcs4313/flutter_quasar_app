@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// A class that simplifies displaying snackbars to the user
 /// with only a single line.
@@ -15,7 +16,7 @@ class U_SimpleSnack
   {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(text),
+          content: AutoSizeText(text),
           duration: Duration(milliseconds: ms),
         ));
   }

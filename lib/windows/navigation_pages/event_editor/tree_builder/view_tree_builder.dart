@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/extension_tree_node.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/painter.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../col.dart';
 import '../../../../size_config.dart';
@@ -77,10 +77,10 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value,style:TextStyle(color:Colors.black),),
+                      child: AutoSizeText(value,style:TextStyle(color:Colors.black),),
                     );
                   }).toList(),
-                  hint:Text(
+                  hint:AutoSizeText(
                     "  Edit Mode",
                     style: TextStyle(
                         color: Colors.black,
@@ -128,7 +128,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                   height: 5.6 * SizeConfig.scaleVertical,
                   color: Col.green,
                   child: TextButton.icon(
-                    label: Text("Save Changes",
+                    label: AutoSizeText("Save Changes",
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                             height: 1.3,
                             fontFamily: 'Roboto',
@@ -146,7 +146,7 @@ class ViewTreeBuilder extends State<TreeBuilderStateful>
                 height: 5.6 * SizeConfig.scaleVertical,
                 color: Col.red,
                 child: TextButton.icon(
-                  label: Text("Clear Schedule",
+                  label: AutoSizeText("Clear Schedule",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',

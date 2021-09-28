@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
@@ -45,7 +46,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
             Padding(
               padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
               child:
-              Text(
+              AutoSizeText(
                   'My Profile',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -64,7 +65,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               width: 40 * SizeConfig.scaleHorizontal,
               height: 7 * SizeConfig.scaleVertical,
               child: TextButton.icon(
-              label: Text("Edit Bio",
+              label: AutoSizeText("Edit Bio",
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                       height: 1.3,
                       fontFamily: 'Roboto',
@@ -83,7 +84,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
                 width: 40 * SizeConfig.scaleHorizontal,
                 height: 7 * SizeConfig.scaleVertical,
                 child: TextButton.icon(
-                  label: Text("Edit Wishlist",
+                  label: AutoSizeText("Edit Wishlist",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -162,7 +163,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("Edit Private Info",
+                  label: AutoSizeText("Edit Private Info",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -186,7 +187,7 @@ class ViewProfileHome extends State<ProfileHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("Confirm Changes",
+                  label: AutoSizeText("Confirm Changes",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',

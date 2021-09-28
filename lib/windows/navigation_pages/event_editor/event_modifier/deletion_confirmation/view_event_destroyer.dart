@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
-import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -42,7 +42,7 @@ class ViewEventDestroyer extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 5 * SizeConfig.scaleHorizontal, right: 5 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'Are you sure you want to delete this event?',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -63,7 +63,7 @@ class ViewEventDestroyer extends StatelessWidget
                       {
                         Navigator.pop(context);
                       },
-                      child: const Text('No'
+                      child: const AutoSizeText('No'
                       ),
                     ),
                   ),
@@ -81,7 +81,7 @@ class ViewEventDestroyer extends StatelessWidget
                       {
                         controller.pushMapDeletion(context);
                       },
-                      child: const Text('Yes'
+                      child: const AutoSizeText('Yes'
                       ),
                     ),
                   ),

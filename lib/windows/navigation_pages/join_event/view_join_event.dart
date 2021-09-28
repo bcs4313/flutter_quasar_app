@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'controller_join_event.dart';
 import 'extension_join_event.dart';
 
@@ -68,7 +69,7 @@ class ViewJoinEvent extends State<JoinEventStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, bottom: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'Events from Friends',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -80,14 +81,14 @@ class ViewJoinEvent extends State<JoinEventStateful>
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 33 * SizeConfig.scaleHorizontal),
-                    child: Text('Event',
+                    child: AutoSizeText('Event',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 40.5 * SizeConfig.scaleHorizontal),
-                    child: Text('Host',
+                    child: AutoSizeText('Host',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3, color: Col.pink),
                     ),

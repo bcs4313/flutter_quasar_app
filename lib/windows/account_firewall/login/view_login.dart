@@ -4,6 +4,7 @@ import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_login.dart';
 import 'model_login.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// View that allows users to log into their account.
 ///@author Cody Smith at RIT (bcs4313)
@@ -31,14 +32,14 @@ class ViewLogin extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 20 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                   'Account Login',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 10, fontFamily: 'Roboto', color: Col.pink)
               ),
             ),
             Padding(
               padding: EdgeInsets.only(right: 77 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                   'Email',
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
@@ -66,7 +67,7 @@ class ViewLogin extends StatelessWidget
             ),
             Padding(
               padding: EdgeInsets.only(right: 70 * SizeConfig.scaleHorizontal, top: 8 * SizeConfig.scaleVertical),
-              child: Text('Password',
+              child: AutoSizeText('Password',
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2)
               ),
@@ -97,11 +98,12 @@ class ViewLogin extends StatelessWidget
               child: SizedBox(
                 width: 90 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.clear,
-                    disabledColor: Col.clear,
-                    splashColor: Col.pink,
-                    child: Text('Log In',
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ElevatedButton.styleFrom(
+                      primary: Col.clear, // background
+                      onPrimary: Col.pink, // foreground
+                    ),
+                    child: AutoSizeText('Log In',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6, color: Col.pink),
                     ),
                     onPressed:() => {
@@ -117,9 +119,8 @@ class ViewLogin extends StatelessWidget
                   child: SizedBox(
                     width: 42 * SizeConfig.scaleHorizontal,
                     height: 10 * SizeConfig.scaleVertical,
-                    child: FlatButton( // flat buttons have no bevels to make them look like buttons
-                        splashColor: Col.pink,
-                        child: Text('Sign up',
+                    child: TextButton( // flat buttons have no bevels to make them look like buttons
+                        child: AutoSizeText('Sign up',
                           style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.purple_2),
                         ),
                         onPressed:() => {
@@ -134,9 +135,8 @@ class ViewLogin extends StatelessWidget
                   child: SizedBox(
                     width: 50 * SizeConfig.scaleHorizontal,
                     height: 10 * SizeConfig.scaleVertical,
-                    child: FlatButton( // flat buttons have no bevels to make them look like buttons
-                        splashColor: Col.pink,
-                        child: Text('Forgot your Password?',
+                    child: TextButton( // flat buttons have no bevels to make them look like buttons
+                        child: AutoSizeText('Forgot your Password?',
                           style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 3.7, color: Col.purple_2),
                         ),
                         onPressed:() => {

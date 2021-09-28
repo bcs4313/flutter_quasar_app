@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -43,7 +44,7 @@ class ViewTreeDestroyer extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 5 * SizeConfig.scaleHorizontal, right: 5 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'Are you sure you want to clear this schedule?',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -64,7 +65,7 @@ class ViewTreeDestroyer extends StatelessWidget
                       {
                         Navigator.pop(context);
                       },
-                      child: const Text('Cancel'),
+                      child: const AutoSizeText('Cancel'),
                     ),
                   ),
                 ),
@@ -81,7 +82,7 @@ class ViewTreeDestroyer extends StatelessWidget
                       {
                         controller.pushTreeDeletion(context);
                       },
-                      child: const Text('Delete'),
+                      child: const AutoSizeText('Delete'),
                     ),
                   ),
                 ),

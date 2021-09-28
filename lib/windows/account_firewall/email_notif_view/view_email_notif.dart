@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_email_notif.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// Simple view that tells users that they need to verify
 /// their email before they can be let in.
@@ -20,7 +21,7 @@ class ViewEmailNotif extends StatelessWidget
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       //appBar: AppBar(
-      //  title: Text(widget.title),
+      //  title: AutoSizeText(widget.title),
       //),
 
       body: Center(
@@ -29,7 +30,7 @@ class ViewEmailNotif extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 12 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'Welcome to Quasar! To complete your account registration please verify the email '
                       'address you entered into the app. Once you are finished you may log in.',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
@@ -41,11 +42,12 @@ class ViewEmailNotif extends StatelessWidget
               child: SizedBox(
                 width: 90 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.clear,
-                    disabledColor: Col.clear,
-                    splashColor: Col.pink,
-                    child: Text('Take be back to the login page',
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ElevatedButton.styleFrom(
+                      primary: Col.clear, // background
+                      onPrimary: Col.pink, // foreground
+                    ),
+                    child: AutoSizeText('Take be back to the login page',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),
                     onPressed:() {

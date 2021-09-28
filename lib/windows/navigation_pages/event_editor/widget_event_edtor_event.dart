@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/event_modifier/initializer_view_event_modifier.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'controller_event_editor.dart';
 
 import '../../../col.dart';
@@ -39,7 +40,7 @@ class WidgetMainPageEvent extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Col.purple_3),
                     ),
-                    child: Text(title,
+                    child: AutoSizeText(title,
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       textAlign: TextAlign.center,
                     ),

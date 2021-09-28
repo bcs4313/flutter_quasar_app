@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/size_config.dart';
 import 'controller_homepage.dart';
-import 'event_home/controller_event_home.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 
@@ -44,7 +44,7 @@ class HomePageEventWidget extends StatelessWidget
           color: Col.purple_2,
           border: Border.all(color: Col.pink)
       ),
-      child: TextButton(child: Text(title,
+      child: TextButton(child: AutoSizeText(title,
             style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 5,
                 height: 1.3,
                 fontFamily: 'Roboto',

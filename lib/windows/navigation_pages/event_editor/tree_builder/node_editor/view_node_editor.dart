@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/event_editor/tree_builder/tree_node/view_tree_node_draggable.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -47,7 +48,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                 'Title',
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -83,7 +84,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
             ),
             Padding(
               padding: EdgeInsets.only(top: 3 * SizeConfig.scaleVertical, bottom: 2 * SizeConfig.scaleVertical),
-              child: Text(
+              child: AutoSizeText(
                 'Description:',
                 style: TextStyle(fontSize: 6 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -125,7 +126,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 4 * SizeConfig.scaleHorizontal),
-                    child: Text('Node Icon:',
+                    child: AutoSizeText('Node Icon:',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6, color: Col.pink),
                     ),
                   ),
@@ -154,7 +155,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                   Container(
                     width: 20 * SizeConfig.scaleHorizontal,
                     height: 5 * SizeConfig.scaleVertical,
-                    child: Text('Start:',
+                    child: AutoSizeText('Start:',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6, color: Col.pink),
                     ),
                   ),
@@ -182,7 +183,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                     });
                                   }, currentTime: DateTime.now(), locale: LocaleType.en);
                             },
-                            child: Text(
+                            child: AutoSizeText(
                               node.startDate,
                               style: TextStyle(color: Colors.blue),
                             )),
@@ -207,7 +208,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                       });
                                   }, currentTime: DateTime.now());
                                 },
-                                child: Text(
+                                child: AutoSizeText(
                                   node.startTime,
                                   style: TextStyle(color: Colors.blue),
                                 )),
@@ -227,7 +228,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                   Container(
                     width: 20 * SizeConfig.scaleHorizontal,
                     height: 5 * SizeConfig.scaleVertical,
-                    child: Text('End:',
+                    child: AutoSizeText('End:',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 6, color: Col.pink),
                     ),
                   ),
@@ -255,7 +256,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                         });
                                       }, currentTime: DateTime.now(), locale: LocaleType.en);
                                 },
-                                child: Text(
+                                child: AutoSizeText(
                                   node.endDate,
                                   style: TextStyle(color: Colors.blue),
                                 )),
@@ -280,7 +281,7 @@ class ViewNodeEditor extends State<NodeEditorStateful>
                                           });
                                         }, currentTime: DateTime.now());
                                   },
-                                  child: Text(
+                                  child: AutoSizeText(
                                     node.endTime,
                                     style: TextStyle(color: Colors.blue),
                                   )),

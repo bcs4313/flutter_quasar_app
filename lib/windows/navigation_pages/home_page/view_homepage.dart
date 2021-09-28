@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'controller_homepage.dart';
 import 'extension_homepage.dart';
 
@@ -59,7 +60,7 @@ class ViewHomepage extends State<HomepageStateful>
             Padding(
               padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical),
             ),
-            Text(
+            AutoSizeText(
               'Welcome!',
               style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 9, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
               textAlign: TextAlign.center,
@@ -68,7 +69,7 @@ class ViewHomepage extends State<HomepageStateful>
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 3 * SizeConfig.scaleHorizontal),
-                  child: Column(children: [Text(
+                  child: Column(children: [AutoSizeText(
                     'Current Events',
                     style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 5, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                     textAlign: TextAlign.center,
@@ -88,7 +89,7 @@ class ViewHomepage extends State<HomepageStateful>
                 Padding(
                   padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 4 * SizeConfig.scaleHorizontal),
                   child: Column(
-                    children: [Text(
+                    children: [AutoSizeText(
                     'Things to do',
                     style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 5, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                     textAlign: TextAlign.center,

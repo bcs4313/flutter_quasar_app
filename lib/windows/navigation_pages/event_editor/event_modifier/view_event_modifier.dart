@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../../col.dart';
 import '../../../../../size_config.dart';
@@ -47,7 +48,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 5 * SizeConfig.scaleHorizontal, right: 5 * SizeConfig.scaleHorizontal),
-                child: Text(
+                child: AutoSizeText(
                   'Modify event properties',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                   textAlign: TextAlign.center,
@@ -57,7 +58,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
                 child: Row(
                   children:[
-                    Text(
+                    AutoSizeText(
                       'Title:',
                       style: TextStyle(fontSize: 6 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                       textAlign: TextAlign.center,
@@ -94,7 +95,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
                 child: Row(
                   children:[
-                    Text(
+                    AutoSizeText(
                       'Description:',
                       style: TextStyle(fontSize: 6 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                       textAlign: TextAlign.center,
@@ -136,7 +137,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 padding: EdgeInsets.only(top: 4 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal),
                 child: Row(
                   children:[
-                    Text(
+                    AutoSizeText(
                       'Auto-Join',
                       style: TextStyle(fontSize: 4 * SizeConfig.scaleHorizontal, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                       textAlign: TextAlign.center,
@@ -165,11 +166,12 @@ class ViewEventModifier extends State<InitializerEventModifier>
                 child: SizedBox(
                   width: 47 * SizeConfig.scaleHorizontal,
                   height: 10 * SizeConfig.scaleVertical,
-                  child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                      color: Col.purple_3,
-                      disabledColor: Col.purple_3,
-                      splashColor: Col.pink,
-                      child: Text('Confirm Changes',
+                  child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                      style: ElevatedButton.styleFrom(
+                        primary: Col.purple_3, // background
+                        onPrimary: Col.pink, // foreground
+                      ),
+                      child: AutoSizeText('Confirm Changes',
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                       ),
                       onPressed:() => {
@@ -190,7 +192,7 @@ class ViewEventModifier extends State<InitializerEventModifier>
                         {
                           controller.transferDeletionConfirmation(context);
                         },
-                        child: const Text('Remove Event'
+                        child: const AutoSizeText('Remove Event'
                         ),
                       ),
                     ),

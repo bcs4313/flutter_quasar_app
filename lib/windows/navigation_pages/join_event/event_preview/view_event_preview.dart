@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'controller_event_preview.dart';
 
 import '../../../../col.dart';
@@ -64,7 +65,7 @@ class ViewEventPreview extends StatelessWidget
         Padding(
           padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical),
         ),
-        Text("Join this Event?",
+        AutoSizeText("Join this Event?",
           style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 12,
               height: 1.3,
               fontFamily: 'Roboto',
@@ -76,14 +77,14 @@ class ViewEventPreview extends StatelessWidget
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Title: ",
+            AutoSizeText("Title: ",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8,
                     height: 1.3,
                     fontFamily: 'Roboto',
                     color: Col.pink)
             ),
-            Text(" " + title,
+            AutoSizeText(" " + title,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8,
                     height: 1.3,
@@ -95,7 +96,7 @@ class ViewEventPreview extends StatelessWidget
             Padding(
               padding: EdgeInsets.only(top: 15 * SizeConfig.scaleHorizontal),
             ),
-            Text("Description: ",
+            AutoSizeText("Description: ",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 5,
                     height: 1.3,
@@ -124,7 +125,7 @@ class ViewEventPreview extends StatelessWidget
         Padding(
           padding: EdgeInsets.only(top: 4 * SizeConfig.scaleHorizontal),
         ),
-        Text(joinType,
+        AutoSizeText(joinType,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                 height: 1.3,
@@ -142,7 +143,7 @@ class ViewEventPreview extends StatelessWidget
           child: FittedBox(
             fit: BoxFit.contain,
             child: TextButton(
-              child: Text("Yes",
+              child: AutoSizeText("Yes",
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                       height: 1.3,
                       fontFamily: 'Roboto',

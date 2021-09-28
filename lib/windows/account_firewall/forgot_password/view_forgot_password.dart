@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../col.dart';
 import '../../../size_config.dart';
 import 'controller_forgot_password.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 /// View that lets a user request for their password to be changed
 /// via an email verification method.
@@ -21,7 +22,7 @@ class ViewForgotPassword extends StatelessWidget
       resizeToAvoidBottomInset: false, // prevents resizing upon keyboard appearing. Avoids an error.
       backgroundColor: Col.purple_0,
       //appBar: AppBar(
-      //  title: Text(widget.title),
+      //  title: AutoSizeText(widget.title),
       //),
 
       body: Center(
@@ -30,7 +31,7 @@ class ViewForgotPassword extends StatelessWidget
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 12 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'To recover your account, an email will be sent to your address to recover it. '
                       '\n\nEnter your email address below.',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
@@ -64,11 +65,12 @@ class ViewForgotPassword extends StatelessWidget
               child: SizedBox(
                 width: 90 * SizeConfig.scaleHorizontal,
                 height: 10 * SizeConfig.scaleVertical,
-                child: RaisedButton( // Raised buttons have bevels to stand out form the background
-                    color: Col.clear,
-                    disabledColor: Col.clear,
-                    splashColor: Col.pink,
-                    child: Text('Send ',
+                child: ElevatedButton( // Raised buttons have bevels to stand out form the background
+                    style: ElevatedButton.styleFrom(
+                      primary: Col.clear, // background
+                      onPrimary: Col.pink, // foreground
+                    ),
+                    child: AutoSizeText('Send ',
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4, color: Col.pink),
                     ),
                     onPressed:() {

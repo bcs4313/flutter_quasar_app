@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_bar_construct.dart';
 import 'package:flutter_quasar_app/windows/navigation_pages/drawer_contruct/drawer_construct.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../col.dart';
 import '../../../size_config.dart';
@@ -65,7 +66,7 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 5 * SizeConfig.scaleVertical, left: 8 * SizeConfig.scaleHorizontal, right: 8 * SizeConfig.scaleHorizontal),
-              child: Text(
+              child: AutoSizeText(
                   'My Friends',
                   style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                 textAlign: TextAlign.center,
@@ -98,7 +99,7 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
                     height: 6 * SizeConfig.scaleVertical,
                     child: FittedBox(
 
-                      child: Text(
+                      child: AutoSizeText(
                         "Page " + (disposition+1).toString() + " of " + (count).toString(),
                         style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 8, height: 1.3, fontFamily: 'Roboto', color: Col.pink),
                         textAlign: TextAlign.center,
@@ -145,7 +146,7 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("Find Friends",
+                  label: AutoSizeText("Find Friends",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',
@@ -168,7 +169,7 @@ class ViewFriendsHome extends State<FriendsHomeStateful>
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: TextButton.icon(
-                  label: Text("View Requests",
+                  label: AutoSizeText("View Requests",
                       style: TextStyle(fontSize: SizeConfig.scaleHorizontal * 4,
                           height: 1.3,
                           fontFamily: 'Roboto',
